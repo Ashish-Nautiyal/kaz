@@ -1,0 +1,70 @@
+.container {
+    border-radius: 20px;
+    border: 2px solid black;
+    width: 600px;
+    height: 500px;
+    margin: 100px 600px;
+    padding-top: 20px;
+}
+
+.login-form {
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
+
+.login-form h1 {
+    text-align: center;
+    color: rgb(0, 111, 111);
+}
+
+.email-field {
+    text-align: center;
+    padding-top: 40px;
+}
+
+.email-field input {
+    height: 30px;
+    width: 400px;
+    border: 1.5px solid black;
+    border-radius: 5px;
+}
+
+.password-field {
+    text-align: center;
+    padding-top: 60px;
+    height: 30px;
+}
+
+.password-field input {
+    height: 30px;
+    width: 376px;
+    border: 1.5px solid black;
+    border-radius: 5px;
+}
+
+.login-button {
+    text-align: center;
+    padding-top: 80px;
+}
+
+.login-button button {
+    text-align: center;
+    height: 40px;
+    width: 150px;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding-bottom: 25px;
+    padding-top: 10px;
+    background-color: rgb(0, 111, 111);
+    color: white;
+}
+
+.login-button button:disabled {
+    background-color: #cccccc;
+    color: black;
+    cursor: not-allowed;
+}
+
+.error_message {
+    color: red;
+}

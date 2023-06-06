@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="dashboard_icon_container">
+        <mat-icon class="dashboard_icon" (click)="sidenav.toggle()">dashboard</mat-icon>
+    </div>
+    <div class="sidenav_container">
+        <mat-sidenav-container>
+            <mat-sidenav #sidenav mode="side">
+                <mat-nav-list>
+                    <a mat-list-item routerLink="/home"><mat-icon>home</mat-icon>Home</a>
+                    <a mat-list-item routerLink="/subAdmin"><mat-icon>groups</mat-icon>Sub-admin Management</a>
+                    <a mat-list-item routerLink="/users"><mat-icon>person</mat-icon>Users Management</a>
+                    <a mat-list-item ><mat-icon>add_circle_outline</mat-icon>Category Management</a>
+                </mat-nav-list>
+            </mat-sidenav>
+            <mat-sidenav-content>
+                <div style="height: 88vh;">
+                    <!-- <router-outlet></router-outlet> -->
+                    <app-sub-admin-management></app-sub-admin-management>
+                </div>
+            </mat-sidenav-content>
+        </mat-sidenav-container>
+    </div>
+</div>
