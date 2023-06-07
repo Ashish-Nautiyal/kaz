@@ -11,12 +11,13 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent implements OnInit {
 
   loginForm: any;
-  hide : boolean = true;
+  hide: boolean = true;
 
   constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.getLoginForm();
+    this.isLoggedIn();
   }
 
   getLoginForm() {
@@ -30,6 +31,8 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.value).subscribe(
       res => {
         if (res.success) {
+          localStorage.clear();
+          localStorage.setItem('token', res.data);
           this.router.navigate(['/admin/dashboard']);
         } else {
           console.log(res.message);
@@ -40,5 +43,11 @@ export class LoginComponent implements OnInit {
 
   showPassword() {
     this.hide = !this.hide;
+  }
+
+  isLoggedIn() {
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['/admin/dashboard/home']);
+    }
   }
 }

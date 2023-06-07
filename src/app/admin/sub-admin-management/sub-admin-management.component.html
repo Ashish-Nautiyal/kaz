@@ -5,38 +5,43 @@
             <div class="grid">
                 <div class="search">
                     <label>Search:</label>
-                    <input type="text" /><span><mat-icon>search</mat-icon></span>
+                    <input type="text" #searchString /><span><mat-icon
+                            (click)="search(searchString.value)">search</mat-icon></span>
                 </div>
                 <div class="add-sub-admin1">
                     <button type="submit" (click)="showSubAdminForm()">Add Sub-admin</button>
                 </div>
             </div>
             <div class="sub-admin-list">
-                <table class="custom-table">
-                    <thead>
-                        <tr>
-                            <th>Sr no.</th>
-                            <th>Name</th>
-                            <th>Email Address</th>
-                            <th>Phone Number</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let a of [1,1,1,1,1]">
-                            <td>1.</td>
-                            <td>Ashish Nautiyal</td>
-                            <td>ashish@gmail.com</td>
-                            <td>9876543210</td>
-                            <td>
-                                <mat-icon class="action-icon">edit</mat-icon>
-                                <mat-icon class="action-icon">delete</mat-icon>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <ng-container *ngIf="subAdmins.length > 0;else elseBlock1">
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th>Sr no.</th>
+                                <th>Name</th>
+                                <th>Email Address</th>
+                                <th>Phone Number</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of subAdmins;let i = index">
+                                <td>{{i + 1}}</td>
+                                <td>{{data.first_name + ' ' +data.last_name}}</td>
+                                <td>{{data.email}}</td>
+                                <td>{{data.phone_number}}</td>
+                                <td>
+                                    <mat-icon class="action-icon" (click)="editSubAdmin(data._id)">edit</mat-icon>
+                                    <mat-icon class="action-icon" (click)="deleteSubAdmin(data._id)">delete</mat-icon>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </ng-container>
+                <ng-template #elseBlock1>
+                    <h1>No result found !!!</h1><span><mat-icon>search</mat-icon></span>
+                </ng-template>
             </div>
-
         </div>
     </ng-container>
     <ng-template #elseBlock>

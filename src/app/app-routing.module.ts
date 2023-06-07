@@ -15,20 +15,20 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent }
     ]
   },
-  // { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
-  {
-    path: 'admin', children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      {
-        path: 'dashboard', component: DashBoardComponent, children: [
-          { path: '', redirectTo: 'subAdmin', pathMatch: 'full' },
-          { path: 'home', component: HomeComponent },
-          { path: 'subAdmin', component: SubAdminManagementComponent },
-          { path: 'users', component: UsersManagementComponent }
-        ]
-      },
-    ]
-  }
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
+  // {
+  //   path: 'admin', children: [
+  //     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  //     {
+  //       path: 'dashboard', component: DashBoardComponent, children: [
+  //         { path: '', redirectTo: 'subAdmin', pathMatch: 'full' },
+  //         { path: 'home', component: HomeComponent },
+  //         { path: 'subAdmin', component: SubAdminManagementComponent },
+  //         { path: 'users', component: UsersManagementComponent }
+  //       ]
+  //     },
+  //   ]
+  // }
 ];
 
 @NgModule({

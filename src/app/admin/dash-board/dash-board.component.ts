@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-dash-board',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./dash-board.component.scss']
 })
 export class DashBoardComponent {
-  
+
+
+  constructor(private authService: AuthService) { }
+
+  logout() {
+    this.authService.logout();
+  }
 }

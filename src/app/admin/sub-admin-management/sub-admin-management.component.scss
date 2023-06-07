@@ -45,6 +45,12 @@
     margin-top: 60px;
 }
 
+.sub-admin-list h1 {
+    color: black;
+    margin-top: 150px;
+    margin-left: 20px;
+}
+
 .custom-table {
     width: 90%;
     border-collapse: collapse;
@@ -99,7 +105,8 @@
     margin-top: 20px;
 }
 
-.form-container input[type="text"],input[type="email"] {
+.form-container input[type="text"],
+input[type="email"] {
     height: 30px;
     width: 300px;
     border: 1.5px solid black;
