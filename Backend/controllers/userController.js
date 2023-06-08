@@ -104,7 +104,7 @@ module.exports.deleteSubAdmin = async (req, res) => {
         if (!data) {
             return res.status(404).json({ message: 'subAdmin not found. Please check payload id.', success: false });
         }
-        res.status(200).json({ message: 'subAdmin detail.', data: data, success: true });
+        res.status(200).json({ message: 'subAdmin deleted.', success: true });
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: 'Internal server error.', success: false });
@@ -115,12 +115,12 @@ module.exports.searchSubAdmins = async (req, res) => {
     try {
         let searchString = req.params.search;
         if (!searchString) {
-            return res.status(404).json({ message: 'search string not found.', message: false });
+            return res.status(404).json({ message: 'Search string not found.', success: false });
         }
         const data = await User.find({ $or: [{ email: { $regex: searchString } }, { first_name: { $regex: searchString } }, { last_name: { $regex: searchString } }, { username: { $regex: searchString } }, { phone_number: { $regex: searchString } }] });
-        res.status(200).json({ message: 'search result', data: data, message: true });
+        res.status(200).json({ message: 'Search result', data: data, success: true });
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: 'Internal server error.', message: false });
+        res.status(500).json({ message: 'Internal server error.', success: false });
     }
 }

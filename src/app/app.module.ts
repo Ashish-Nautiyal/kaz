@@ -10,19 +10,18 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 //Components
 import { AppComponent } from './app.component';
-
-//Interceptors
-import { AuthInterceptor } from './authInterceptor/auth.interceptor';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 
+//Interceptors
+import { AuthInterceptor } from './authInterceptor/auth.interceptor';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

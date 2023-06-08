@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="category-container">
+        <h1>Category Management</h1>
+        <div class="grid">
+            <div class="search">
+                <label>Search:</label>
+                <input type="text" #searchString /><span><mat-icon
+                        (click)="search(searchString.value)">search</mat-icon></span>
+            </div>
+            <div class="add-category-button1">
+                <button type="button" (click)="openAddCategoryModal()">Add New Category</button>
+            </div>
+        </div>
+    </div>
+    <div class="category-list">
+        <ng-container *ngIf="categoryList.length > 0; else elseBlock">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sr no.</th>
+                        <th>Category Name</th>
+                        <th>Products</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let cat of categoryList;let i =index">
+                        <td>{{i + 1}}</td>
+                        <td>{{cat.category_name}}</td>
+                        <td>0</td>
+                        <td *ngIf="cat.status;else showThis">Enabled</td>
+                        <ng-template #showThis>
+                            <td>Disabled</td>
+                        </ng-template>
+                        <td class="icon-group">
+                            <mat-icon (click)="editCategory(cat._id)">edit</mat-icon>
+                            <mat-icon (click)="deleteCategory(cat._id)">delete</mat-icon>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </ng-container>
+        <ng-template #elseBlock>
+            <h1>No result found !!!</h1><mat-icon class="search_icon">search</mat-icon>
+        </ng-template>
+    </div>
+</div>

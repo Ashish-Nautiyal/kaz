@@ -5,8 +5,7 @@
             <div class="grid-container">
                 <div class="first_name">
                     <input type="text" placeholder="First Name" formControlName="first_name" />
-                    <div
-                        *ngIf="editForm.get('first_name')?.touched && editForm.get('first_name')?.invalid">
+                    <div *ngIf="editForm.get('first_name')?.touched && editForm.get('first_name')?.invalid">
                         <div class="error_message" *ngIf="editForm.get('first_name')?.errors.required">First
                             Name is
                             required.</div>
@@ -14,8 +13,7 @@
                 </div>
                 <div class="last_name">
                     <input type="text" placeholder="Last Name" formControlName="last_name" />
-                    <div
-                        *ngIf="editForm.get('last_name')?.touched && editForm.get('last_name')?.invalid">
+                    <div *ngIf="editForm.get('last_name')?.touched && editForm.get('last_name')?.invalid">
                         <div class="error_message" *ngIf="editForm.get('last_name')?.errors.required">Last
                             Name is
                             required.</div>
@@ -23,8 +21,7 @@
                 </div>
                 <div class="phone-number">
                     <input type="text" placeholder="Phone Number" formControlName="phone_number" />
-                    <div
-                        *ngIf="editForm.get('phone_number')?.touched && editForm.get('phone_number')?.invalid">
+                    <div *ngIf="editForm.get('phone_number')?.touched && editForm.get('phone_number')?.invalid">
                         <div class="error_message" *ngIf="editForm.get('phone_number')?.errors.required">
                             phone_number is
                             required.</div>
@@ -35,8 +32,8 @@
                 </div>
             </div>
             <div class="button-group">
-                <button type="submit" [disabled]="editForm.invalid" mat-dialog-close>Update</button>
-                <button mat-dialog-close>Cancel</button>
+                <button type="submit" [disabled]="editForm.invalid">Update</button>
+                <button type="button" (click)="cancel()">Cancel</button>
             </div>
         </form>
     </div>

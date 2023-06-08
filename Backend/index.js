@@ -13,6 +13,14 @@ app.use(cors());
 const userRoutes = require('./routes/userRoute');
 app.use('/api', userRoutes);
 
+//Category routes
+const categoryRoutes = require('./routes/categoryRoute');
+app.use('/api', categoryRoutes);
+
+//Blog routes
+const blogRoutes = require('./routes/blogRoute');
+app.use('/api', blogRoutes);
+
 app.listen(port, () => {
     console.log(`server listening on port ${port}`);
 });

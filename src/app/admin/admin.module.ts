@@ -11,6 +11,10 @@ import { SubAdminManagementComponent } from './sub-admin-management/sub-admin-ma
 import { UsersManagementComponent } from './users-management/users-management.component';
 import { HomeComponent } from './home/home.component';
 import { EditSubAdminComponent } from './edit-sub-admin/edit-sub-admin.component';
+import { CategoryManagementComponent } from './category-management/category-management.component';
+import { CategoryFormDialogComponent } from './category-form-dialog/category-form-dialog.component';
+import { CategoryFormEditDialogComponent } from './category-form-edit-dialog/category-form-edit-dialog.component';
+import { BlogManagementComponent } from './blog-management/blog-management.component';
 
 @NgModule({
   declarations: [
@@ -18,14 +22,18 @@ import { EditSubAdminComponent } from './edit-sub-admin/edit-sub-admin.component
     SubAdminManagementComponent,
     UsersManagementComponent,
     HomeComponent,
-    EditSubAdminComponent
+    EditSubAdminComponent,
+    CategoryManagementComponent,
+    CategoryFormDialogComponent,
+    CategoryFormEditDialogComponent,
+    BlogManagementComponent,
   ],
   imports: [
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    AdminRoutingModule
+    AdminRoutingModule,
   ]
 })
 export class AdminModule { }

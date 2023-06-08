@@ -5,8 +5,7 @@
             <div class="grid">
                 <div class="search">
                     <label>Search:</label>
-                    <input type="text" #searchString /><span><mat-icon
-                            (click)="search(searchString.value)">search</mat-icon></span>
+                    <input type="text" #searchString (keydown)="search(searchString.value)" />
                 </div>
                 <div class="add-sub-admin1">
                     <button type="submit" (click)="showSubAdminForm()">Add Sub-admin</button>
@@ -56,6 +55,8 @@
                                 <div class="error_message" *ngIf="subAdminForm.get('username')?.errors.required">
                                     Username is
                                     required.</div>
+                                <div class="error_message" *ngIf="subAdminForm.get('username')?.errors.minlength">
+                                    Username must be at least 3 characters long.</div>
                             </div>
                         </div>
                         <div class="email">

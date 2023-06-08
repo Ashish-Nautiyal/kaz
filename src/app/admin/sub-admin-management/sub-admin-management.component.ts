@@ -35,7 +35,7 @@ export class SubAdminManagementComponent implements OnInit {
 
   getSubAdminForm() {
     this.subAdminForm = this.fb.group({
-      username: ['', Validators.required],
+      username: ['', [Validators.required,Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
@@ -82,11 +82,19 @@ export class SubAdminManagementComponent implements OnInit {
       res => {
         let data = res.data;
         if (data) {
-          this.dialog.open(EditSubAdminComponent, {
+          let dialogRef = this.dialog.open(EditSubAdminComponent, {
             data: data,
             height: '500px',
             width: '400px'
           });
+
+          dialogRef.afterClosed().subscribe(
+            res => {
+              if (res) {
+                this.getSubAdmins();
+              }
+            }
+          );
         }
       }, error => console.log(error)
     );
