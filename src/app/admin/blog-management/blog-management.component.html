@@ -5,7 +5,7 @@
             <div class="grid">
                 <div class="search">
                     <label>Search:</label>
-                    <input type="text" placeholder="Search blog" #searchString /><span><mat-icon>search</mat-icon></span>
+                    <input type="text" placeholder="Search blog" #searchString (keydown)="search(searchString.value)" />
                 </div>
                 <div class="add-category-button1">
                     <button type="button" (click)="showBlogForm()">Add New Blog</button>
@@ -13,49 +13,35 @@
             </div>
         </div>
         <div class="blog-list">
-            <!-- <ng-container *ngIf="blogList.length > 0; else elseBlock1"> -->
-            <table>
-                <thead>
-                    <tr>
-                        <th>Sr no.</th>
-                        <th>Blog's Name</th>
-                        <th>Description</th>
-                        <th>Published on</th>
-                        <th>URL</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Blog A</td>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. At, aperiam.</td>
-                        <td>08-06-2023</td>
-                        <td>http://myBlog.com</td>
-                        <td>
-                            <mat-icon (click)="deleteBlog(0)">delete</mat-icon>
-                            <mat-icon (click)="editBlog(0)">edit</mat-icon>
-                            <mat-icon>visibility</mat-icon>
-                            <mat-icon>cloud_upload</mat-icon>
-                        </td>
-                    </tr>
-                    <!-- <tr *ngFor="let cat of blogList;let i =index">
-                            <td>{{i + 1}}</td>
-                            <td>{{cat.category_name}}</td>
-                            <td>0</td>
-                            <td *ngIf="cat.status;else showThis">Enabled</td>
-                            <ng-template #showThis>
-                                <td>Disabled</td>
-                            </ng-template>
-                            <td class="icon-group">
-                                <mat-icon (click)="editBlog(cat._id)">edit</mat-icon>
-                                <mat-icon (click)="deleteBlog(cat._id)">delete</mat-icon>
+            <ng-container *ngIf="blogList.length > 0;else showThis">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sr no.</th>
+                            <th>Blog's Name</th>
+                            <th>Published on</th>
+                            <th>URL</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of blogList;let i=index">
+                            <td>{{i +1}}</td>
+                            <td>{{data.title}}</td>
+                            <td>{{data.pulished_on}}</td>
+                            <td>
+                                <a routerLink="/admin/dashboard/blogDetail/{{data._id}}">{{data.url}}</a>
                             </td>
-                        </tr> -->
-                </tbody>
-            </table>
-            <!-- </ng-container> -->
-            <ng-template #elseBlock1>
+                            <td class="icon-group">
+                                <mat-icon (click)="deleteBlog(data._id)">delete</mat-icon>
+                                <mat-icon (click)="editBlog(data._id)">edit</mat-icon>
+                                <mat-icon (click)="blogDetail(data._id)">visibility</mat-icon>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </ng-container>
+            <ng-template #showThis>
                 <h1>No result found !!!</h1><mat-icon class="search_icon">search</mat-icon>
             </ng-template>
         </div>
@@ -81,14 +67,28 @@
                         <div *ngIf="blogForm.get('url')?.touched && blogForm.get('url')?.invalid">
                             <div class="error_message" *ngIf="blogForm.get('url')?.errors.required">url is
                                 required.</div>
+                            <div class="error_message" *ngIf="blogForm.get('url')?.errors.pattern">url is
+                                wrong.</div>
                         </div>
                     </div>
                 </div>
                 <div class="blog-image">
-                    <input type="file" formControlName="blog_image" />
+                    <input id="upload" type="file" #filename (change)="onFileselect($event)"
+                        formControlName="blog_image" />
+                    <div *ngIf="blogForm.get('blog_image')?.touched && blogForm.get('blog_image')?.invalid">
+                        <div class="error_message" *ngIf="blogForm.get('blog_image')?.errors.required">Blog image is
+                            required.</div>
+                    </div>
+                    <label for="upload" class="upload-label">
+                        <div class="upload-image">
+                            <mat-icon>cloud_upload</mat-icon>
+                            <p>Add Image</p>
+                        </div>
+                    </label>
                 </div>
-                <div class="editor">
-             
+                <div class="angular-editor">
+                    <angular-editor [(ngModel)]="htmlContent" [ngModelOptions]="{standalone: true}"
+                        [config]="config"></angular-editor>
                 </div>
                 <div class="submit-btn">
                     <button type="submit" [disabled]="blogForm.invalid">Upload</button>

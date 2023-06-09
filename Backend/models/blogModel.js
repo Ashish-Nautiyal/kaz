@@ -6,15 +6,15 @@ const blogSchema = new mongoose.Schema({
         required: true,
     },
     description: {
-        type: Boolean,
+        type: String,
         required: true,
     },
     url: {
-        type: Boolean,
+        type: String,
         required: true,
     },
     blog_image: {
-        type: Boolean,
+        type: String,
         required: true,
     },
     pulished_on: {

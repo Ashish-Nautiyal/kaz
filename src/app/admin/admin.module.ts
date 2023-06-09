@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AdminRoutingModule } from './admin-routing.module';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+
 
 //Components
 import { DashBoardComponent } from './dash-board/dash-board.component';
@@ -15,6 +17,8 @@ import { CategoryManagementComponent } from './category-management/category-mana
 import { CategoryFormDialogComponent } from './category-form-dialog/category-form-dialog.component';
 import { CategoryFormEditDialogComponent } from './category-form-edit-dialog/category-form-edit-dialog.component';
 import { BlogManagementComponent } from './blog-management/blog-management.component';
+import { BlogEditDialogComponent } from './blog-edit-dialog/blog-edit-dialog.component';
+import { BlogDetailComponent } from './blog-detail/blog-detail.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +31,8 @@ import { BlogManagementComponent } from './blog-management/blog-management.compo
     CategoryFormDialogComponent,
     CategoryFormEditDialogComponent,
     BlogManagementComponent,
+    BlogEditDialogComponent,
+    BlogDetailComponent,
   ],
   imports: [
     CommonModule,
@@ -34,6 +40,7 @@ import { BlogManagementComponent } from './blog-management/blog-management.compo
     ReactiveFormsModule,
     FormsModule,
     AdminRoutingModule,
+    AngularEditorModule
   ]
 })
 export class AdminModule { }

@@ -7,6 +7,7 @@ import { UsersManagementComponent } from './users-management/users-management.co
 import { AuthGuard } from '../authGuard/auth.guard';
 import { CategoryManagementComponent } from './category-management/category-management.component';
 import { BlogManagementComponent } from './blog-management/blog-management.component';
+import { BlogDetailComponent } from './blog-detail/blog-detail.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -18,6 +19,7 @@ const appRoutes: Routes = [
             { path: 'users', component: UsersManagementComponent },
             { path: 'category', component: CategoryManagementComponent },
             { path: 'blog', component: BlogManagementComponent },
+            { path: 'blogDetail/:id', component: BlogDetailComponent },
         ]
     },
 ];

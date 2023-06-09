@@ -1,0 +1,50 @@
+<div class="blog-form">
+    <h1>Edit Blog</h1>
+    <form [formGroup]="blogForm" (ngSubmit)="onSubmit()">
+        <input type="hidden" formControlName="_id">
+        <div class="input-group">
+            <div class="title">
+                <input type="text" placeholder="Add title" formControlName="title" />
+                <div *ngIf="blogForm.get('title')?.touched && blogForm.get('title')?.invalid">
+                    <div class="error_message" *ngIf="blogForm.get('title')?.errors.required">
+                        Title is
+                        required.</div>
+                    <div class="error_message" *ngIf="blogForm.get('title')?.errors.minlength">
+                        Title must be at least 3 characters long.</div>
+                </div>
+            </div>
+            <div class="url">
+                <input type="text" placeholder="Add url" formControlName="url" />
+                <div *ngIf="blogForm.get('url')?.touched && blogForm.get('url')?.invalid">
+                    <div class="error_message" *ngIf="blogForm.get('url')?.errors.required">url is
+                        required.</div>
+                    <div class="error_message" *ngIf="blogForm.get('url')?.errors.pattern">url is
+                        wrong.</div>
+                </div>
+            </div>
+        </div>
+        <div class="blog-image">
+            <div class="choose-file">
+                <input id="input-file" type="file" (change)="onFileSelect($event)" formControlName="blog_image" />
+                <div *ngIf="blogForm.get('blog_image')?.touched && blogForm.get('blog_image')?.invalid">
+                    <div class="error_message" *ngIf="blogForm.get('blog_image')?.errors.required">Blog image is
+                        required.</div>
+                </div>
+                <label for="input-file" class="upload-label">
+                    <div class="upload-image">
+                        <mat-icon>cloud_upload</mat-icon>
+                        <p>Update Image</p>
+                    </div>
+                </label>
+            </div>
+        </div>
+        <div class="angular-editor">
+            <angular-editor [(ngModel)]="htmlContent" [ngModelOptions]="{standalone: true}"
+                [config]="config"></angular-editor>
+        </div>
+        <div class="button-group">
+            <button type="submit" [disabled]="blogForm.invalid">Update</button>
+            <button type="button" (click)="close()">Cancel</button>
+        </div>
+    </form>
+</div>

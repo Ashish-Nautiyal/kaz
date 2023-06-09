@@ -33,4 +33,8 @@ export class BlogService {
   updateBlog(body: object): Observable<any> {
     return this.http.post<any>(environment.baseUrl + 'updateBlog', body);
   }
+
+  getBlogDetail(body: any): Observable<any> {
+    return this.http.get<any>(environment.baseUrl + 'getBlogDetail/' + body);
+  }
 }

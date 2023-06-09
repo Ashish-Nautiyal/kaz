@@ -1,0 +1,58 @@
+<ng-container *ngIf="blogInfo;else elseBlock">
+    <div class="container">
+        <div class="blog-title">
+            <h2>{{blogInfo.title}}</h2>
+        </div>
+        <div class="blog-image">
+            <img src="http://localhost:8001/{{blogInfo.blog_image}}" alt="Blog image">
+        </div>
+        <div class="blog-url">
+            <a routerLink="/admin/dashboard/blogDetail/{{blogInfo._id}}">{{blogInfo.url}}</a>
+        </div>
+        <div class="blog-published">
+            <label>Published On :</label>
+            {{blogInfo.pulished_on}}
+        </div>
+        <div class="blog-description">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque quaerat voluptatibus at ex nisi eligendi
+                voluptates, similique sapiente suscipit minima voluptatum obcaecati doloribus tenetur ipsam officia
+                reiciendis eos commodi. Nostrum, inventore tenetur? Eius nihil quidem ab, rerum iste aspernatur magni
+                voluptates ipsum maxime consequuntur adipisci numquam saepe reprehenderit corrupti earum consequatur
+                maiores itaque laborum debitis. Temporibus placeat vitae cum itaque asperiores, sed corrupti. Ad eius at
+                soluta accusantium asperiores dignissimos, a ducimus facilis obcaecati error saepe provident inventore
+                laborum eveniet ipsum illum cupiditate officia? Consequuntur deleniti dolorem, eaque odio tempora
+                obcaecati suscipit. Dolores quasi deleniti, velit ut repellat labore eum temporibus aperiam molestiae
+                illo odit esse dolor libero mollitia atque explicabo nulla numquam eaque veniam corrupti autem corporis
+                odio ipsum. Obcaecati, minima. Nobis deleniti hic laboriosam sapiente molestiae distinctio cum dolore
+                animi atque, quo error in corrupti soluta modi magni, quod suscipit quos illum dolorem. Dolor odio
+                porro, necessitatibus quo nesciunt accusantium rem, consectetur reprehenderit omnis sed quidem a? Esse
+                delectus expedita hic consequatur fugit modi perferendis rerum asperiores est quae eos maiores saepe
+                eligendi, atque eaque ullam commodi quis ipsum debitis ex. Cumque atque ipsum ipsa eligendi et
+                consequatur fugit, illo perferendis molestiae aliquid quos? Doloribus, eligendi rerum consectetur
+                ratione vitae dolore rem eos delectus commodi esse tempora soluta architecto beatae autem dolores odio
+                numquam! Dolorem consectetur ipsum eveniet sint. Cumque id consectetur eius omnis vero exercitationem
+                debitis, corrupti rem aut eveniet recusandae perferendis praesentium corporis, quibusdam impedit quas
+                deleniti quis voluptatibus officia sapiente? Molestiae tempora ipsa eligendi, molestias incidunt nemo
+                deserunt quasi porro odit iure consequatur ut? Fuga facere in laborum fugit veritatis laboriosam vitae
+                sit minus facilis modi, dolore delectus consequatur voluptate dicta architecto quia maxime nam
+                molestias! Provident fugit facere deleniti neque voluptates, at placeat iure omnis veniam sapiente
+                totam? Id doloribus sed debitis? Nostrum placeat soluta deserunt quis eligendi explicabo adipisci maxime
+                odio totam pariatur fuga accusamus quam consectetur deleniti itaque reiciendis, omnis nobis magnam
+                fugiat aliquid vitae libero! Quas doloremque possimus consequatur, incidunt qui deleniti deserunt
+                aperiam quae natus molestias placeat quam. Voluptatum dignissimos eius provident quam libero dicta
+                reiciendis? Adipisci necessitatibus aperiam tenetur esse provident doloribus earum at ea consequatur cum
+                explicabo, deleniti molestiae repellat itaque numquam pariatur iusto ratione a quo, velit veritatis ad
+                ipsam labore ipsum. Necessitatibus dolorum, molestiae exercitationem magni voluptatibus nostrum nisi sit
+                in esse, nihil totam deserunt harum? Libero cumque repudiandae ullam quam natus omnis mollitia iusto
+                dolor?</p>
+        </div>
+        <div class="back-button">
+            <button (click)="goBack()">Back</button>
+        </div>
+    </div>
+</ng-container>
+<ng-template #elseBlock>
+    <div class="else-container">
+        <h1>No Blog Found!!!</h1>
+    </div>
+</ng-template>
