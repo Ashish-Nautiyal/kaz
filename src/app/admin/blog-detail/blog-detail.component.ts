@@ -23,6 +23,8 @@ export class BlogDetailComponent implements OnInit {
     this.activateRoute.paramMap.subscribe(
       res => {
         this.id = res.get('id');
+        console.log('id',this.id);
+        
       }
     );
   }
@@ -31,12 +33,11 @@ export class BlogDetailComponent implements OnInit {
     this.blogService.getBlogDetail(this.id).subscribe(
       res => {
         this.blogInfo = res.data;
-        console.log('blog', this.blogInfo);
       }, error => console.log(error)
     )
   }
 
   goBack() {
-    this.router.navigate(['/admin/dashboard/blog']);
+    this.router.navigate(['/admin/blog']);
   }
 }

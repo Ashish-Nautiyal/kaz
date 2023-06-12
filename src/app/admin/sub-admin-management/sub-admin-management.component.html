@@ -5,7 +5,7 @@
             <div class="grid">
                 <div class="search">
                     <label>Search:</label>
-                    <input type="text" #searchString (keydown)="search(searchString.value)" />
+                    <input type="text" #searchString placeholder="Search SubAdmin" (keydown)="search(searchString.value)" />
                 </div>
                 <div class="add-sub-admin1">
                     <button type="submit" (click)="showSubAdminForm()">Add Sub-admin</button>
@@ -115,6 +115,7 @@
                     </div>
                     <div class="add-sub-admin2">
                         <button type="submit" [disabled]="subAdminForm.invalid">Add Sub admin</button>
+                        <button type="button" (click)="hideSubAdminForm()">Cancel</button>                        
                     </div>
                 </form>
             </div>

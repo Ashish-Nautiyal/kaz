@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { AuthService, User } from 'src/app/services/auth.service';
-import { UserService } from 'src/app/services/user.service';
 import { EditSubAdminComponent } from '../edit-sub-admin/edit-sub-admin.component';
+import { AdminService, User } from 'src/app/services/admin.service';
 
 @Component({
   selector: 'app-sub-admin-management',
@@ -18,7 +17,7 @@ export class SubAdminManagementComponent implements OnInit {
   subAdmins: User[] = [];
 
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private userService: UserService, private dialog: MatDialog) { }
+  constructor(private fb: FormBuilder, private adminService: AdminService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getSubAdminForm();
@@ -45,7 +44,7 @@ export class SubAdminManagementComponent implements OnInit {
   }
 
   onSubmit() {
-    this.authService.register(this.subAdminForm.value).subscribe(
+    this.adminService.addSubAdmin(this.subAdminForm.value).subscribe(
       res => {
         this.getSubAdminForm();
         this.getSubAdmins();
@@ -59,7 +58,7 @@ export class SubAdminManagementComponent implements OnInit {
   }
 
   getSubAdmins() {
-    this.userService.getSubAdmins().subscribe(
+    this.adminService.getSubAdmins().subscribe(
       res => {
         this.subAdmins = res.data;
       }, error => console.log(error)
@@ -70,7 +69,7 @@ export class SubAdminManagementComponent implements OnInit {
     let del = confirm('Are you sure?');
     if (!del)
       return;
-    this.userService.deleteSubAdmin(id).subscribe(
+    this.adminService.deleteSubAdmin(id).subscribe(
       res => {
         this.getSubAdmins();
       }, error => console.log(error)
@@ -78,7 +77,7 @@ export class SubAdminManagementComponent implements OnInit {
   }
 
   editSubAdmin(id: any) {
-    this.userService.editSubAdmin(id).subscribe(
+    this.adminService.editSubAdmin(id).subscribe(
       res => {
         let data = res.data;
         if (data) {
@@ -101,7 +100,7 @@ export class SubAdminManagementComponent implements OnInit {
   }
 
   search(searchString: string) {
-    this.userService.searchSubAdmin(searchString).subscribe(
+    this.adminService.searchSubAdmin(searchString).subscribe(
       res => {
         this.subAdmins = res.data;
       }, error => console.log(error)

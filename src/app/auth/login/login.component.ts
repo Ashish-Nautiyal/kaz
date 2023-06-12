@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
         if (res.success) {
           localStorage.clear();
           localStorage.setItem('token', res.data);
-          this.router.navigate(['/admin/dashboard']);
+          this.router.navigate(['/admin']);
         } else {
           console.log(res.message);
         }
@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
 
   isLoggedIn() {
     if (this.authService.isLoggedIn()) {
-      this.router.navigate(['/admin/dashboard/home']);
+      this.router.navigate(['/admin']);
     }
   }
 }

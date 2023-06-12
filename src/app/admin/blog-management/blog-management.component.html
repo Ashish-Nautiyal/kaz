@@ -28,9 +28,9 @@
                         <tr *ngFor="let data of blogList;let i=index">
                             <td>{{i +1}}</td>
                             <td>{{data.title}}</td>
-                            <td>{{data.pulished_on}}</td>
+                            <td>{{data.pulished_on | date}}</td>
                             <td>
-                                <a routerLink="/admin/dashboard/blogDetail/{{data._id}}">{{data.url}}</a>
+                                <a href="{{data.url}}">{{data.url}}</a>
                             </td>
                             <td class="icon-group">
                                 <mat-icon (click)="deleteBlog(data._id)">delete</mat-icon>
@@ -47,9 +47,12 @@
         </div>
     </ng-container>
     <ng-template #elseBlock>
-        <button (click)="hideBlogForm()">cancel</button>
         <div class="blog-form">
             <h1>Blog's Detail</h1>
+            <div class="demo-url">
+                <label>Your Url :</label>
+                <p>http://localhost:4200/blog/{{blogForm.get('url').value}}</p>
+            </div>
             <form [formGroup]="blogForm" (ngSubmit)="onSubmit()">
                 <div class="input-group">
                     <div class="title">
@@ -63,10 +66,10 @@
                         </div>
                     </div>
                     <div class="url">
-                        <input type="text" placeholder="Add url" formControlName="url" />
+                        <input type="text" placeholder="Add url (Optional)" formControlName="url" />
                         <div *ngIf="blogForm.get('url')?.touched && blogForm.get('url')?.invalid">
-                            <div class="error_message" *ngIf="blogForm.get('url')?.errors.required">url is
-                                required.</div>
+                            <div class="error_message" *ngIf="blogForm.get('url')?.errors.minlength">url
+                                must be at least 3 characters long.</div>
                             <div class="error_message" *ngIf="blogForm.get('url')?.errors.pattern">url is
                                 wrong.</div>
                         </div>
@@ -89,9 +92,14 @@
                 <div class="angular-editor">
                     <angular-editor [(ngModel)]="htmlContent" [ngModelOptions]="{standalone: true}"
                         [config]="config"></angular-editor>
+                    <div *ngIf="blogForm.get('description')?.touched && blogForm.get('description')?.invalid">
+                        <div class="error_message" *ngIf="blogForm.get('description')?.errors.required">Description
+                            is required.</div>
+                    </div>
                 </div>
                 <div class="submit-btn">
                     <button type="submit" [disabled]="blogForm.invalid">Upload</button>
+                    <button type="button" (click)="hideBlogForm()">cancel</button>
                 </div>
             </form>
         </div>

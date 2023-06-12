@@ -1,15 +1,28 @@
 const Blog = require('../models/blogModel');
+const createSlug = require('slugify');
+const { ObjectId } = require('mongodb');
+
+const value = '60c42dcba451a54430b5d8a9';
 
 module.exports.addBlog = async (req, res) => {
     try {
+        let blogUrl = process.env.BLOG_URL;
         const { title, description, url } = req.body;
-        if (!title || !description || !url) {
+        if (!title || !description) {
             return res.status(200).json({ message: 'All mandatory fields required.', success: false });
         }
+        if (url) {
+            const slug = createSlug(url);
+            blogUrl = blogUrl + slug;
+        } else {
+            const slug = createSlug(title);
+            blogUrl = blogUrl + slug;
+        }
+
         const newBlog = new Blog({
             title,
             description,
-            url,
+            url: blogUrl,
             blog_image: req.file.path
         });
         await newBlog.save();
@@ -49,9 +62,6 @@ module.exports.editBlogs = async (req, res) => {
 
 module.exports.updateBlog = async (req, res) => {
     try {
-        console.log('body', req.body);
-        console.log('file', req.file);
-
         const { _id, title, description, url } = req.body;
         if (!_id || !title || !description || !url) {
             return res.status(200).json({ message: 'All mandatory fields required.', success: false });
@@ -101,13 +111,22 @@ module.exports.searchBlog = async (req, res) => {
 
 module.exports.getBlogDetail = async (req, res) => {
     try {
-        const { _id } = req.params;
-        if (!_id) {
-            return res.status(404).json({ message: 'Blog id not found.', success: false });
+        let blogUrl = process.env.BLOG_URL;
+        let data;
+        const { id } = req.params;
+        if (!id) {
+            return res.status(404).json({ message: 'Blog id/url not found.', success: false });
         }
-        const data = await Blog.findOne({ _id });
+
+        if (ObjectId.isValid(id)) {
+            data = await Blog.findOne({ _id: id });
+        } else {
+            blogUrl = blogUrl + id;
+            data = await Blog.findOne({ url: blogUrl });
+        }
+
         if (!data) {
-            res.status(200).json({ message: 'Blog not found. please check payload id.', success: false });
+            res.status(200).json({ message: 'Blog not found. please check payload id/url.', success: false });
         }
         res.status(200).json({ message: 'Blog detail', data: data, success: true });
     } catch (error) {

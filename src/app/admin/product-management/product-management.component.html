@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="product-container">
+        <h1>Products Management</h1>
+        <div class="grid">
+            <div class="search">
+                <label>Search:</label>
+                <input type="text" placeholder="Search Product" #searchString (keydown)="search(searchString.value)" />
+            </div>
+            <div class="add-category-button1">
+                <button type="button" (click)="addNewProduct()">Add New Product</button>
+            </div>
+        </div>
+    </div>
+    <div class="product-list">
+        <table>
+            <thead>
+                <tr>
+                    <th>Sr no.</th>
+                    <th>Name</th>
+                    <th>Amount Invested</th>
+                    <th>Account type</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of [1,1,1,];let i = index">
+                    <td>{{i + 1}}</td>
+                    <td>Electronics</td>
+                    <td>Product</td>
+                    <td>Enable</td>
+                    <td class="icon-group">
+                        <mat-icon>delete</mat-icon>
+                        <mat-icon (click)="editProduct(0)">edit</mat-icon>
+                        <mat-icon>visibility</mat-icon>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

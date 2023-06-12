@@ -80,6 +80,7 @@ export class BlogManagementComponent implements OnInit {
   blogList: any[] = [];
   blogForm: any;
   selectedBlogImage: any;
+  blogUrl:any;
 
   constructor(private fb: FormBuilder, private blogService: BlogService, private dialog: MatDialog, private router: Router) { }
 
@@ -107,8 +108,8 @@ export class BlogManagementComponent implements OnInit {
   getBlogForm() {
     this.blogForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(3)]],
-      description: [''],
-      url: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(/\S*)?$')]],
+      description: [this.htmlContent,Validators.required],
+      url: ['', [Validators.pattern('^[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(/\S*)?$'), Validators.minLength(3)]],
       blog_image: ['', Validators.required],
     });
   }
@@ -124,13 +125,12 @@ export class BlogManagementComponent implements OnInit {
       res => {
         this.hideBlogForm();
         this.getBlogs();
+        this.getBlogForm();
       }, error => console.log(error)
     );
   }
 
   onFileselect(event: any) {
-    console.log('called');
-
     let file = event.target.files[0];
     this.selectedBlogImage = file;
   }
@@ -168,7 +168,7 @@ export class BlogManagementComponent implements OnInit {
   }
 
   blogDetail(id: any) {
-    this.router.navigate(['/admin/dashboard/blogDetail', id]);
+    this.router.navigate(['/admin/blogDetail', id]);
   }
 
   search(searchString: any) {

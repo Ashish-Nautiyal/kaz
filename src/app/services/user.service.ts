@@ -6,27 +6,33 @@ import { environment } from '../enviroments/enviroment';
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  getSubAdmins(): Observable<any> {
-    return this.http.get<any>(environment.baseUrl + 'getSubAdmins');
+  addUser(body: object): Observable<any> {
+    return this.http.post<any>(environment.baseUrl + 'addUser', body);
   }
 
-  editSubAdmin(body: any): Observable<any> {
-    return this.http.get<any>(environment.baseUrl + 'editSubAdmin/' + body);
+  getUsers(): Observable<any> {
+    return this.http.get<any>(environment.baseUrl + 'getUsers');
   }
 
-  deleteSubAdmin(body: any): Observable<any> {
-    return this.http.delete<any>(environment.baseUrl + 'deleteSubAdmin/' + body);
+  editUser(body: any): Observable<any> {
+    return this.http.get<any>(environment.baseUrl + 'editUser/' + body);
   }
 
-  searchSubAdmin(body: any): Observable<any> {
-    return this.http.get<any>(environment.baseUrl + 'searchSubAdmin/' + body);
+  deleteUser(body: any): Observable<any> {
+    return this.http.delete<any>(environment.baseUrl + 'deleteUser/' + body);
   }
 
-  updateSubAdmin(body: object): Observable<any> {
-    return this.http.post<any>(environment.baseUrl + 'updateSubAdmin', body);
+  searchUser(body: any): Observable<any> {
+    return this.http.get<any>(environment.baseUrl + 'searchUser/' + body);
   }
+
+  updateUser(body: object): Observable<any> {
+    return this.http.post<any>(environment.baseUrl + 'updateUser', body);
+  }
+
 }

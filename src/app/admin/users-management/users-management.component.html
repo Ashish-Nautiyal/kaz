@@ -1,1 +1,42 @@
-<p>users-management works!</p>
+<div class="container">
+    <div class="user-container">
+        <h1>User Management</h1>
+        <div class="grid">
+            <div class="search">
+                <label>Search:</label>
+                <input type="text" placeholder="Search User" #searchString (keydown)="search(searchString.value)" />
+            </div>
+            <div class="filter">
+                <select>
+                    <option value="">Filter by</option>
+                    <option value="">Age</option>
+                    <option value="">Account type</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="user-list">
+        <table>
+            <thead>
+                <tr>
+                    <th>Sr no.</th>
+                    <th>Name</th>
+                    <th>Amount Invested</th>
+                    <th>Account type</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users;let i = index">
+                    <td>{{i + 1}}</td>
+                    <td>{{user.first_name + ' ' + user.last_name}}</td>
+                    <td>{{user.investment | currency: 'USD'}}</td>
+                    <td>{{user.user_type}}</td>
+                    <td>
+                        <mat-icon (click)="userDetail(user._id)">visibility</mat-icon>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -17,6 +17,10 @@ app.use('/public', express.static(directory));
 app.use(express.json());
 app.use(cors());
 
+//Admin routes
+const adminRoutes = require('./routes/adminRoute');
+app.use('/api', adminRoutes);
+
 //User routes
 const userRoutes = require('./routes/userRoute');
 app.use('/api', userRoutes);

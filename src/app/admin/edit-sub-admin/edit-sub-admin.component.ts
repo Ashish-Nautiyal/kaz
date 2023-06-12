@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { UserService } from 'src/app/services/user.service';
+import { AdminService } from 'src/app/services/admin.service';
 
 @Component({
   selector: 'app-edit-sub-admin',
@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 export class EditSubAdminComponent implements OnInit {
 
   editForm: any;
-  constructor(@Inject(MAT_DIALOG_DATA) public editData: any, private fb: FormBuilder, private userService: UserService, private dialogRef: MatDialogRef<EditSubAdminComponent>) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public editData: any, private fb: FormBuilder, private adminService: AdminService, private dialogRef: MatDialogRef<EditSubAdminComponent>) { }
 
   ngOnInit(): void {
     this.getEditForm();
@@ -35,7 +35,7 @@ export class EditSubAdminComponent implements OnInit {
   }
 
   onSubmit() {
-    this.userService.updateSubAdmin(this.editForm.value).subscribe(
+    this.adminService.updateSubAdmin(this.editForm.value).subscribe(
       res => {
         this.dialogRef.close(true);
       }, error => console.log(error)

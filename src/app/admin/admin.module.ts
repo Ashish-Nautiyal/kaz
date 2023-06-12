@@ -19,6 +19,10 @@ import { CategoryFormEditDialogComponent } from './category-form-edit-dialog/cat
 import { BlogManagementComponent } from './blog-management/blog-management.component';
 import { BlogEditDialogComponent } from './blog-edit-dialog/blog-edit-dialog.component';
 import { BlogDetailComponent } from './blog-detail/blog-detail.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
+import { ProductManagementComponent } from './product-management/product-management.component';
+import { ProductAddComponent } from './product-add/product-add.component';
+import { ProductEditComponent } from './product-edit/product-edit.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +37,10 @@ import { BlogDetailComponent } from './blog-detail/blog-detail.component';
     BlogManagementComponent,
     BlogEditDialogComponent,
     BlogDetailComponent,
+    UserDetailComponent,
+    ProductManagementComponent,
+    ProductAddComponent,
+    ProductEditComponent,
   ],
   imports: [
     CommonModule,

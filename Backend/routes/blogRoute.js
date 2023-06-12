@@ -19,6 +19,6 @@ blogRoute.route('/editBlog/:_id').get(auth, blogController.editBlogs);
 blogRoute.route('/updateBlog').post(auth, upload.single('blog_image'), blogController.updateBlog);
 blogRoute.route('/deleteBlog/:_id').delete(auth, blogController.deleteBlog);
 blogRoute.route('/searchBlog/:search').get(auth, blogController.searchBlog);
-blogRoute.route('/getBlogDetail/:_id').get(auth, blogController.getBlogDetail);
+blogRoute.route('/getBlogDetail/:id').get(auth, blogController.getBlogDetail);
 
 module.exports = blogRoute; 
