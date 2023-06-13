@@ -56,7 +56,7 @@
             <form [formGroup]="blogForm" (ngSubmit)="onSubmit()">
                 <div class="input-group">
                     <div class="title">
-                        <input type="text" placeholder="Add title" formControlName="title" />
+                        <input type="text" placeholder="Add title" formControlName="title" maxlength="10" />
                         <div *ngIf="blogForm.get('title')?.touched && blogForm.get('title')?.invalid">
                             <div class="error_message" *ngIf="blogForm.get('title')?.errors.required">
                                 Title is
@@ -66,7 +66,7 @@
                         </div>
                     </div>
                     <div class="url">
-                        <input type="text" placeholder="Add url (Optional)" formControlName="url" />
+                        <input type="text" placeholder="Add url (Optional)" formControlName="url" maxlength="10" />
                         <div *ngIf="blogForm.get('url')?.touched && blogForm.get('url')?.invalid">
                             <div class="error_message" *ngIf="blogForm.get('url')?.errors.minlength">url
                                 must be at least 3 characters long.</div>

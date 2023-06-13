@@ -108,12 +108,12 @@ export class BlogManagementComponent implements OnInit {
   getBlogForm() {
     this.blogForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(3)]],
-      description: [this.htmlContent,Validators.required],
+      description: [this.htmlContent],
       url: ['', [Validators.pattern('^[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(/\S*)?$'), Validators.minLength(3)]],
       blog_image: ['', Validators.required],
     });
   }
-
+ 
   onSubmit() {
     const formData = new FormData();
     formData.append('title', this.blogForm.controls['title'].value);

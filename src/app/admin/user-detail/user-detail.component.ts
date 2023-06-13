@@ -33,6 +33,18 @@ export class UserDetailComponent implements OnInit {
   }
 
   deactivateUser() {
-    this.dialogRef.close(false);
+    this.userService.deactivateUser(this.user._id).subscribe(
+      res => {
+        this.dialogRef.close(false);
+      }, error => console.log(error)
+    );
+  }
+
+  activateUser() {
+    this.userService.activateUser(this.user._id).subscribe(
+      res => {
+        this.dialogRef.close(false);
+      }, error => console.log(error)
+    );
   }
 }

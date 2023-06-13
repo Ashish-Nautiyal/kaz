@@ -23,6 +23,8 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 import { ProductManagementComponent } from './product-management/product-management.component';
 import { ProductAddComponent } from './product-add/product-add.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
+import { AccountComponent } from './account/account.component';
+import { SendNotificationComponent } from './send-notification/send-notification.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { ProductEditComponent } from './product-edit/product-edit.component';
     ProductManagementComponent,
     ProductAddComponent,
     ProductEditComponent,
+    AccountComponent,
+    SendNotificationComponent,
   ],
   imports: [
     CommonModule,

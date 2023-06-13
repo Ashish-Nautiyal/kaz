@@ -1,0 +1,71 @@
+.container {
+    text-align: center;
+    width: 800px;
+    margin: auto;
+}
+
+.container h1 {
+    color: rgb(0, 111, 111);
+}
+
+.button-group button {
+    width: 400px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.button-group button:hover {
+    background-color: rgb(0, 111, 111);
+    color: white;
+}
+
+form {
+    margin-top: 40px;
+    border: 2px solid black;
+    width: 800px;
+    height: 600px;
+}
+
+.old-password {
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-around;
+}
+
+label {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+input[type='text'] {
+    width: 300px;
+    height: 30px;
+    border: 1.5px solid black;
+    border-radius: 5px;
+}
+
+.new-password {
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.confirm-password {
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.submit-button {
+    margin-top: 180px;
+}
+
+.submit-button button{
+    width: 150px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: rgb(0, 111, 111);
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}

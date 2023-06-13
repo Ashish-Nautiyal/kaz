@@ -1,0 +1,24 @@
+<div class="container">
+    <h1>Send Notification</h1>
+    <form>
+        <div class="users">
+            <label>Select User :</label>
+            <select name="">
+                <option value="">All Users</option>
+                <option *ngFor="let user of users" value="{{user._id}}">{{user.first_name + ' ' + user.last_name}}
+                </option>
+            </select>
+        </div>
+        <div class="title">
+            <label>Title :</label>
+            <input type="text" />
+        </div>
+        <div class="description">
+            <label>Description :</label>
+            <input type="text" />
+        </div>
+        <div class="submit-button">
+            <button type="submit">Send</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,66 @@
+.container {
+    text-align: center;
+    width: 800px;
+    margin: auto;
+}
+
+.container h1{
+   color: rgb(0, 111, 111);
+}
+
+
+form {
+    margin-top: 40px;
+    width: 800px;
+    border: 2px solid black;
+    height: 600px;
+}
+
+label {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+input[type='text'],
+select {
+    width: 300px;
+    height: 30px;
+    border: 1.5px solid black;
+    border-radius: 5px;
+}
+
+.users {
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.title {
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.title input {
+    margin-left: 50px;
+}
+
+.description {
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.submit-button {
+    margin-top: 120px;
+}
+
+.submit-button button {
+    width: 150px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: rgb(0, 111, 111);
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}

@@ -99,16 +99,83 @@ module.exports.searchUser = async (req, res) => {
     }
 }
 
+module.exports.deactivateUser = async (req, res) => {
+    try {
+        const { _id } = req.params;
+        if (!_id) {
+            return res.status(200).json({ message: 'User id not found.', success: false });
+        }
+        await User.updateOne({ _id }, { $set: { status: false } });
+        res.status(200).json({ message: 'User deactivate', success: true });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Internal server error.', success: false });
+    }
+}
+
+module.exports.activateUser = async (req, res) => {
+    try {
+        const { _id } = req.params;
+        if (!_id) {
+            return res.status(200).json({ message: 'User id not found.', success: false });
+        }
+        await User.updateOne({ _id }, { $set: { status: true } });
+        res.status(200).json({ message: 'User activate', success: true });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Internal server error.', success: false });
+    }
+}
+
+module.exports.registerUserCount = async (req, res) => {
+    try {
+        let count = await User.count();
+        if (!count) [
+            count = 0
+        ]
+        res.status(200).json({ message: 'Register users count', data: count, success: true });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Internal server error.', success: false });
+    }
+}
+
+module.exports.activeUserCount = async (req, res) => {
+    try {
+        let count = await User.find({ status: true }).count();
+        if (!count) [
+            count = 0
+        ]
+        res.status(200).json({ message: 'Active users count', data: count, success: true });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Internal server error.', success: false });
+    }
+}
+
+module.exports.inactiveUserCount = async (req, res) => {
+    try {
+        let count = await User.find({ status: false }).count();
+        if (!count) [
+            count = 0
+        ]
+        res.status(200).json({ message: 'Inactive users count', data: count, success: true });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Internal server error.', success: false });
+    }
+}
+
 module.exports.filterByAge = async (req, res) => {
     try {
         let year = req.body.age;
         let date = new Date();
         const currentYear = date.getFullYear();
-        
+
 
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: 'Internal server error.', success: false })
+        res.status(500).json({ message: 'Internal server error.', success: false });
     }
 }
 
@@ -117,6 +184,6 @@ module.exports.filterByAccountType = async (req, res) => {
 
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: 'Internal server error.', success: false })
+        res.status(500).json({ message: 'Internal server error.', success: false });
     }
 }

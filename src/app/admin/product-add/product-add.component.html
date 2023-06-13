@@ -1,3 +1,86 @@
 <div class="container">
     <mat-icon class="close-icon" (click)="close()">close</mat-icon>
+    <h1>Add New Product</h1>
+    <div class="file-upload">
+        <input type="file" id="img" />
+        <label for="img">
+            <div class="file-logo">
+                <mat-icon>cloud_upload</mat-icon>
+                <p>Add Image</p>
+            </div>
+        </label>
+    </div>
+    <div class="input-group">
+        <div class="product_name">
+            <label>Product Name :</label>
+            <input type="text" />
+        </div>
+        <div class="category">
+            <label>Category :</label>
+            <select>
+                <option value="">Select Category</option>
+            </select>
+        </div>
+    </div>
+    <div class="description">
+        <label>Description :</label>
+        <input type="text" />
+    </div>
+    <div class="investment">
+        <label>Minimum Amount Invested :</label>
+        <input type="text" />
+    </div>
+    <div class="Payment-type">
+        <label>Payment Type :</label>
+        <input type="radio" name="payment" />One Time
+        <input type="radio" name="payment" />Recurring
+    </div>
+    <div class="investment">
+        <label>Minimum Amount Invested :</label>
+        <input type="text" />
+    </div>
+    <div class="payment-period">
+        <div class="payment">
+            <label>No. Of Payments :</label>
+            <select>
+                <option value="">5</option>
+            </select>
+        </div>
+        <div class="week">
+            <select>
+                <option value="">Weeks</option>
+            </select>
+        </div>
+    </div>
+    <div class="return">
+        <div class="frequency">
+            <label>Frequency :</label>
+            <select>
+                <option value="">3</option>
+            </select>
+        </div>
+        <div class="return-rate">
+            <label>Rate of return :</label>
+            <span>50%</span>
+        </div>
+    </div>
+    <div class="enable-product">
+        <label for="status">Enable Product :</label>
+        <mat-slide-toggle #toggle (click)="setValue(toggle.checked)" class="slide-toggle"
+            id="status"></mat-slide-toggle>
+    </div>
+    <hr>
+    <div class="add-images">
+        <label>Add Images :</label>
+        <img *ngFor="let image of images" [src]="image" [alt]="image" height="40px" width="80px" id="selected-image">
+        <button (click)="addImage()">Add Image</button>
+    </div>
+    <div class="add-document">
+        <label>Add Documents :</label>
+        <input type="file" />
+    </div>
+    <div class="add-video">
+        <label>Add Video :</label>
+        <input type="file">
+    </div>
 </div>

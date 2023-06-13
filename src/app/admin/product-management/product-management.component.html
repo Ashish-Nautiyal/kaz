@@ -29,9 +29,9 @@
                     <td>Product</td>
                     <td>Enable</td>
                     <td class="icon-group">
-                        <mat-icon>delete</mat-icon>
+                        <mat-icon (click)="deleteProduct(0)">delete</mat-icon>
                         <mat-icon (click)="editProduct(0)">edit</mat-icon>
-                        <mat-icon>visibility</mat-icon>
+                        <mat-icon (click)="editProduct(0)">visibility</mat-icon>
                     </td>
                 </tr>
             </tbody>

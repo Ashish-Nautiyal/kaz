@@ -18,7 +18,7 @@ export class ProductManagementComponent {
   addNewProduct() {
     let dialogRef = this.dialog.open(ProductAddComponent, {
       width: '800px',
-      height: '600px'
+      height: '800px'
     });
 
     dialogRef.afterClosed().subscribe(
@@ -42,21 +42,25 @@ export class ProductManagementComponent {
     // this.productService.editProduct(id).subscribe(
     //   res => {
     //     let data = res.data;
-        this.dialog.open(ProductEditComponent, {
-          width: '800px',
-          height: '600px',
-        }).afterClosed().subscribe(
-          res => {
-            if (res) {
-              this.getProducts();
-            }
-          }
-        );
+    alert('I am working on it !!!');
+    return;
+    this.dialog.open(ProductEditComponent, {
+      width: '800px',
+      height: '600px',
+    }).afterClosed().subscribe(
+      res => {
+        if (res) {
+          this.getProducts();
+        }
+      }
+    );
     //   }, error => console.log(error)
     // );
   }
 
   deleteProduct(id: any) {
+    alert('I am working on it !!!');
+    return;
     this.productService.deleteProduct(id).subscribe(
       res => {
         this.getProducts();
@@ -65,6 +69,8 @@ export class ProductManagementComponent {
   }
 
   search(searchString: any) {
+    alert('I am working on it !!!');
+    return;
     this.productService.searchProduct(searchString).subscribe(
       res => {
         this.products = res.data;

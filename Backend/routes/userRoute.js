@@ -8,6 +8,10 @@ userRoute.route('/editUser/:_id').get(auth, userController.editUser);
 userRoute.route('/updateUser').post(auth, userController.updateUser);
 userRoute.route('/deleteUser/:_id').delete(auth, userController.deleteUser);
 userRoute.route('/searchUser/:search').get(auth, userController.searchUser);
-
-
+userRoute.route('/registerUserCount').get(auth, userController.registerUserCount);
+userRoute.route('/activeUserCount').get(auth, userController.activeUserCount);
+userRoute.route('/inactiveUserCount').get(auth, userController.inactiveUserCount);
+userRoute.route('/activateUser/:_id').get(auth, userController.activateUser);
+userRoute.route('/deactivateUser/:_id').get(auth, userController.deactivateUser);
+ 
 module.exports = userRoute;

@@ -35,4 +35,23 @@ export class UserService {
     return this.http.post<any>(environment.baseUrl + 'updateUser', body);
   }
 
+  registerUserCount(): Observable<any> {
+    return this.http.get<any>(environment.baseUrl + 'registerUserCount');
+  }
+
+  activeUserCount(): Observable<any> {
+    return this.http.get<any>(environment.baseUrl + 'activeUserCount');
+  }
+
+  inactiveUserCount(): Observable<any> {
+    return this.http.get<any>(environment.baseUrl + 'inactiveUserCount');
+  }
+
+  deactivateUser(body: any): Observable<any> {
+    return this.http.get<any>(environment.baseUrl + 'deactivateUser/' + body);
+  }
+
+  activateUser(body: any): Observable<any> {
+    return this.http.get<any>(environment.baseUrl + 'activateUser/' + body);
+  }
 }

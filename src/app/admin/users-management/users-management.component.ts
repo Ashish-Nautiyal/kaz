@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 export class UsersManagementComponent implements OnInit {
 
   users: any;
-
+  
   constructor(private dialog: MatDialog, private userService: UserService) { }
 
   ngOnInit(): void {
@@ -51,7 +51,6 @@ export class UsersManagementComponent implements OnInit {
         dialogRef.afterClosed().subscribe(
           res => {
             console.log(res);
-            
             if (res) {
               this.getUsers();
             }

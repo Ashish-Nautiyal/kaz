@@ -44,7 +44,12 @@
         <div></div>
     </div>
     <div class="button-group">
-        <button class="deactivate-button" (click)="deactivateUser()">Deactivate User</button>
+        <ng-container *ngIf="user.status; else activate">
+            <button class="deactivate-button" (click)="deactivateUser()">Deactivate User</button>
+        </ng-container>
+        <ng-template #activate>
+            <button class="deactivate-button" (click)="activateUser()">Activate User</button>
+        </ng-template>
         <button class="delete-button" (click)="deleteUser()">Delete User</button>
     </div>
 </div>

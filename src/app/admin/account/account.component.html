@@ -1,0 +1,47 @@
+<div class="container">
+    <ng-container *ngIf="!showSetting; else elseBlock;">
+        <h1>Change Password</h1>
+        <div class="button-group">
+            <button (click)="changPassword()">Change Password</button>
+            <button (click)="setting()">Setting</button>
+        </div>
+        <form>
+            <div class="old-password">
+                <label> Old Password : </label>
+                <input type="text" />
+            </div>
+            <div class="new-password">
+                <label> New Password : </label>
+                <input type="text" />
+            </div>
+            <div class="confirm-password">
+                <label> Confirm Password : </label>
+                <input type="text" />
+            </div>
+            <div class="submit-button">
+                <button type="submit">save</button>
+            </div>
+        </form>
+    </ng-container>
+    <ng-template #elseBlock>
+        <h1>Setting</h1>
+        <div class="button-group">
+            <button (click)="changPassword()">Change Password</button>
+            <button (click)="setting()">Setting</button>
+        </div>
+        <form>
+            <div class="old-password">
+                <label> Register email : </label>
+                <input type="text" />
+            </div>
+            <div class="new-password">
+                <label> Order email : </label>
+                <input type="text" />
+            </div>
+            <div class="confirm-password">
+                <label> Contact us : </label>
+                <input type="text" />
+            </div>
+        </form>
+    </ng-template>
+</div>
