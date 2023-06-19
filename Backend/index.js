@@ -7,6 +7,8 @@ const bodyParser = require('body-parser');
 const port = process.env.PORT;
 const app = express();
 const directory = path.join(__dirname, 'public');
+const nodemailer = require('nodemailer')
+const createSlug = require('slugify');
 
 app.use(
     bodyParser.urlencoded({
@@ -32,6 +34,7 @@ app.use('/api', categoryRoutes);
 //Blog routes
 const blogRoutes = require('./routes/blogRoute');
 app.use('/api', blogRoutes);
+
 
 app.listen(port, () => {
     console.log(`server listening on port ${port}`);

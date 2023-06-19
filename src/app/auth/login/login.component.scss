@@ -37,9 +37,16 @@
 
 .password-field input {
     height: 30px;
-    width: 376px;
+    width: 400px;
     border: 1.5px solid black;
     border-radius: 5px;
+}
+
+.eye-icon {
+    cursor: pointer;
+    position: fixed;
+    top: 416px;
+    right: 750px;
 }
 
 .login-button {

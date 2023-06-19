@@ -30,18 +30,21 @@ export class CategoryManagementComponent implements OnInit {
   }
 
   search(search: any) {
-    this.categoryService.searchCategory(search).subscribe(
-      res => {
-        this.categoryList = res.data;
-      }, error => console.log(error)
-    );
+    if (search != '') {
+      this.categoryService.searchCategory(search).subscribe(
+        res => {
+          this.categoryList = res.data;
+        }, error => console.log(error)
+      );
+    } else {
+      this.getCategories();
+    }
   }
 
   openAddCategoryModal() {
     let dialogRef = this.dialog.open(CategoryFormDialogComponent, {
       width: '500px',
       height: '400px',
-      data: 'hi'
     });
 
     dialogRef.afterClosed().subscribe(

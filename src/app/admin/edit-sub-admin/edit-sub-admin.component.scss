@@ -1,6 +1,7 @@
-.container {
-    width: 300px;
-    height: 300px;
+.container h1 {
+    text-align: center;
+    color: rgb(0, 111, 111);
+    margin-top: 30px;
 }
 
 input {
@@ -18,10 +19,34 @@ input {
     margin-top: 60px;
 }
 
+label {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.first_name {
+    display: flex;
+    justify-content: space-around;
+}
+
+.last_name {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+
+}
+
+.phone-number {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+
+}
+
 .button-group {
     display: flex;
-    justify-content: space-between;
-    margin-left: 90px;
+    justify-content: center;
+    margin-top: 50px;
 }
 
 button {
@@ -35,6 +60,8 @@ button {
     padding-top: 10px;
     background-color: rgb(0, 111, 111);
     color: white;
+    cursor: pointer;
+    font-size: 16px;
 }
 
 

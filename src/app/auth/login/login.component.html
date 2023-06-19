@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="password-field">
-                <input [type]="hide ? 'password' : 'text'" placeholder="password" formControlName="password" id="pwd" /><mat-icon (click)="showPassword()" >visibility</mat-icon>
+                <input [type]="hide ? 'password' : 'text'" placeholder="password" formControlName="password" id="pwd" /><mat-icon class="eye-icon" (click)="showPassword()" >visibility</mat-icon>
                 <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
                     <div class="error_message" *ngIf="loginForm.get('password')?.errors.required">Password is required.</div>
                     <div class="error_message" *ngIf="loginForm.get('password')?.errors.minlength">Password must be at least 6 characters

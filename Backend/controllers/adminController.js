@@ -1,14 +1,43 @@
 const Admin = require('../models/adminModel');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const nodemailer = require("nodemailer");
+
+
+async function sendEmail(email) {
+    try {
+        let transporter = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 587,
+            secure: false,
+            auth: {
+                user: process.env.USER_EMAIL,
+                pass: process.env.PASSWORD
+            },
+        });
+
+        let info = await transporter.sendMail({
+            from: '"Ashish Nautiyal 👻"<nautiyalashish1234@gmail.com>',
+            to: email,
+            subject: "Sub Admin Registration",
+            text: "Nodemailer testing",
+            html: `<b>Nodemailer testing...</b><br/>
+            <p>You are registered successfully</p>`,
+        });
+    } catch (error) {
+        console.log('catch error', error);
+    }
+}
+
 
 module.exports.register = async (req, res) => {
     try {
-        const { username, email, first_name, last_name, phone_number, password } = req.body;
+        const { username, email, first_name, last_name, phone_number, password, checkbox } = req.body;
 
         if (!username || !email || !first_name || !last_name || !phone_number || !password) {
             return res.status(200).json({ message: 'All fields required.', success: false });
         }
+        console.log(checkbox);
         const hashedPassword = await bcrypt.hash(password, 10);
         const newUser = new Admin({
             username,
@@ -19,6 +48,9 @@ module.exports.register = async (req, res) => {
             password: hashedPassword
         })
         await newUser.save();
+        if (checkbox) {
+            sendEmail(email);
+        }
         res.status(201).json({ message: 'User registered successfully.', success: true });
     } catch (error) {
         console.log(error);

@@ -5,7 +5,8 @@
             <div class="grid">
                 <div class="search">
                     <label>Search:</label>
-                    <input type="text" #searchString placeholder="Search SubAdmin" (keydown)="search(searchString.value)" />
+                    <input type="text" #searchString placeholder="Search Sub-Admin"
+                        (keydown)="search(searchString.value)" />
                 </div>
                 <div class="add-sub-admin1">
                     <button type="submit" (click)="showSubAdminForm()">Add Sub-admin</button>
@@ -100,7 +101,8 @@
                         </div>
                         <div class="password">
                             <input [type]="hide ? 'password' : 'text'" placeholder="Password"
-                                formControlName="password" /><mat-icon (click)="showPassword()">visibility</mat-icon>
+                                formControlName="password" /><mat-icon class="eye-icon"
+                                (click)="showPassword()">visibility</mat-icon>
                             <div *ngIf="subAdminForm.get('password')?.touched && subAdminForm.get('password')?.invalid">
                                 <div class="error_message" *ngIf="subAdminForm.get('password')?.errors.required">
                                     Password is required.</div>
@@ -111,11 +113,11 @@
                         </div>
                     </div>
                     <div class="checkbox">
-                        <input type="checkbox" /> Send Notification to the user
+                        <input type="checkbox" formControlName="checkbox" /> Send Notification to the user
                     </div>
                     <div class="add-sub-admin2">
                         <button type="submit" [disabled]="subAdminForm.invalid">Add Sub admin</button>
-                        <button type="button" (click)="hideSubAdminForm()">Cancel</button>                        
+                        <button type="button" (click)="hideSubAdminForm()">Cancel</button>
                     </div>
                 </form>
             </div>

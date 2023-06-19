@@ -34,12 +34,13 @@ export class SubAdminManagementComponent implements OnInit {
 
   getSubAdminForm() {
     this.subAdminForm = this.fb.group({
-      username: ['', [Validators.required,Validators.minLength(3)]],
+      username: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
       phone_number: ['', [Validators.required, Validators.minLength(10)]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      checkbox: [false]
     });
   }
 
@@ -83,8 +84,8 @@ export class SubAdminManagementComponent implements OnInit {
         if (data) {
           let dialogRef = this.dialog.open(EditSubAdminComponent, {
             data: data,
-            height: '500px',
-            width: '400px'
+            height: '600px',
+            width: '600px'
           });
 
           dialogRef.afterClosed().subscribe(
@@ -100,10 +101,14 @@ export class SubAdminManagementComponent implements OnInit {
   }
 
   search(searchString: string) {
-    this.adminService.searchSubAdmin(searchString).subscribe(
-      res => {
-        this.subAdmins = res.data;
-      }, error => console.log(error)
-    )
+    if (searchString != '') {
+      this.adminService.searchSubAdmin(searchString).subscribe(
+        res => {
+          this.subAdmins = res.data;
+        }, error => console.log(error)
+      );
+    } else {
+      this.getSubAdmins();
+    }
   }
 }

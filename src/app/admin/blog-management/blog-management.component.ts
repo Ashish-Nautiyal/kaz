@@ -80,7 +80,7 @@ export class BlogManagementComponent implements OnInit {
   blogList: any[] = [];
   blogForm: any;
   selectedBlogImage: any;
-  blogUrl:any;
+  blogUrl: any;
 
   constructor(private fb: FormBuilder, private blogService: BlogService, private dialog: MatDialog, private router: Router) { }
 
@@ -113,7 +113,7 @@ export class BlogManagementComponent implements OnInit {
       blog_image: ['', Validators.required],
     });
   }
- 
+
   onSubmit() {
     const formData = new FormData();
     formData.append('title', this.blogForm.controls['title'].value);
@@ -172,14 +172,14 @@ export class BlogManagementComponent implements OnInit {
   }
 
   search(searchString: any) {
-    if (searchString == '') {
-      this.getBlogs();
-    } else {
+    if (searchString != '') {
       this.blogService.searchBlog(searchString).subscribe(
         res => {
           this.blogList = res.data;
         }, error => console.log(error)
       );
+    } else {
+      this.getBlogs();
     }
   }
 }

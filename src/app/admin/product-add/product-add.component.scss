@@ -1,150 +1,124 @@
-// .container h1 {
-//     text-align: center;
-//     padding-top: 20px;
-//     color: rgb(0, 111, 111);
-// }
-
-// .close-icon {
-//     float: right;
-//     cursor: pointer;
-// }
-
-// #img {
-//     display: none;
-// }
-
-// .file-upload {
-//     text-align: center;
-// }
-
-// .file-upload label {
-//     padding-left: 320px;
-// }
-
-// .file-logo {
-//     border: 2px solid black;
-//     width: 100px;
-//     cursor: pointer;
-//     margin-left: 320px;
-//     padding: 20px;
-// }
-
 .container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-  }
-  
-  h1 {
-    font-size: 24px;
-    margin-top: 0;
-  }
-  
-  .file-upload {
-    margin-bottom: 20px;
-  }
-  
-  .file-upload input[type="file"] {
-    display: none;
-  }
-  
-  .file-logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 150px;
-    height: 150px;
-    border: 2px dashed #ccc;
-    cursor: pointer;
-  }
-  
-  .file-logo mat-icon {
-    font-size: 48px;
-    color: #ccc;
-  }
-  
-  .file-logo p {
-    margin-top: 10px;
-    font-weight: bold;
-  }
-  
-  .input-group {
-    display: flex;
-    margin-bottom: 20px;
-  }
-  
-  .input-group label {
-    width: 150px;
-    font-weight: bold;
-  }
-  
-  .input-group input[type="text"],
-  .input-group select {
-    width: 100%;
-    padding: 5px;
-    border: 1px solid #ccc;
-  }
-  
-  .description,
-  .investment,
-  .payment-period,
-  .return {
-    margin-bottom: 20px;
-  }
-  
-  .investment,
-  .payment-period,
-  .return {
-    display: flex;
-    align-items: center;
-  }
-  
-  .payment-type {
-    margin-bottom: 20px;
-  }
-  
-  .payment-type label {
-    font-weight: bold;
-  }
-  
-  .payment-type input[type="radio"] {
-    margin-right: 10px;
-  }
-  
-  .payment-type input[type="radio"]:last-child {
-    margin-right: 0;
-  }
-  
-  .enable-product {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .enable-product label {
-    margin-right: 10px;
-    font-weight: bold;
-  }
-  
-  .slide-toggle {
-    vertical-align: middle;
-  }
-  
-  .add-images,
-  .add-document,
-  .add-video {
-    margin-bottom: 20px;
-  }
-  
-  .add-images label,
-  .add-document label,
-  .add-video label {
-    font-weight: bold;
-  }
-  
-  .add-images input[type="file"],
-  .add-document input[type="file"],
-  .add-video input[type="file"] {
-    margin-top: 5px;
-  }
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.close-icon {
+  cursor: pointer;
+  float: right;
+  margin-right: -80px;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: rgb(0, 111, 111);
+}
+
+.file-upload {
+  margin-bottom: 20px;
+}
+
+.file-upload input[type='file'] {
+  display: none;
+}
+
+.file-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid black;
+  padding: 10px;
+  cursor: pointer;
+  width: 100px;
+  margin-left: 230px;
+}
+
+.file-logo p {
+  margin-top: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.input-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.product_name,
+.category {
+  flex-basis: 48%;
+}
+
+label {
+  font-weight: bold;
+}
+
+select,
+input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.description,
+.investment,
+.payment-period,
+.return,
+.enable-product,
+.add-images,
+.add-document,
+.add-video {
+  margin-bottom: 20px;
+}
+
+.Payment-type input[type="radio"] {
+  margin-right: 5px;
+}
+
+.payment,
+.week,
+.frequency,
+.return-rate {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.slide-toggle {
+  vertical-align: middle;
+}
+
+hr {
+  margin-bottom: 20px;
+}
+
+.add-images img {
+  margin-right: 10px;
+}
+
+.add-images button {
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.sbmit-button {
+  text-align: center;
+}
+
+.sbmit-button button {
+  width: 133px;
+  height: 40px;
+  background-color: rgb(0, 111, 111);
+  color: white;
+  border-radius: 5px;
+  border: 1.5px solid;
+  font-size: 17px;
+  cursor: pointer;
+}

@@ -2,8 +2,6 @@ const Blog = require('../models/blogModel');
 const createSlug = require('slugify');
 const { ObjectId } = require('mongodb');
 
-const value = '60c42dcba451a54430b5d8a9';
-
 module.exports.addBlog = async (req, res) => {
     try {
         let blogUrl = process.env.BLOG_URL;

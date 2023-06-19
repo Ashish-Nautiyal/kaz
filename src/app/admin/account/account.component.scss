@@ -6,21 +6,22 @@
 
 .container h1 {
     color: rgb(0, 111, 111);
+    margin-top: 20px;
+}
+
+.button-group {
+    margin-top: 30px;
 }
 
 .button-group button {
     width: 400px;
     height: 30px;
     cursor: pointer;
-}
-
-.button-group button:hover {
-    background-color: rgb(0, 111, 111);
-    color: white;
+    font-size: 16px;
 }
 
 form {
-    margin-top: 40px;
+    margin-top: 30px;
     border: 2px solid black;
     width: 800px;
     height: 600px;
@@ -37,7 +38,8 @@ label {
     font-weight: bold;
 }
 
-input[type='text'] {
+input[type='password'],
+input[type='text']  {
     width: 300px;
     height: 30px;
     border: 1.5px solid black;
@@ -54,13 +56,14 @@ input[type='text'] {
     margin-top: 60px;
     display: flex;
     justify-content: space-around;
+    margin-right: 10px;
 }
 
 .submit-button {
     margin-top: 180px;
 }
 
-.submit-button button{
+.submit-button button {
     width: 150px;
     height: 40px;
     border-radius: 5px;
@@ -68,4 +71,19 @@ input[type='text'] {
     color: white;
     cursor: pointer;
     font-size: 16px;
+}
+
+.submit-button button:disabled {
+    background-color: gray;
+    color: black;
+    cursor: not-allowed;
+}
+
+.class1 {
+    background-color: rgb(0, 111, 111);
+    color: white;
+}
+
+.error_message {
+    color: red;
 }

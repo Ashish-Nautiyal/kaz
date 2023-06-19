@@ -2,32 +2,54 @@
     <ng-container *ngIf="!showSetting; else elseBlock;">
         <h1>Change Password</h1>
         <div class="button-group">
-            <button (click)="changPassword()">Change Password</button>
-            <button (click)="setting()">Setting</button>
+            <button [ngClass]="{'class1': showSetting===false}" (click)="changePassword()">Change Password</button>
+            <button [ngClass]="{'class1': showSetting!==false}" (click)="setting()">Setting</button>
         </div>
-        <form>
+        <form [formGroup]="changePwdForm" (ngSubmit)="onSubmit()">
             <div class="old-password">
                 <label> Old Password : </label>
-                <input type="text" />
+                <input type="password" formControlName="old_password" />
+
+            </div>
+            <div *ngIf="changePwdForm.get('old_password')?.touched && changePwdForm.get('old_password')?.invalid">
+                <div class="error_message" *ngIf="changePwdForm.get('old_password')?.errors.required">
+                    Old password is
+                    required.</div>
             </div>
             <div class="new-password">
                 <label> New Password : </label>
-                <input type="text" />
+                <input type="password" formControlName="new_password" />
+
+            </div>
+            <div *ngIf="changePwdForm.get('new_password')?.touched && changePwdForm.get('new_password')?.invalid">
+                <div class="error_message" *ngIf="changePwdForm.get('new_password')?.errors.required">
+                    New password is
+                    required.</div>
             </div>
             <div class="confirm-password">
                 <label> Confirm Password : </label>
-                <input type="text" />
+                <input type="password" formControlName="confirm_password" />
+
+            </div>
+            <div
+                *ngIf="changePwdForm.get('confirm_password')?.touched && changePwdForm.get('confirm_password')?.invalid">
+                <div class="error_message" *ngIf="changePwdForm.get('confirm_password')?.errors.required">
+                    Confirm password is
+                    required.</div>
+                <div class="error_message" *ngIf="changePwdForm.get('confirm_password')?.errors.passwordMismatch">
+                    New password and Confirm password not matched.</div>
             </div>
             <div class="submit-button">
-                <button type="submit">save</button>
+                <button type="submit" [disabled]="changePwdForm.invalid">Save</button>
             </div>
         </form>
     </ng-container>
     <ng-template #elseBlock>
         <h1>Setting</h1>
         <div class="button-group">
-            <button (click)="changPassword()">Change Password</button>
-            <button (click)="setting()">Setting</button>
+            <button [ngClass]="{'class1': showSetting===false}" (click)="changePassword()">Change
+                Password</button>
+            <button [ngClass]="{'class1': showSetting!==false}" (click)="setting()">Setting</button>
         </div>
         <form>
             <div class="old-password">

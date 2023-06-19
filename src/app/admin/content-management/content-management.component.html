@@ -1,0 +1,63 @@
+<div class="container">
+    <ng-container *ngIf="!showContact; else elseBlock;">
+        <div class="aboutUs">
+            <h1>About Us</h1>
+            <div class="button-group">
+                <button [ngClass]="{'changeStyle':showContact === false}" (click)="showAboutUs()">About
+                    Us</button>
+                <button [ngClass]="{'changeStyle':showContact !== false}" (click)="showContactUs()">Contact
+                    Us</button>
+            </div>
+            <p> Title of the content </p>
+            <div class="angular-editor">
+                <label for="">Description :</label>
+                <angular-editor [(ngModel)]="htmlContent" [ngModelOptions]="{standalone: true}"
+                    [config]="config"></angular-editor>
+            </div>
+            <div class="submit-button">
+                <button>Update</button>
+            </div>
+        </div>
+    </ng-container>
+    <ng-template #elseBlock>
+        <div class="contactUs">
+            <h1>Contact Us</h1>
+            <div class="button-group">
+                <button [ngClass]="{'changeStyle':showContact===false}" (click)="showAboutUs()">About
+                    Us</button>
+                <button [ngClass]="{'changeStyle':showContact!==false}" (click)="showContactUs()">Contact
+                    Us</button>
+            </div>
+            <div class="search">
+                <label for="">Search :</label>
+                <input type="text" />
+            </div>
+            <div class="table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sr no.</th>
+                            <th>Blog's Name</th>
+                            <th>Published on</th>
+                            <th>URL</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of [1,1,1,1];let i=index">
+                            <td>{{i +1}}</td>
+                            <td>dhfgdjd</td>
+                            <td>gdfhfg</td>
+                            <td>
+                                ggsdhghdh
+                            </td>
+                            <td class="icon-group">
+                                fghdhfgjfgh
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </ng-template>
+</div>

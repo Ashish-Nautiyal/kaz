@@ -18,7 +18,7 @@ export class ProductManagementComponent {
   addNewProduct() {
     let dialogRef = this.dialog.open(ProductAddComponent, {
       width: '800px',
-      height: '800px'
+      height: '900px'
     });
 
     dialogRef.afterClosed().subscribe(

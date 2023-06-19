@@ -11,6 +11,7 @@ import { DashBoardComponent } from './dash-board/dash-board.component';
 import { ProductManagementComponent } from './product-management/product-management.component';
 import { AccountComponent } from './account/account.component';
 import { SendNotificationComponent } from './send-notification/send-notification.component';
+import { ContentManagementComponent } from './content-management/content-management.component';
 
 const appRoutes: Routes = [
     {
@@ -24,8 +25,9 @@ const appRoutes: Routes = [
             { path: 'blogDetail/:id', component: BlogDetailComponent },
             { path: 'product', component: ProductManagementComponent },
             { path: 'product', component: ProductManagementComponent },
+            { path: 'content', component: ContentManagementComponent },
             { path: 'notification', component: SendNotificationComponent },
-            { path: 'account', component: AccountComponent }
+            { path: 'account', component: AccountComponent },
         ]
     },
 ];

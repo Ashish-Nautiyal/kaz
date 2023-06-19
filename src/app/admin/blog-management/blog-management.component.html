@@ -5,7 +5,7 @@
             <div class="grid">
                 <div class="search">
                     <label>Search:</label>
-                    <input type="text" placeholder="Search blog" #searchString (keydown)="search(searchString.value)" />
+                    <input type="text" placeholder="Search Blog" #searchString (keydown)="search(searchString.value)" />
                 </div>
                 <div class="add-category-button1">
                     <button type="button" (click)="showBlogForm()">Add New Blog</button>
@@ -99,7 +99,7 @@
                 </div>
                 <div class="submit-btn">
                     <button type="submit" [disabled]="blogForm.invalid">Upload</button>
-                    <button type="button" (click)="hideBlogForm()">cancel</button>
+                    <button type="button" (click)="hideBlogForm()">Cancel</button>
                 </div>
             </form>
         </div>
