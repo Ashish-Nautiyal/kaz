@@ -1,57 +1,62 @@
 .container {
     width: 400px;
     height: 300px;
-    margin: 40px;
     text-align: center;
+    padding: 10px;
 }
 
 mat-icon {
     float: right;
-    margin-top: -32px;
     cursor: pointer;
+    margin-right: -76px;
 }
 
 .container h1 {
     color: rgb(0, 111, 111);
+    margin-left: 100px;
+    margin-top: 10px;
 }
 
 .category_name {
     display: flex;
     justify-content: space-between;
+    margin-left: 41px;
+    width: 400px;
+    margin-top: 40px;
 }
 
 .category_name label {
-    margin-top: 35px;
     font-weight: bold;
     font-size: 16px;
 }
 
 .category_name input {
-    width: 260px;
+    width: 200px;
     height: 30px;
     border: 1.5px solid black;
     border-radius: 5px;
-    margin-top: 35px;
 }
 
 .status {
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
+    margin-left: 41px;
+    width: 400px;
+    margin-top: 45px;
 }
 
 .status label {
-    margin-top: 35px;
     font-weight: bold;
     font-size: 16px;
 }
 
-.slide-toggle{
-    margin-top: 35px;
+.slide-toggle {
     margin-right: 175px;
 }
 
 .save_btn {
-    margin-top: 60px;
+    margin-top: 80px;
+    margin-left: 100px;
 }
 
 .save_btn button {

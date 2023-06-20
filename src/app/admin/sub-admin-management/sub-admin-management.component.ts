@@ -35,10 +35,10 @@ export class SubAdminManagementComponent implements OnInit {
   getSubAdminForm() {
     this.subAdminForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]],
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
-      phone_number: ['', [Validators.required, Validators.minLength(10)]],
+      phone_number: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       checkbox: [false]
     });
@@ -74,7 +74,7 @@ export class SubAdminManagementComponent implements OnInit {
       res => {
         this.getSubAdmins();
       }, error => console.log(error)
-    )
+    );
   }
 
   editSubAdmin(id: any) {

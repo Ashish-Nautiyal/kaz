@@ -65,7 +65,8 @@
                             <div *ngIf="subAdminForm.get('email')?.touched && subAdminForm.get('email')?.invalid">
                                 <div class="error_message" *ngIf="subAdminForm.get('email')?.errors.required">Email is
                                     required.</div>
-                                <div class="error_message" *ngIf="subAdminForm.get('email')?.errors.email">Invalid email
+                                <div class="error_message" *ngIf="subAdminForm.get('email')?.errors.pattern">Invalid
+                                    email
                                     format.</div>
                             </div>
                         </div>
@@ -94,15 +95,15 @@
                                 <div class="error_message" *ngIf="subAdminForm.get('phone_number')?.errors.required">
                                     phone_number is
                                     required.</div>
-                                <div class="error_message" *ngIf="subAdminForm.get('phone_number')?.errors.minlength">
-                                    Phone Number must be at least 10 characters
-                                    long. </div>
+                                <div class="error_message" *ngIf="subAdminForm.get('phone_number')?.errors.pattern">
+                                    Enter 10 digit valid phone number</div>
                             </div>
                         </div>
                         <div class="password">
                             <input [type]="hide ? 'password' : 'text'" placeholder="Password"
-                                formControlName="password" /><mat-icon class="eye-icon"
-                                (click)="showPassword()">visibility</mat-icon>
+                                formControlName="password" />
+                            <mat-icon (click)="showPassword()" class="eye-icon">{{hide ? 'visibility_off' :
+                                'visibility'}}</mat-icon>
                             <div *ngIf="subAdminForm.get('password')?.touched && subAdminForm.get('password')?.invalid">
                                 <div class="error_message" *ngIf="subAdminForm.get('password')?.errors.required">
                                     Password is required.</div>

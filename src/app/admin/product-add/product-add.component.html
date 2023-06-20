@@ -1,89 +1,128 @@
 <div class="container">
     <mat-icon class="close-icon" (click)="close()">close</mat-icon>
     <h1>Add New Product</h1>
-    <div class="file-upload">
-        <input type="file" id="img" />
-        <label for="img">
-            <div class="file-logo">
-                <mat-icon>cloud_upload</mat-icon>
-                <p>Add Image</p>
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <div class="file-upload">
+            <input type="file" id="img" formControlName="product_image" />
+            <label for="img">
+                <div class="file-logo">
+                    <mat-icon>cloud_upload</mat-icon>
+                    <p>Add Image</p>
+                </div>
+            </label>
+        </div>
+        <div class="input-group">
+            <div class="product_name">
+                <label>Product Name :</label>
+                <input type="text" formControlName="product_name" />
             </div>
-        </label>
-    </div>
-    <div class="input-group">
-        <div class="product_name">
-            <label>Product Name :</label>
-            <input type="text" />
+            <div class="category">
+                <label>Category :</label>
+                <select formControlName="category">
+                    <option value="">Select Category</option>
+                    <option value="Clothes">Clothes</option>
+                </select>
+            </div>
         </div>
-        <div class="category">
-            <label>Category :</label>
-            <select>
-                <option value="">Select Category</option>
-            </select>
+        <div class="description">
+            <label>Description :</label>
+            <input type="text" formControlName="description" />
         </div>
-    </div>
-    <div class="description">
-        <label>Description :</label>
-        <input type="text" />
-    </div>
-    <div class="investment">
-        <label>Minimum Amount Invested :</label>
-        <input type="text" />
-    </div>
-    <div class="Payment-type">
-        <label>Payment Type :</label>
-        <input type="radio" name="payment" />One Time
-        <input type="radio" name="payment" />Recurring
-    </div>
-    <div class="investment">
-        <label>Minimum Amount Invested :</label>
-        <input type="text" />
-    </div>
-    <div class="payment-period">
-        <div class="payment">
-            <label>No. Of Payments :</label>
-            <select>
-                <option value="">5</option>
-            </select>
+        <div class="investment">
+            <label>Minimum Amount Invested :</label>
+            <input type="text" formControlName="investment" />
         </div>
-        <div class="week">
-            <select>
-                <option value="">Weeks</option>
-            </select>
+        <div class="Payment-type">
+            <label>Payment Type :</label>
+            <input type="radio" name="payment_type" formControlName="payment_type" value="0"/>One Time
+            <input type="radio" name="payment_type" formControlName="payment_type" value="1"/>Recurring
         </div>
-    </div>
-    <div class="return">
-        <div class="frequency">
-            <label>Frequency :</label>
-            <select>
-                <option value="">3</option>
-            </select>
+        <div class="payment-period">
+            <div class="payment">
+                <label>No. Of Payments :</label>
+                <select formControlName="number_of_payment">
+                    <option value="5">5</option>
+                    <option value="0">0</option>
+                </select>
+            </div>
+            <div class="week">
+                <select formControlName="payment_time">
+                    <option value="">Weeks</option>
+                    <option value="">Months</option>
+                    <option value="">Year</option>
+                </select>
+            </div>
         </div>
-        <div class="return-rate">
-            <label>Rate of return :</label>
-            <span>50%</span>
+        <div class="return">
+            <div class="frequency">
+                <label>Frequency :</label>
+                <select formControlName="frequency">
+                    <option value="3">3</option>
+                    <option value="0">0</option>
+                </select>
+            </div>
+            <div class="return-rate">
+                <label>Rate of return :</label>
+                <span>50%</span>
+            </div>
         </div>
-    </div>
-    <div class="enable-product">
-        <label for="status">Enable Product :</label>
-        <mat-slide-toggle #toggle (click)="setValue(toggle.checked)" class="slide-toggle"
-            id="status"></mat-slide-toggle>
-    </div>
-    <hr>
-    <div class="add-images">
-        <label>Add Images :</label>
-        <img *ngFor="let image of images" [src]="image" [alt]="image" height="40px" width="80px" id="selected-image">
-        <button (click)="addImage()">Add Image</button>
-    </div>
-    <div class="add-document">
-        <label>Add Documents :</label>
-        <input type="file" />
-    </div>
-    <div class="add-video">
-        <label>Add Video :</label>
-        <input type="file">
-    </div>
-    <div class="sbmit-button">
-        <button type="submit">Save</button>
-    </div>
+        <div class="enable-product">
+            <label for="status">Enable Product :</label>
+            <mat-slide-toggle #toggle (click)="setValue(toggle.checked)" class="slide-toggle"
+                id="status"></mat-slide-toggle>
+        </div>
+        <hr>
+        <div class="add-images">
+            <label>Add Images :</label>
+            <div class="image">
+                <div *ngFor="let image of images; let i = index">
+                    <div>
+                        <input multiple type="file" (change)="onImageChange($event, i)" id="file-icon"
+                            formControlName="images" accept="image/*">
+                        <label for="file-icon" *ngIf="!image">
+                            <div class="file-icon-label">
+                                <mat-icon class="close" (click)="removeImage(i)">close</mat-icon>
+                                <mat-icon class="add">add</mat-icon>
+                            </div>
+                        </label>
+                    </div>
+                    <div *ngIf="image">
+                        <mat-icon class="close" (click)="removeImage(i)">close</mat-icon>
+                        <img *ngIf="image" [src]="image.url" alt="Image" height="120px" width="120px">
+                    </div>
+                </div>
+                <mat-icon class="add_image_icon" (click)="addImage()">add</mat-icon>
+            </div>
+        </div>
+        <div class="add-documents">
+            <label>Add Documents :</label>
+            <div class="document">
+                <div *ngFor="let document of documents; let i = index">
+                    <input type="file" (change)="onDocumentChange($event, i)" formControlName="documents"
+                        id="document-icon">
+                    <label for="document-icon">
+                        <div class="file-icon-label">
+                            <mat-icon class="close" (click)="removeDocument(i)">close</mat-icon>
+                            <mat-icon class="pdf">picture_as_pdf</mat-icon>
+                        </div>
+                    </label>
+                </div>
+                <mat-icon class="add_document_icon" (click)="addDocument()">add</mat-icon>
+            </div>
+        </div>
+        <div class="add-video">
+            <label>Add Video :</label>
+            <div class="video">
+                <input type="file" id="video-icon" formControlName="video">
+                <label for="video-icon">
+                    <div class="video">
+                        <mat-icon>play_circle_filled</mat-icon>
+                    </div>
+                </label>
+            </div>
+        </div>
+        <div class="sbmit-button">
+            <button type="submit">Save</button>
+        </div>
+    </form>
 </div>

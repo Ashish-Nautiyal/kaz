@@ -72,7 +72,7 @@ input[type="text"] {
 .return,
 .enable-product,
 .add-images,
-.add-document,
+.add-documents,
 .add-video {
   margin-bottom: 20px;
 }
@@ -91,21 +91,111 @@ input[type="text"] {
 
 .slide-toggle {
   vertical-align: middle;
+  margin-left: 20px;
 }
 
 hr {
   margin-bottom: 20px;
 }
 
-.add-images img {
-  margin-right: 10px;
+.add-images input[type='file'] {
+  display: none;
 }
 
-.add-images button {
-  padding: 5px 10px;
-  border: none;
+.file-icon-label {
+  width: 120px;
+  height: 120px;
+  border: 1.5px solid black;
+}
+
+.file-icon-label .close {
+  float: right;
   cursor: pointer;
-  border-radius: 4px;
+}
+
+.file-icon-label .add {
+  text-align: center;
+  background: linear-gradient(90deg, #fbd709, #e94f24);
+  margin-left: 50px;
+  margin-top: 50px;
+}
+
+.add-images .image {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.add-images .image>div {
+  width: 21%;
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.add-images label {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.add-documents .document {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.add-documents .document>div {
+  width: 21%;
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.add-documents label {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.add-documents input[type='file'] {
+  display: none;
+}
+
+.file-icon-label .pdf {
+  text-align: center;
+  margin-left: 50px;
+  margin-top: 50px;
+}
+
+.video {
+  width: 120px;
+  height: 120px;
+  border: 1.5px solid black;
+  cursor: pointer;
+}
+
+.video input[type='file'] {
+  display: none;
+}
+
+.video mat-icon {
+  margin-left: 50px;
+  margin-top: 50px;
+}
+
+.add_image_icon {
+  font-size: 30px;
+  color: blue;
+  cursor: pointer;
+}
+
+.add_document_icon {
+  font-size: 30px;
+  color: green;
+  cursor: pointer;
 }
 
 .sbmit-button {

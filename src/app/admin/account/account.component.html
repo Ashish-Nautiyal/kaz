@@ -8,7 +8,7 @@
         <form [formGroup]="changePwdForm" (ngSubmit)="onSubmit()">
             <div class="old-password">
                 <label> Old Password : </label>
-                <input type="password" formControlName="old_password" />
+                <input type="password" formControlName="old_password"/>
 
             </div>
             <div *ngIf="changePwdForm.get('old_password')?.touched && changePwdForm.get('old_password')?.invalid">

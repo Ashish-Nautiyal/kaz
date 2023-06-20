@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -10,59 +11,93 @@ import { ProductService } from 'src/app/services/product.service';
 export class ProductAddComponent implements OnInit {
 
   productForm: any;
-  images: string[] = [];
-  url: object[] = [];
+  images: any[] = [];
+  documents: any[] = [];
 
-
-  constructor(private dialogRef: MatDialogRef<ProductAddComponent>, private productService: ProductService) { }
+  constructor(private dialogRef: MatDialogRef<ProductAddComponent>, private productService: ProductService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.getProductForm();
   }
 
   getProductForm() {
-
+    this.productForm = this.fb.group({
+      product_image: ['', Validators.required],
+      product_name: ['', Validators.required],
+      category: ['', Validators.required],
+      description: ['', Validators.required],
+      investment: ['', Validators.required],
+      payment_type: ['', Validators.required],
+      number_of_payment: [''],
+      payment_time: [''],
+      frequency: [''],
+      rate_of_return: [50],
+      status: [false],
+      images: [''],
+      documents: [''],
+      video: ['']
+    })
   }
 
   onSubmit() {
-    this.productService.addProduct(this.productForm.value).subscribe(
-      res => {
-        this.dialogRef.close(true);
-      }, error => console.log(error)
-    );
-  }
-
-  close() {
-    this.dialogRef.close(false);
+    // this.productService.addProduct(this.productForm.value).subscribe(
+    //   res => {
+    //     this.dialogRef.close(true);
+    //   }, error => console.log(error)
+    // );
+    console.log('form',this.productForm.value);
+    
   }
 
   setValue(val: any) {
 
   }
 
-  addImage() {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = 'image/*';
-    input.onchange = (event: Event) => {
-      const target = event.target as HTMLInputElement;
-      if (target.files && target.files.length) {
-        const file = target.files[0];
-        this.url.push(file);
-
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-          const imageUrl = reader.result as string;
-          this.images.push(imageUrl);
-        };
-      }
-    };
-    input.click();
-
+  close() {
+    this.dialogRef.close(false);
   }
 
-  urls(){
-    console.log('url',this.url);    
+  addImage() {
+    this.images.push(null);
+  }
+
+  onImageChange(event: any, index: number) {
+    const files: FileList = event.target.files;
+    if (files.length > 0) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.images[index] = {
+          file: files[0],
+          url: e.target.result
+        };
+      };
+      reader.readAsDataURL(files[0]);
+    }
+  }
+
+  removeImage(index: number) {
+    this.images.splice(index, 1);
+  }
+
+  addDocument() {
+    this.documents.push(null);
+  }
+
+  onDocumentChange(event: any, index: number) {
+    const files: FileList = event.target.files;
+    if (files.length > 0) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.images[index] = {
+          file: files[0],
+          url: e.target.result
+        };
+      };
+      reader.readAsDataURL(files[0]);
+    }
+  }
+
+  removeDocument(index: number) {
+    this.documents.splice(index, 1);
   }
 }

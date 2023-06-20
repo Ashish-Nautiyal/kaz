@@ -3,7 +3,6 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const nodemailer = require("nodemailer");
 
-
 async function sendEmail(email) {
     try {
         let transporter = nodemailer.createTransport({
@@ -29,7 +28,6 @@ async function sendEmail(email) {
     }
 }
 
-
 module.exports.register = async (req, res) => {
     try {
         const { username, email, first_name, last_name, phone_number, password, checkbox } = req.body;
@@ -37,7 +35,6 @@ module.exports.register = async (req, res) => {
         if (!username || !email || !first_name || !last_name || !phone_number || !password) {
             return res.status(200).json({ message: 'All fields required.', success: false });
         }
-        console.log(checkbox);
         const hashedPassword = await bcrypt.hash(password, 10);
         const newUser = new Admin({
             username,
@@ -116,8 +113,7 @@ module.exports.updateSubAdmin = async (req, res) => {
         if (!_id) {
             return res.status(200).json({ message: 'User id not found.', success: false });
         }
-        const data = await Admin.findByIdAndUpdate(_id, { $set: req.body });
-        console.log('data', data);
+        await Admin.findByIdAndUpdate(_id, { $set: req.body });
         res.status(200).json({ message: 'SubAdmin updated.', success: true });
     } catch (error) {
         console.log(error);
