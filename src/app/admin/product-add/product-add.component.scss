@@ -17,8 +17,23 @@ h1 {
   color: rgb(0, 111, 111);
 }
 
+.selected-image {
+  border: 2px solid black;
+  width: 100px;
+  height: 81px;
+  border-left: none;
+}
+
+.selected-image img {
+  width: 100px;
+  height: 81px;
+}
+
 .file-upload {
   margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  margin-right: 226px;
 }
 
 .file-upload input[type='file'] {
@@ -69,6 +84,7 @@ input[type="text"] {
 .description,
 .investment,
 .payment-period,
+.Payment-type,
 .return,
 .enable-product,
 .add-images,
@@ -109,8 +125,9 @@ hr {
 }
 
 .file-icon-label .close {
-  float: right;
   cursor: pointer;
+  background-color: #ccc;
+  border-radius: 50%;
 }
 
 .file-icon-label .add {
@@ -211,4 +228,10 @@ hr {
   border: 1.5px solid;
   font-size: 17px;
   cursor: pointer;
+}
+
+.sbmit-button button:disabled {
+  background-color: gray;
+  color: black;
+  cursor: not-allowed;
 }

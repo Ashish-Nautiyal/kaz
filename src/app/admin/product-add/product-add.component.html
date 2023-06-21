@@ -3,13 +3,16 @@
     <h1>Add New Product</h1>
     <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
         <div class="file-upload">
-            <input type="file" id="img" formControlName="product_image" />
+            <input type="file" (change)="selectedProductImage($event)" id="img" formControlName="product_image" />
             <label for="img">
                 <div class="file-logo">
                     <mat-icon>cloud_upload</mat-icon>
                     <p>Add Image</p>
                 </div>
             </label>
+            <div class="selected-image">
+                <img [src]="productImage" />
+            </div>
         </div>
         <div class="input-group">
             <div class="product_name">
@@ -20,7 +23,7 @@
                 <label>Category :</label>
                 <select formControlName="category">
                     <option value="">Select Category</option>
-                    <option value="Clothes">Clothes</option>
+                    <option *ngFor="let cat of category" value="cat._id">{{cat.category_name}}</option>
                 </select>
             </div>
         </div>
@@ -34,26 +37,26 @@
         </div>
         <div class="Payment-type">
             <label>Payment Type :</label>
-            <input type="radio" name="payment_type" formControlName="payment_type" value="0"/>One Time
-            <input type="radio" name="payment_type" formControlName="payment_type" value="1"/>Recurring
+            <input type="radio" name="payment_type" formControlName="payment_type" value="0" />One Time
+            <input type="radio" name="payment_type" formControlName="payment_type" value="1" />Recurring
         </div>
-        <div class="payment-period">
-            <div class="payment">
-                <label>No. Of Payments :</label>
-                <select formControlName="number_of_payment">
-                    <option value="5">5</option>
-                    <option value="0">0</option>
-                </select>
+        <ng-container *ngIf="productForm.controls['payment_type'].value == '1'">
+            <div class="payment-period">
+                <div class="payment">
+                    <label>No. Of Payments :</label>
+                    <select formControlName="number_of_payment">
+                        <option value="5">5</option>
+                        <option value="0">0</option>
+                    </select>
+                </div>
+                <div class="week">
+                    <select formControlName="payment_time">
+                        <option value="">Weeks</option>
+                        <option value="">Months</option>
+                        <option value="">Year</option>
+                    </select>
+                </div>
             </div>
-            <div class="week">
-                <select formControlName="payment_time">
-                    <option value="">Weeks</option>
-                    <option value="">Months</option>
-                    <option value="">Year</option>
-                </select>
-            </div>
-        </div>
-        <div class="return">
             <div class="frequency">
                 <label>Frequency :</label>
                 <select formControlName="frequency">
@@ -61,10 +64,10 @@
                     <option value="0">0</option>
                 </select>
             </div>
-            <div class="return-rate">
-                <label>Rate of return :</label>
-                <span>50%</span>
-            </div>
+        </ng-container>
+        <div class="return-rate">
+            <label>Rate of return :</label>
+            <span>50%</span>
         </div>
         <div class="enable-product">
             <label for="status">Enable Product :</label>
@@ -76,20 +79,18 @@
             <label>Add Images :</label>
             <div class="image">
                 <div *ngFor="let image of images; let i = index">
-                    <div>
-                        <input multiple type="file" (change)="onImageChange($event, i)" id="file-icon"
-                            formControlName="images" accept="image/*">
-                        <label for="file-icon" *ngIf="!image">
-                            <div class="file-icon-label">
-                                <mat-icon class="close" (click)="removeImage(i)">close</mat-icon>
-                                <mat-icon class="add">add</mat-icon>
-                            </div>
-                        </label>
-                    </div>
-                    <div *ngIf="image">
+                    <input type="file" (change)="onImageChange($event, i)" id="file-icon" formControlName="images"
+                        accept="image/*">
+                    <label for="file-icon">
+                        <div class="file-icon-label">
+                            <mat-icon class="close" (click)="removeImage(i)">close</mat-icon>
+                            <mat-icon class="add">add</mat-icon>
+                        </div>
+                    </label>
+                    <!-- <div *ngIf="image">
                         <mat-icon class="close" (click)="removeImage(i)">close</mat-icon>
-                        <img *ngIf="image" [src]="image.url" alt="Image" height="120px" width="120px">
-                    </div>
+                        <img *ngIf="image" [src]="images[i].url" alt="Image" height="120px" width="120px">
+                    </div> -->
                 </div>
                 <mat-icon class="add_image_icon" (click)="addImage()">add</mat-icon>
             </div>
@@ -122,7 +123,7 @@
             </div>
         </div>
         <div class="sbmit-button">
-            <button type="submit">Save</button>
+            <button type="submit" [disabled]="productForm.invalid">Save</button>
         </div>
     </form>
 </div>

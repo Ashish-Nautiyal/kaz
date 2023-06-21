@@ -98,7 +98,7 @@ table tr:hover {
 
 .blog-form {
     width: 800px;
-    height: 700px;
+    height: 720px;
     margin: auto;
     text-align: center;
     border: 2px solid black;
@@ -130,7 +130,19 @@ table tr:hover {
 
 .blog-image {
     margin-top: 40px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-right: 520px;
+}
+
+.selected-image {
+    border: 2px solid black;
+    border-left: none;
+}
+
+.selected-image img {
+    width: 100px;
+    height: 96px;
 }
 
 input[type='file'] {

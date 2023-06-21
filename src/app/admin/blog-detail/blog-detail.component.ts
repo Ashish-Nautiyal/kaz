@@ -23,8 +23,6 @@ export class BlogDetailComponent implements OnInit {
     this.activateRoute.paramMap.subscribe(
       res => {
         this.id = res.get('id');
-        console.log('id',this.id);
-        
       }
     );
   }

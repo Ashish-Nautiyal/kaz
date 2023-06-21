@@ -80,7 +80,7 @@ export class BlogManagementComponent implements OnInit {
   blogList: any[] = [];
   blogForm: any;
   selectedBlogImage: any;
-  blogUrl: any;
+  blogImage:any = "../../../assets/images/preview_image.png";
 
   constructor(private fb: FormBuilder, private blogService: BlogService, private dialog: MatDialog, private router: Router) { }
 
@@ -133,6 +133,12 @@ export class BlogManagementComponent implements OnInit {
   onFileselect(event: any) {
     let file = event.target.files[0];
     this.selectedBlogImage = file;
+    if(file) {
+     let filePath = URL.createObjectURL(file);
+      this.blogImage = filePath;
+    }else{
+      this.blogImage = "../../../assets/images/preview_image.png";
+    }
   }
 
   editBlog(id: any) {

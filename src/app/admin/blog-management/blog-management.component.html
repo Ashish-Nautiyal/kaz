@@ -88,6 +88,9 @@
                             <p>Add Image</p>
                         </div>
                     </label>
+                    <div class="selected-image">
+                        <img [src]="blogImage" />
+                    </div>
                 </div>
                 <div class="angular-editor">
                     <angular-editor [(ngModel)]="htmlContent" [ngModelOptions]="{standalone: true}"
