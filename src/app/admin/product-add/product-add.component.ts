@@ -13,8 +13,13 @@ export class ProductAddComponent implements OnInit {
 
   productForm: any;
   images: any[] = [];
+  imagePath: any[] = [];
   documents: any[] = [];
-  productImage: any = "../../../assets/images/preview_image.png";
+  documentPath: any[] = [];
+  productImage: any;
+  productImagePath: any = "../../../assets/images/preview_image.png";;
+  productVideo: any;
+  productVideoPath: any;
   category: any;
 
   constructor(private dialogRef: MatDialogRef<ProductAddComponent>, private productService: ProductService, private fb: FormBuilder, private categoryService: CategoryService) { }
@@ -26,7 +31,7 @@ export class ProductAddComponent implements OnInit {
 
   getProductForm() {
     this.productForm = this.fb.group({
-      product_image: ['', Validators.required],
+      product_image: [''],
       product_name: ['', Validators.required],
       category: ['', Validators.required],
       description: ['', Validators.required],
@@ -52,66 +57,99 @@ export class ProductAddComponent implements OnInit {
   }
 
   onSubmit() {
-    // this.productService.addProduct(this.productForm.value).subscribe(
-    //   res => {
-    //     this.dialogRef.close(true);
-    //   }, error => console.log(error)
-    // );
-    console.log('form', this.productForm.value);
+    const formData = new FormData();
+    formData.append('product_image', this.productImage);
+    formData.append('product_name', this.productForm.controls['product_name'].value);
+    formData.append('category', this.productForm.controls['category'].value);
+    formData.append('description', this.productForm.controls['description'].value);
+    formData.append('investment', this.productForm.controls['investment'].value);
+    formData.append('payment_type', this.productForm.controls['payment_type'].value);
+    formData.append('number_of_payment', this.productForm.controls['number_of_payment'].value);
+    formData.append('payment_time', this.productForm.controls['payment_time'].value);
+    formData.append('frequency', this.productForm.controls['frequency'].value);
+    formData.append('rate_of_return', this.productForm.controls['rate_of_return'].value);
+    formData.append('status', this.productForm.controls['status'].value);
+    for (var i = 0; i < this.images.length; i++) {
+      if (this.images[i] != null)
+        formData.append("images", this.images[i]);
+    }
+    for (var i = 0; i < this.documents.length; i++) {
+      if (this.documents[i] != null)
+        formData.append("documents", this.documents[i]);
+    }
+    formData.append('video', this.productVideo);
+
+    this.productService.addProduct(formData).subscribe(
+      res => {
+        this.dialogRef.close(true);
+      }, error => console.log(error)
+    );
   }
 
-  setValue(val: any) {
-
+  setValue(val: boolean) {
+    this.productForm.controls['status'].setValue(val);
   }
 
   close() {
     this.dialogRef.close(false);
   }
 
+  selectedProductImage(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.productImage = file;
+      let filePath = URL.createObjectURL(file);
+      this.productImagePath = filePath;
+    } else {
+      this.productImagePath = "../../../assets/images/preview_image.png";
+    }
+  }
+
   addImage() {
     this.images.push(null);
+    this.imagePath.push(null);
   }
 
   onImageChange(event: any, index: number) {
-    const files: FileList = event.target.files;
-    if (files.length > 0) {
-      this.images.push(files[0]);
+    const file: File = event.target.files[0];
+    if (file) {
+      this.images[index] = (file);
+      this.imagePath[index] = (URL.createObjectURL(file));
     }
   }
 
   removeImage(index: number) {
     this.images.splice(index, 1);
+    this.imagePath.splice(index, 1);
   }
 
   addDocument() {
     this.documents.push(null);
+    this.documentPath.push(null);
   }
 
   onDocumentChange(event: any, index: number) {
-    const files: FileList = event.target.files;
-    if (files.length > 0) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.images[index] = {
-          file: files[0],
-          url: e.target.result
-        };
-      };
-      reader.readAsDataURL(files[0]);
+    const file: File = event.target.files[0];
+    if (file) {
+      this.documents[index] = file;
+      this.documentPath[index] = URL.createObjectURL(file);
     }
   }
 
   removeDocument(index: number) {
     this.documents.splice(index, 1);
+    this.documentPath.splice(index, 1);
   }
 
-  selectedProductImage(event: any) {
+  addVideo(event: any) {
+    console.log('event', event);
+
     const file: File = event.target.files[0];
     if (file) {
-      let filePath = URL.createObjectURL(file);
-      this.productImage = filePath;
+      this.productVideo = file;
+      this.productVideoPath = URL.createObjectURL(file);
     } else {
-      this.productImage = "../../../assets/images/preview_image.png";
+      this.productVideoPath = file;
     }
   }
 }

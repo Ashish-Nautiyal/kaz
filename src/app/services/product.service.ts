@@ -18,6 +18,10 @@ export class ProductService {
     return this.http.get<any>(environment.baseUrl + 'getProducts');
   }
 
+  getProductsDetail(body: any): Observable<any> {
+    return this.http.get<any>(environment.baseUrl + 'getProductsDetail/' + body);
+  }
+
   editProduct(body: any): Observable<any> {
     return this.http.get<any>(environment.baseUrl + 'editProduct/' + body);
   }

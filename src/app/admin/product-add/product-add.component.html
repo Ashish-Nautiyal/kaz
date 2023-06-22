@@ -3,7 +3,7 @@
     <h1>Add New Product</h1>
     <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
         <div class="file-upload">
-            <input type="file" (change)="selectedProductImage($event)" id="img" formControlName="product_image" />
+            <input type="file" (change)="selectedProductImage($event)" id="img" />
             <label for="img">
                 <div class="file-logo">
                     <mat-icon>cloud_upload</mat-icon>
@@ -11,7 +11,7 @@
                 </div>
             </label>
             <div class="selected-image">
-                <img [src]="productImage" />
+                <img [src]="productImagePath" />
             </div>
         </div>
         <div class="input-group">
@@ -23,7 +23,7 @@
                 <label>Category :</label>
                 <select formControlName="category">
                     <option value="">Select Category</option>
-                    <option *ngFor="let cat of category" value="cat._id">{{cat.category_name}}</option>
+                    <option *ngFor="let cat of category" value="{{cat._id}}">{{cat.category_name}}</option>
                 </select>
             </div>
         </div>
@@ -78,20 +78,22 @@
         <div class="add-images">
             <label>Add Images :</label>
             <div class="image">
-                <div *ngFor="let image of images; let i = index">
-                    <input type="file" (change)="onImageChange($event, i)" id="file-icon" formControlName="images"
-                        accept="image/*">
-                    <label for="file-icon">
-                        <div class="file-icon-label">
+                <ng-container *ngIf="images.length > 0">
+                    <div *ngFor="let image of images; let i = index">
+                        <input type="file" (change)="onImageChange($event, i)" id="file-icon-{{i}}" accept="image/*" />
+                        <label for="file-icon-{{i}}">
+                            <div class="file-icon-label" *ngIf="image == null">
+                                <mat-icon class="add">add</mat-icon>
+                            </div>
+                            <div *ngIf="image != null">
+                                <img [src]="imagePath[i]" alt="No image" height="120px" width="120px">
+                            </div>
+                        </label>
+                        <div>
                             <mat-icon class="close" (click)="removeImage(i)">close</mat-icon>
-                            <mat-icon class="add">add</mat-icon>
                         </div>
-                    </label>
-                    <!-- <div *ngIf="image">
-                        <mat-icon class="close" (click)="removeImage(i)">close</mat-icon>
-                        <img *ngIf="image" [src]="images[i].url" alt="Image" height="120px" width="120px">
-                    </div> -->
-                </div>
+                    </div>
+                </ng-container>
                 <mat-icon class="add_image_icon" (click)="addImage()">add</mat-icon>
             </div>
         </div>
@@ -99,14 +101,18 @@
             <label>Add Documents :</label>
             <div class="document">
                 <div *ngFor="let document of documents; let i = index">
-                    <input type="file" (change)="onDocumentChange($event, i)" formControlName="documents"
-                        id="document-icon">
-                    <label for="document-icon">
-                        <div class="file-icon-label">
-                            <mat-icon class="close" (click)="removeDocument(i)">close</mat-icon>
+                    <input type="file" (change)="onDocumentChange($event, i)" id="document-icon-{{i}}">
+                    <label for="document-icon-{{i}}">
+                        <div class="file-icon-label" *ngIf="document == null">
                             <mat-icon class="pdf">picture_as_pdf</mat-icon>
                         </div>
+                        <div *ngIf="document != null">
+                            <img [src]="documentPath[i]" alt="No image" height="120px" width="120px">
+                        </div>
                     </label>
+                    <div>
+                        <mat-icon class="close" (click)="removeDocument(i)">close</mat-icon>
+                    </div>
                 </div>
                 <mat-icon class="add_document_icon" (click)="addDocument()">add</mat-icon>
             </div>
@@ -114,10 +120,14 @@
         <div class="add-video">
             <label>Add Video :</label>
             <div class="video">
-                <input type="file" id="video-icon" formControlName="video">
+                <input type="file" id="video-icon" (change)="addVideo($event)" accept="video/*">
                 <label for="video-icon">
-                    <div class="video">
+                    <div class="video-icon-pdf" *ngIf="!productVideoPath">
                         <mat-icon>play_circle_filled</mat-icon>
+                    </div>
+                    <div class="selected-video-file" *ngIf="productVideoPath">
+                        <label for="">Selected Video :</label>
+                        <p>{{productVideoPath}}</p>
                     </div>
                 </label>
             </div>

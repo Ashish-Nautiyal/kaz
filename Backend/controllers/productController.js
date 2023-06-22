@@ -2,25 +2,41 @@ const Product = require('../models/productModel');
 
 module.exports.addProduct = async (req, res) => {
     try {
-        const { first_name, middle_name, last_name, date_of_birth, email, phone_number, user_type, job_title, gender, investment } = req.body;
-        if (!first_name || !last_name || !date_of_birth || !email || !phone_number || !user_type || !job_title || !gender || !investment) {
+        const { product_name, category, description, investment, payment_type, number_of_payment, payment_time, frequency, rate_of_return, status } = req.body;
+        if (!product_name || !category) {
             return res.status(200).json({ message: 'All mandatory fields required.', success: false });
         }
+        console.log('body', req.body);
+        console.log('files', req.files);
+        let imagesArray = [];
+        let documentsArray = [];
 
-        const newUser = new User({
-            first_name,
-            middle_name,
-            last_name,
-            date_of_birth,
-            email,
-            phone_number,
-            user_type,
-            job_title,
-            gender,
-            investment
+        req.files.images.map((image) => {
+            imagesArray.push(image.path)
         });
-        await newUser.save();
-        res.status(201).json({ message: 'User registered.', success: true });
+        req.files.documents.map((image) => {
+            documentsArray.push(image.path)
+        });
+        console.log("imagearray", imagesArray);
+        console.log('documentarray', documentsArray);
+        const newProduct = new Product({
+            product_name,
+            category,
+            description,
+            investment,
+            payment_type,
+            number_of_payment,
+            payment_time,
+            frequency,
+            rate_of_return,
+            status,
+            product_image: req.files.product_image[0].path,
+            images: imagesArray,
+            documents: documentsArray,
+            video: req.files.video[0].path
+        });
+        await newProduct.save();
+        res.status(201).json({ message: 'Product added', success: true });
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: 'Internal server error.', success: false });
@@ -31,6 +47,20 @@ module.exports.getProducts = async (req, res) => {
     try {
         const products = await Product.find();
         res.status(200).json({ message: 'Product list.', data: products, success: true });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Internal server error.', success: false });
+    }
+}
+
+module.exports.getProductDetail = async (req, res) => {
+    try {
+        const _id = req.params;
+        if (!_id) {
+            return res.status(200).json({ message: 'Product id not found.', success: false });
+        }
+        const productDetail = await Product.findById(_id);
+        res.status(200).json({ message: 'Product Detail.', data: productDetail, success: true });
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: 'Internal server error.', success: false });

@@ -1,19 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductAddComponent } from '../product-add/product-add.component';
 import { ProductService } from 'src/app/services/product.service';
 import { ProductEditComponent } from '../product-edit/product-edit.component';
+import { ProductDetailComponent } from '../product-detail/product-detail.component';
 
 @Component({
   selector: 'app-product-management',
   templateUrl: './product-management.component.html',
   styleUrls: ['./product-management.component.scss']
 })
-export class ProductManagementComponent {
+export class ProductManagementComponent implements OnInit {
 
   products: any;
 
   constructor(private dialog: MatDialog, private productService: ProductService) { }
+
+  ngOnInit(): void {
+    this.getProducts();
+  }
 
   addNewProduct() {
     let dialogRef = this.dialog.open(ProductAddComponent, {
@@ -34,6 +39,8 @@ export class ProductManagementComponent {
     this.productService.getProducts().subscribe(
       res => {
         this.products = res.data;
+        console.log('product',this.products);
+        
       }, error => console.log(error)
     );
   }
@@ -56,6 +63,25 @@ export class ProductManagementComponent {
     );
     //   }, error => console.log(error)
     // );
+  }
+
+  viewProduct(id: any) {
+    this.productService.getProductsDetail(id).subscribe(
+      res => {
+        let data = res.data;
+        this.dialog.open(ProductDetailComponent, {
+          width: '900px',
+          height: '900px',
+          data:data
+        }).afterClosed().subscribe(
+          res => {
+            if (res) {
+              this.getProducts();
+            }
+          }
+        );
+      }, error => console.log(error)
+    );
   }
 
   deleteProduct(id: any) {

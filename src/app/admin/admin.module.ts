@@ -26,6 +26,7 @@ import { ProductEditComponent } from './product-edit/product-edit.component';
 import { AccountComponent } from './account/account.component';
 import { SendNotificationComponent } from './send-notification/send-notification.component';
 import { ContentManagementComponent } from './content-management/content-management.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { ContentManagementComponent } from './content-management/content-managem
     AccountComponent,
     SendNotificationComponent,
     ContentManagementComponent,
+    ProductDetailComponent,
   ],
   imports: [
     CommonModule,

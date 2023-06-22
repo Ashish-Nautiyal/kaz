@@ -124,10 +124,13 @@ hr {
   border: 1.5px solid black;
 }
 
-.file-icon-label .close {
+.close {
   cursor: pointer;
   background-color: #ccc;
   border-radius: 50%;
+  position: absolute;
+  margin-left: -20px;
+  margin-top: -76px;
 }
 
 .file-icon-label .add {
@@ -145,16 +148,21 @@ hr {
 }
 
 .add-images .image>div {
-  width: 21%;
+  width: 20%;
   display: flex;
   align-items: center;
-  margin-right: 20px;
+  margin-right: 24px;
   margin-bottom: 20px;
 }
 
 .add-images label {
   margin-right: 10px;
   cursor: pointer;
+}
+
+.add-images .image img {
+  border: 1px solid black;
+  margin-top: 4px;
 }
 
 .add-documents .document {
@@ -165,10 +173,10 @@ hr {
 }
 
 .add-documents .document>div {
-  width: 21%;
+  width: 20%;
   display: flex;
   align-items: center;
-  margin-right: 20px;
+  margin-right: 24px;
   margin-bottom: 20px;
 }
 
@@ -179,6 +187,11 @@ hr {
 
 .add-documents input[type='file'] {
   display: none;
+}
+
+.add-documents .document img {
+  border: 1px solid black;
+  margin-top: 4px;
 }
 
 .file-icon-label .pdf {
@@ -194,6 +207,13 @@ hr {
   cursor: pointer;
 }
 
+.video-icon-pdf {
+  width: 120px;
+  height: 120px;
+  border: 1.5px solid black;
+  cursor: pointer;
+}
+
 .video input[type='file'] {
   display: none;
 }
@@ -201,6 +221,12 @@ hr {
 .video mat-icon {
   margin-left: 50px;
   margin-top: 50px;
+}
+
+.selected-video-file {
+  margin-left: 138px;
+  width: 100%;
+  cursor: pointer;
 }
 
 .add_image_icon {
