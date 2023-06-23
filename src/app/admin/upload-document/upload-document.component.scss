@@ -1,0 +1,21 @@
+.container h1 {
+    text-align: center;
+    color: rgb(0, 111, 111);
+    margin-top: 20px;
+}
+
+.container .add-button {
+    float: right;
+    margin-top: 5px;
+}
+
+.container .add-button button {
+    height: 40px;
+    width: 200px;
+    cursor: pointer;
+    background-color: rgb(0, 111, 111);
+    color: white;
+    border-radius: 5px;
+    margin-right: 160px;
+    font-size: 16px;
+}

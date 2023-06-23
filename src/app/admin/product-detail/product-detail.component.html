@@ -37,18 +37,19 @@
         </div>
     </div>
     <div class="images">
+        <label>Images :</label>
         <div *ngFor="let img of data.images">
             <img src="http://localhost:8001/{{img}}" alt="" height="220px" width="250px">
         </div>
     </div>
     <div class="documents">
+        <label>Documents :</label>
         <div *ngFor="let doc of data.documents">
             <img src="http://localhost:8001/{{doc}}" alt="" height="180px" width="180px">
         </div>
     </div>
     <div class="video">
-        <video width="320px" height="240px" controls>
-            <source src="http://localhost:8001/{{data.video}}" type="video/mp4">
+        <video  src="http://localhost:8001/{{data.video}}" controls width="320px" height="240px" >
         </video>
     </div>
-</div>
+</div> 

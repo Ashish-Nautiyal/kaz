@@ -1,0 +1,16 @@
+.container {
+    padding: 10px;
+}
+
+.container .close-modal {
+    float: right;
+}
+
+.container .close-modal mat-icon {
+    cursor: pointer;
+}
+
+.container h1 {
+    text-align: center;
+    color: rgb(0, 111, 111);
+}

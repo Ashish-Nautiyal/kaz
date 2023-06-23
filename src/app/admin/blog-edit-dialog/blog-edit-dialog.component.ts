@@ -81,7 +81,12 @@ export class BlogEditDialogComponent implements OnInit {
     this.setFormValue();
   }
 
-  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public editData: any, private dialogRef: MatDialogRef<BlogEditDialogComponent>, private blogService: BlogService) { }
+  constructor(
+    private fb: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public editData: any,
+    private dialogRef: MatDialogRef<BlogEditDialogComponent>,
+    private blogService: BlogService
+  ) { }
 
   getBlogForm() {
     this.blogForm = this.fb.group({

@@ -8,15 +8,13 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class ProductDetailComponent implements OnInit {
 
-  data: any;
-
-  constructor(@Inject(MAT_DIALOG_DATA) public productData: any, private dialogRef: MatDialogRef<ProductDetailComponent>) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<ProductDetailComponent>) { }
 
   ngOnInit(): void {
-    this.data = this.productData;
+
   }
 
-  close(){
+  close() {
     this.dialogRef.close(false);
   }
 }

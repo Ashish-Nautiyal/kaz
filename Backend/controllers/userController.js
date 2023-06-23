@@ -165,25 +165,3 @@ module.exports.inactiveUserCount = async (req, res) => {
         res.status(500).json({ message: 'Internal server error.', success: false });
     }
 }
-
-module.exports.filterByAge = async (req, res) => {
-    try {
-        let year = req.body.age;
-        let date = new Date();
-        const currentYear = date.getFullYear();
-
-
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({ message: 'Internal server error.', success: false });
-    }
-}
-
-module.exports.filterByAccountType = async (req, res) => {
-    try {
-
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({ message: 'Internal server error.', success: false });
-    }
-}

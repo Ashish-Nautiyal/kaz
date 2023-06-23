@@ -39,40 +39,37 @@ export class ProductManagementComponent implements OnInit {
     this.productService.getProducts().subscribe(
       res => {
         this.products = res.data;
-        console.log('product',this.products);
-        
       }, error => console.log(error)
     );
   }
 
   editProduct(id: any) {
-    // this.productService.editProduct(id).subscribe(
-    //   res => {
-    //     let data = res.data;
-    alert('I am working on it !!!');
-    return;
-    this.dialog.open(ProductEditComponent, {
-      width: '800px',
-      height: '600px',
-    }).afterClosed().subscribe(
+    this.productService.editProduct(id).subscribe(
       res => {
-        if (res) {
-          this.getProducts();
-        }
-      }
+        let data = res.data;
+        this.dialog.open(ProductEditComponent, {
+          width: '800px',
+          height: '900px',
+          data: data
+        }).afterClosed().subscribe(
+          res => {
+            if (res) {
+              this.getProducts();
+            }
+          }
+        );
+      }, error => console.log(error)
     );
-    //   }, error => console.log(error)
-    // );
   }
 
   viewProduct(id: any) {
-    this.productService.getProductsDetail(id).subscribe(
+    this.productService.editProduct(id).subscribe(
       res => {
         let data = res.data;
         this.dialog.open(ProductDetailComponent, {
           width: '900px',
           height: '900px',
-          data:data
+          data: data
         }).afterClosed().subscribe(
           res => {
             if (res) {
@@ -85,8 +82,9 @@ export class ProductManagementComponent implements OnInit {
   }
 
   deleteProduct(id: any) {
-    alert('I am working on it !!!');
-    return;
+    let del = confirm('Are you sure?');
+    if (!del)
+      return;
     this.productService.deleteProduct(id).subscribe(
       res => {
         this.getProducts();
@@ -95,12 +93,14 @@ export class ProductManagementComponent implements OnInit {
   }
 
   search(searchString: any) {
-    alert('I am working on it !!!');
-    return;
-    this.productService.searchProduct(searchString).subscribe(
-      res => {
-        this.products = res.data;
-      }, error => console.log(error)
-    );
+    if (searchString != '') {
+      this.productService.searchProduct(searchString).subscribe(
+        res => {
+          this.products = res.data;
+        }, error => console.log(error)
+      );
+    } else {
+      this.getProducts();
+    }
   }
 }

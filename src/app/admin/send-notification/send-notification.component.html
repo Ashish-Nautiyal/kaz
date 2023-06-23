@@ -1,24 +1,36 @@
 <div class="container">
     <h1>Send Notification</h1>
-    <form>
+    <form [formGroup]="notificationForm" (ngSubmit)="onSubmit()">
         <div class="users">
             <label>Select User :</label>
-            <select name="">
+            <select formControlName="user_email">
                 <option value="">All Users</option>
-                <option *ngFor="let user of users" value="{{user._id}}">{{user.first_name + ' ' + user.last_name}}
+                <option *ngFor="let user of users" value="{{user.email}}">{{user.first_name + ' ' + user.last_name}}
                 </option>
             </select>
         </div>
+        <div *ngIf="notificationForm.get('user_email')?.touched && notificationForm.get('user_email')?.invalid">
+            <div class="error_message" *ngIf="notificationForm.get('user_email')?.errors.required">
+                User is required.</div>
+        </div>
         <div class="title">
             <label>Title :</label>
-            <input type="text" />
+            <input type="text" formControlName="title" />
+        </div>
+        <div *ngIf="notificationForm.get('title')?.touched && notificationForm.get('title')?.invalid">
+            <div class="error_message" *ngIf="notificationForm.get('title')?.errors.required">
+                Title is required.</div>
         </div>
         <div class="description">
             <label>Description :</label>
-            <input type="text" />
+            <input type="text" formControlName="description" />
+        </div>
+        <div *ngIf="notificationForm.get('description')?.touched && notificationForm.get('description')?.invalid">
+            <div class="error_message" *ngIf="notificationForm.get('description')?.errors.required">
+                Description is required.</div>
         </div>
         <div class="submit-button">
-            <button type="submit">Send</button>
+            <button type="submit" [disabled]="notificationForm.invalid">Send</button>
         </div>
     </form>
 </div>

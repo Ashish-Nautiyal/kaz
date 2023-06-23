@@ -22,7 +22,12 @@ export class ProductAddComponent implements OnInit {
   productVideoPath: any;
   category: any;
 
-  constructor(private dialogRef: MatDialogRef<ProductAddComponent>, private productService: ProductService, private fb: FormBuilder, private categoryService: CategoryService) { }
+  constructor(
+    private dialogRef: MatDialogRef<ProductAddComponent>,
+    private productService: ProductService,
+    private fb: FormBuilder,
+    private categoryService: CategoryService
+  ) { }
 
   ngOnInit(): void {
     this.getProductForm();
@@ -40,7 +45,7 @@ export class ProductAddComponent implements OnInit {
       number_of_payment: [''],
       payment_time: [''],
       frequency: [''],
-      rate_of_return: [50],
+      rate_of_return: ['50'],
       status: [false],
       images: [''],
       documents: [''],
@@ -86,7 +91,7 @@ export class ProductAddComponent implements OnInit {
     );
   }
 
-  setValue(val: boolean) {
+  setStatusValue(val: boolean) {
     this.productForm.controls['status'].setValue(val);
   }
 
@@ -98,10 +103,7 @@ export class ProductAddComponent implements OnInit {
     const file: File = event.target.files[0];
     if (file) {
       this.productImage = file;
-      let filePath = URL.createObjectURL(file);
-      this.productImagePath = filePath;
-    } else {
-      this.productImagePath = "../../../assets/images/preview_image.png";
+      this.productImagePath = URL.createObjectURL(file);
     }
   }
 
@@ -142,14 +144,10 @@ export class ProductAddComponent implements OnInit {
   }
 
   addVideo(event: any) {
-    console.log('event', event);
-
     const file: File = event.target.files[0];
     if (file) {
       this.productVideo = file;
       this.productVideoPath = URL.createObjectURL(file);
-    } else {
-      this.productVideoPath = file;
     }
   }
 }

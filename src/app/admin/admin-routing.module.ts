@@ -12,6 +12,7 @@ import { ProductManagementComponent } from './product-management/product-managem
 import { AccountComponent } from './account/account.component';
 import { SendNotificationComponent } from './send-notification/send-notification.component';
 import { ContentManagementComponent } from './content-management/content-management.component';
+import { UploadDocumentComponent } from './upload-document/upload-document.component';
 
 const appRoutes: Routes = [
     {
@@ -26,6 +27,7 @@ const appRoutes: Routes = [
             { path: 'product', component: ProductManagementComponent },
             { path: 'product', component: ProductManagementComponent },
             { path: 'content', component: ContentManagementComponent },
+            { path: 'uploadDocument', component: UploadDocumentComponent },
             { path: 'notification', component: SendNotificationComponent },
             { path: 'account', component: AccountComponent },
         ]

@@ -12,7 +12,7 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) { }
 
   login(body: object): Observable<any> {
-    return this.http.post<any>(environment.baseUrl + 'login', body);
+    return this.http.post<any>(environment.baseUrl + 'api/login', body);
   }
 
   getAuthToken() {

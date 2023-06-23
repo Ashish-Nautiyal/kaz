@@ -8,8 +8,8 @@
         <form [formGroup]="changePwdForm" (ngSubmit)="onSubmit()">
             <div class="old-password">
                 <label> Old Password : </label>
-                <input type="password" formControlName="old_password"/>
-
+                <input [type]="hide.hide1 ?  'password':'text'" formControlName="old_password" />
+                <mat-icon (click)="hide.hide1 = !hide.hide1">{{hide.hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
             </div>
             <div *ngIf="changePwdForm.get('old_password')?.touched && changePwdForm.get('old_password')?.invalid">
                 <div class="error_message" *ngIf="changePwdForm.get('old_password')?.errors.required">
@@ -18,24 +18,24 @@
             </div>
             <div class="new-password">
                 <label> New Password : </label>
-                <input type="password" formControlName="new_password" />
-
+                <input [type]="hide.hide2 ? 'password':'text'" formControlName="new_password" />
+                <mat-icon (click)="hide.hide2 = !hide.hide2">{{hide.hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
             </div>
             <div *ngIf="changePwdForm.get('new_password')?.touched && changePwdForm.get('new_password')?.invalid">
                 <div class="error_message" *ngIf="changePwdForm.get('new_password')?.errors.required">
-                    New password is
-                    required.</div>
+                    New password is required.</div>
+                <div class="error_message" *ngIf="changePwdForm.get('new_password')?.errors.minlength">
+                    New password must be six charaacter long.</div>
             </div>
             <div class="confirm-password">
                 <label> Confirm Password : </label>
-                <input type="password" formControlName="confirm_password" />
-
+                <input [type]="hide.hide3 ?  'password':'text'" formControlName="confirm_password" />
+                <mat-icon (click)="hide.hide3 = !hide.hide3">{{hide.hide3 ? 'visibility_off' : 'visibility'}}</mat-icon>
             </div>
             <div
                 *ngIf="changePwdForm.get('confirm_password')?.touched && changePwdForm.get('confirm_password')?.invalid">
                 <div class="error_message" *ngIf="changePwdForm.get('confirm_password')?.errors.required">
-                    Confirm password is
-                    required.</div>
+                    Confirm password is required.</div>
                 <div class="error_message" *ngIf="changePwdForm.get('confirm_password')?.errors.passwordMismatch">
                     New password and Confirm password not matched.</div>
             </div>

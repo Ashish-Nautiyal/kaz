@@ -11,30 +11,30 @@ export class BlogService {
   constructor(private http: HttpClient) { }
 
   addBlog(body: object): Observable<any> {
-    return this.http.post<any>(environment.baseUrl + 'addBlog', body);
+    return this.http.post<any>(environment.baseUrl + 'api/addBlog', body);
   }
 
   getBlogs(): Observable<any> {
-    return this.http.get<any>(environment.baseUrl + 'getBlog');
+    return this.http.get<any>(environment.baseUrl + 'api/getBlog');
   }
 
   editBlog(body: any): Observable<any> {
-    return this.http.get<any>(environment.baseUrl + 'editBlog/' + body);
+    return this.http.get<any>(environment.baseUrl + 'api/editBlog/' + body);
   }
 
   deleteBlog(body: any): Observable<any> {
-    return this.http.delete<any>(environment.baseUrl + 'deleteBlog/' + body);
+    return this.http.delete<any>(environment.baseUrl + 'api/deleteBlog/' + body);
   }
 
   searchBlog(body: any): Observable<any> {
-    return this.http.get<any>(environment.baseUrl + 'searchBlog/' + body);
+    return this.http.get<any>(environment.baseUrl + 'api/searchBlog/' + body);
   }
 
   updateBlog(body: object): Observable<any> {
-    return this.http.post<any>(environment.baseUrl + 'updateBlog', body);
+    return this.http.post<any>(environment.baseUrl + 'api/updateBlog', body);
   }
 
   getBlogDetail(body: any): Observable<any> {
-    return this.http.get<any>(environment.baseUrl + 'getBlogDetail/' + body);
+    return this.http.get<any>(environment.baseUrl + 'api/getBlogDetail/' + body);
   }
 }

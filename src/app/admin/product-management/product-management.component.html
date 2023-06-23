@@ -25,12 +25,12 @@
             <tbody>
                 <tr *ngFor="let product of products;let i = index">
                     <td>{{i + 1}}</td>
-                    <td>{{product.category}}</td>
+                    <td>{{product.category_docs[0].category_name}}</td>
                     <td>{{product.product_name}}</td>
                     <td>{{product.status}}</td>
                     <td class="icon-group">
-                        <mat-icon (click)="deleteProduct(0)">delete</mat-icon>
-                        <mat-icon (click)="editProduct(0)">edit</mat-icon>
+                        <mat-icon (click)="deleteProduct(product._id)">delete</mat-icon>
+                        <mat-icon (click)="editProduct(product._id)">edit</mat-icon>
                         <mat-icon (click)="viewProduct(product._id)">visibility</mat-icon>
                     </td>
                 </tr>

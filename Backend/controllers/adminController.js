@@ -150,4 +150,72 @@ module.exports.searchSubAdmins = async (req, res) => {
         console.log(error);
         res.status(500).json({ message: 'Internal server error.', success: false });
     }
-}                   
+}
+
+module.exports.changePassword = async (req, res) => {
+    try {
+        const { old_password, new_password, confirm_password } = req.body;
+        if (!old_password || !new_password || !confirm_password) {
+            return res.status(200).json({ message: 'All mandatory field required.', success: false });
+        }
+
+        let token = req.header('Authorization');
+        if (token.startsWith('Bearer ')) {
+            token = token.slice(7, token.length).trimLeft();
+        }
+
+        const decodedToken = jwt.decode(token);
+        const user = await Admin.findOne({ email: decodedToken.email });
+        const validPassword = await bcrypt.compare(old_password, user.password);
+
+        if (validPassword && new_password === confirm_password) {
+            const hashedPassword = await bcrypt.hash(new_password, 10);
+            await Admin.findByIdAndUpdate(user._id, {
+                $set: { password: hashedPassword }
+            })
+            return res.status(200).json({ message: 'Password change Successfully.', success: true });
+        } else {
+            return res.status(200).json({ message: 'Password not changed.', success: false });
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Internal server error.', success: false });
+    }
+}
+
+module.exports.sendNotificationToUser = async (req, res) => {
+    try {
+        if (!req.body.user_email || !req.body.title || !req.body.description) {
+            return res.status(404).json({ message: 'All mandatory field required.', success: false });
+        }
+        sendMailToUser(req.body.user_email, req.body.title, req.body.description);
+        res.status(200).json({ message: 'Notification successfully send.', success: true });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Internal server error.', success: false });
+    }
+}
+
+async function sendMailToUser(email, title, description) {
+    try {
+        let transporter = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 587,
+            secure: false,
+            auth: {
+                user: process.env.USER_EMAIL,
+                pass: process.env.PASSWORD
+            },
+        });
+
+        let info = await transporter.sendMail({
+            from: '"Ashish Nautiyal 👻"<nautiyalashish1234@gmail.com>',
+            to: email,
+            subject: title,
+            text: "Nodemailer testing",
+            html: `<p>${description}</p>`,
+        });
+    } catch (error) {
+        console.log('catch error', error);
+    }
+}
