@@ -37,6 +37,14 @@ app.use('/api', blogRoutes);
 const productRoutes = require('./routes/productRoute');
 app.use('/api', productRoutes);
 
+//Document routes
+const documentRoutes = require('./routes/documentRoute');
+app.use('/api', documentRoutes);
+
+//AboutUs routes
+const aboutUsRoutes = require('./routes/aboutUsRoute');
+app.use('/api', aboutUsRoutes);
+
 app.listen(port, () => {
     console.log(`server listening on port ${port}`);
 });

@@ -8,14 +8,26 @@
                 <button [ngClass]="{'changeStyle':showContact !== false}" (click)="showContactUs()">Contact
                     Us</button>
             </div>
-            <p> Title of the content </p>
+            <div class="title">
+                <label> Title of the content :</label>
+                <input type="text" [(ngModel)]="document.title">
+                <div class="error_message" *ngIf="document.title ==''"> Title is required.</div>
+            </div>
             <div class="angular-editor">
                 <label for="">Description :</label>
-                <angular-editor [(ngModel)]="htmlContent" [ngModelOptions]="{standalone: true}"
+                <angular-editor [(ngModel)]="document.content" [ngModelOptions]="{standalone: true}"
                     [config]="config"></angular-editor>
+                <div class="error_message" *ngIf="document.content ==''">Content is required.</div>
             </div>
             <div class="submit-button">
-                <button>Update</button>
+                <ng-container *ngIf="document._id != '';else saveButton">
+                    <button type="button" [disabled]="document.title =='' || document.content ==''"
+                        (click)="updateAboutUs()">Update</button>
+                </ng-container>
+                <ng-template #saveButton>
+                    <button type="button" [disabled]="document.title =='' || document.content ==''"
+                        (click)="saveAboutUs()">Save</button>
+                </ng-template>
             </div>
         </div>
     </ng-container>

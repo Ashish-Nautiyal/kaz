@@ -20,6 +20,19 @@
     color: rgb(0, 111, 111);
 }
 
+.title {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.title input {
+    margin-left: 40px;
+    height: 20px;
+    width: 300px;
+    border-radius: 5px;
+    border: 1.5px solid black;
+}
+
 .submit-button {
     text-align: center;
     margin-top: 60px;
@@ -36,8 +49,13 @@
     border: none;
 }
 
+.submit-button button:disabled {
+    background-color: gray;
+    color: black;
+    cursor: not-allowed;
+}
 
-//kghfjkdhjkgnhjksgl
+
 .contactUs {
     padding: 20px;
     width: 80%;
@@ -105,4 +123,8 @@ table tr:hover {
 .changeStyle {
     background-color: rgb(0, 111, 111);
     color: white;
+}
+
+.error_message{
+    color: red;
 }

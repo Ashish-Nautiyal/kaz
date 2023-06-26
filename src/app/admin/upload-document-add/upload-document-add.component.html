@@ -3,17 +3,48 @@
         <mat-icon (click)="close()">close</mat-icon>
     </div>
     <h1>Upload New Document</h1>
-    <form>
+    <form [formGroup]="documentForm" (ngSubmit)="onSubmit()">
+        <div class="file-upload">
+            <input type="file" (change)="onDocumentSelect($event)" id="img"
+                accept=".xlsx,.xls,.doc,.docx,.ppt,.pptx,.txt,.pdf" formControlName="document" />
+            <label for="img">
+                <div class="file-logo">
+                    <mat-icon>cloud_upload</mat-icon>
+                    <p>Add Image</p>
+                </div>
+                <div class="selected-document">
+                    <label>Selected Document :</label>
+                    <ng-container *ngIf="selectedDocument else noDoc;">
+                        <p>{{selectedDocument.name}}</p>
+                    </ng-container>
+                    <ng-template #noDoc>
+                        <p>No Documents !!!</p>
+                    </ng-template>
+                </div>
+            </label>
+        </div>
+        <div *ngIf="documentForm.get('document')?.touched && documentForm.get('document')?.invalid">
+            <div class="error_message" *ngIf="documentForm.get('document')?.errors.required">
+                Document is required.</div>
+        </div>
         <div class="title">
             <label>Title :</label>
-            <input type="text">
+            <input type="text" formControlName="title" />
+        </div>
+        <div *ngIf="documentForm.get('title')?.touched && documentForm.get('title')?.invalid">
+            <div class="error_message" *ngIf="documentForm.get('title')?.errors.required">
+                Title is required.</div>
         </div>
         <div class="description">
             <label>Description :</label>
-            <input type="text">
+            <input type="text" formControlName="description" />
+        </div>
+        <div *ngIf="documentForm.get('description')?.touched && documentForm.get('description')?.invalid">
+            <div class="error_message" *ngIf="documentForm.get('description')?.errors.required">
+                Description is required.</div>
         </div>
         <div class="submit-button">
-            <button type="submit">Save</button>
+            <button type="submit" [disabled]="documentForm.invalid">Save</button>
         </div>
     </form>
 </div>

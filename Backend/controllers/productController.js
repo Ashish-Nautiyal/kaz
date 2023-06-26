@@ -45,7 +45,6 @@ module.exports.addProduct = async (req, res) => {
 
 module.exports.getProducts = async (req, res) => {
     try {
-        console.log(req.headers);
         const products = await Product.aggregate([
             {
                 $lookup:
