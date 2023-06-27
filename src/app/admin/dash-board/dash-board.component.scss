@@ -11,9 +11,19 @@
 
   a {
     margin-bottom: 10px;
-    border-bottom: 1px solid;
+    border-bottom: 1px solid black;
   }
 
   a:hover {
     background-color: rgb(241, 241, 241);
+  }
+
+  .report-icon {
+    border: 2px solid black;
+    border-top: none;
+    border-right: none;
+  }
+
+  mat-expansion-panel{
+    border-bottom: 1px solid black;
   }

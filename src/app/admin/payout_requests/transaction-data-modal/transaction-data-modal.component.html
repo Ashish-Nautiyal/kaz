@@ -1,0 +1,59 @@
+<div class="container">
+    <mat-icon class="close-icon" (click)="close()">close</mat-icon>
+    <h1>Transaction Data</h1>
+    <div class="group">
+        <div class="id">
+            <label for="">Account Unique Id :</label>
+            <input type="text">
+        </div>
+        <div class="trans-number">
+            <label for="">Transaction Number :</label>
+            <input type="text">
+        </div>
+    </div>
+    <div class="group">
+        <div class="trans-item-number">
+            <label for="">Transaction item Number :</label>
+            <input type="text">
+        </div>
+        <div class="created-date">
+            <label for="">Created Date :</label>
+            <input type="text">
+        </div>
+    </div>
+    <div class="group">
+        <div class="posted-date">
+            <label for="">Posted Date :</label>
+            <input type="text">
+        </div>
+        <div class="trans-value">
+            <label for="">Transaction Value :</label>
+            <input type="text">
+        </div>
+    </div>
+    <div class="group">
+        <div class="foreign-value">
+            <label for="">Foreign Value :</label>
+            <input type="text">
+        </div>
+        <div class="trans-code">
+            <label for="">Transaction Code :</label>
+            <input type="text">
+        </div>
+    </div>
+    <div class="group">
+        <div class="currency-code">
+            <label for="">Currency Code :</label>
+            <input type="text">
+        </div>
+        <div class="flag">
+            <label for="">Debit and Credit Flag :</label>
+            <input type="radio" name="flag">DR
+            <input type="radio" name="flag">CR
+        </div>
+    </div>
+    <div class="button-group">
+        <button type="submit">Save</button>
+        <button type="button" (click)="close()">Cancel</button>
+    </div>
+</div>

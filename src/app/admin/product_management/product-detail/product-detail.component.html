@@ -1,0 +1,55 @@
+<div class="container">
+    <mat-icon class="close-icon" (click)="close()">close</mat-icon>
+    <h1>Product Detail</h1>
+    <div class="product-image">
+        <img src="http://localhost:8001/{{data.product_image}}" alt="Product Image" height="240px" width="240px">
+    </div>
+    <div class="product-content">
+        <div>
+            <label>Product Name :</label><span>{{data.product_name}}</span>
+        </div>
+        <div>
+            <label>Category :</label><span>{{data.category}}</span>
+        </div>
+        <div>
+            <label>Description :</label><span>{{data.description}}</span>
+        </div>
+        <div>
+            <label>Payment type :</label><span>{{data.payment_type}}</span>
+        </div>
+        <div>
+            <label>Rate of return :</label><span>{{data.rate_of_return}}</span>
+        </div>
+        <div>
+            <label>Investment :</label><span>{{data.investment}}</span>
+        </div>
+        <div>
+            <label>Number of payment :</label><span>{{data.number_of_payment}}</span>
+        </div>
+        <div>
+            <label>Payment time :</label><span>{{data.payment_time}}</span>
+        </div>
+        <div>
+            <label>frequency :</label><span>{{data.frequency}}</span>
+        </div>
+        <div>
+            <label>Status :</label><span>{{data.status}}</span>
+        </div>
+    </div>
+    <div class="images">
+        <label>Images :</label>
+        <div *ngFor="let img of data.images">
+            <img src="http://localhost:8001/{{img}}" alt="" height="220px" width="250px">
+        </div>
+    </div>
+    <div class="documents">
+        <label>Documents :</label>
+        <div *ngFor="let doc of data.documents">
+            <img src="http://localhost:8001/{{doc}}" alt="" height="180px" width="180px">
+        </div>
+    </div>
+    <div class="video">
+        <video  src="http://localhost:8001/{{data.video}}" controls width="320px" height="240px" >
+        </video>
+    </div>
+</div> 

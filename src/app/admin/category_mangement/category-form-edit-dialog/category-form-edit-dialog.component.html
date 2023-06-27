@@ -1,0 +1,36 @@
+<div class="container">
+    <mat-icon (click)="close()">close</mat-icon>
+    <h1>Edit category</h1>
+    <div class="category-form">
+        <form [formGroup]="editCategoryFrom" (ngSubmit)="onSubmit()">
+            <input type="hidden" formControlName="_id">
+            <div class="category_name">
+                <label for="category_name">Category Name :</label>
+                <input type="text" placeholder="Category name" formControlName="category_name" id="category_name" />
+            </div>
+            <div
+                *ngIf="editCategoryFrom.get('category_name')?.touched && editCategoryFrom.get('category_name')?.invalid">
+                <div class="error_message" *ngIf="editCategoryFrom.get('category_name')?.errors.required">
+                    Category name is
+                    required.</div>
+            </div>
+            <div class="status">
+                <label for="status">Enable category :</label>
+                <mat-slide-toggle #toggle (click)="setValue(toggle.checked)" class="slide-toggle" id="status"
+                    *ngIf="!editCategoryFrom.get('status').value;else thisOne"></mat-slide-toggle>
+                <ng-template #thisOne>
+                    <mat-slide-toggle #toggle (click)="setValue(toggle.checked)" class="slide-toggle"
+                        id="status" checked></mat-slide-toggle>
+                </ng-template>
+            </div>
+            <div *ngIf="editCategoryFrom.get('status')?.touched && editCategoryFrom.get('status')?.invalid">
+                <div class="error_message" *ngIf="editCategoryFrom.get('status')?.errors.required">
+                    Status is
+                    required.</div>
+            </div>
+            <div class="save_btn">
+                <button type="submit">Update</button>
+            </div>
+        </form>
+    </div>
+</div>

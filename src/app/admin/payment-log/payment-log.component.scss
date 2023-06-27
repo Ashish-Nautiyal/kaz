@@ -1,0 +1,70 @@
+.container h1 {
+    color: rgb(0, 111, 111);
+    margin-top: 20px;
+    text-align: center;
+}
+
+.grid {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 60px;
+}
+
+.search label {
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+.search input {
+    height: 30px;
+    width: 300px;
+    border: 1.5px solid black;
+    border-radius: 5px;
+}
+
+.user-list-dropdown select {
+    height: 30px;
+    width: 300px;
+    border: 1.5px solid black;
+    border-radius: 5px;
+}
+
+.payment-log-list {
+    margin-top: 60px;
+}
+
+.payment-log-list h1 {
+    color: black;
+    margin-top: 150px;
+    margin-left: 20px;
+}
+
+.custom-table {
+    width: 90%;
+    border-collapse: collapse;
+    margin: auto;
+}
+
+.custom-table th,
+.custom-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ccc;
+}
+
+.custom-table th {
+    background-color: rgb(172, 169, 169);
+}
+
+.custom-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.custom-table tr:hover {
+    background-color: #eaeaea;
+}
+
+.custom-table td:last-child {
+    display: flex;
+    justify-content: space-evenly;
+}

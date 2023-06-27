@@ -1,0 +1,47 @@
+<div class="container">
+    <h1>Payment Log</h1>
+    <div class="grid">
+        <div class="search">
+            <label>Search:</label>
+            <input type="text" #searchString placeholder="Search Sub-Admin" />
+        </div>
+        <div class="user-list-dropdown">
+            <select>
+                <option value="">All Users</option>
+                <option value="{{user._id}}" *ngFor="let user of users">{{user.first_name + ' ' +user.last_name}}
+                </option>
+            </select>
+        </div>
+    </div>
+    <div class="payment-log-list">
+        <table class="custom-table">
+            <thead>
+                <tr>
+                    <th>Sr no.</th>
+                    <th>User Name</th>
+                    <th>Payment till date</th>
+                    <th>Last pay. date</th>
+                    <th>Next Pay. date</th>
+                    <th>Device used for payment</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users;let i = index">
+                    <td>{{i + 1}}</td>
+                    <td>{{user.first_name + ' ' +user.last_name}}</td>
+                    <td>27-06-2023</td>
+                    <td>01-07-2023</td>
+                    <td>31-07-2023</td>
+                    <td>Iphone</td>
+                    <td>
+                        <mat-icon>visibility</mat-icon>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <ng-template #elseBlock1>
+            <h1>No result found !!!</h1><span><mat-icon>search</mat-icon></span>
+        </ng-template>
+    </div>
+</div>

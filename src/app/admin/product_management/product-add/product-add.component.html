@@ -1,0 +1,136 @@
+<div class="container">
+    <mat-icon class="close-icon" (click)="close()">close</mat-icon>
+    <h1>Add New Product</h1>
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <div class="file-upload">
+            <input type="file" (change)="selectedProductImage($event)" id="img" />
+            <label for="img">
+                <div class="file-logo">
+                    <mat-icon>cloud_upload</mat-icon>
+                    <p>Add Image</p>
+                </div>
+            </label>
+            <div class="selected-image">
+                <img [src]="productImagePath" />
+            </div>
+        </div>
+        <div class="input-group">
+            <div class="product_name">
+                <label>Product Name :</label>
+                <input type="text" formControlName="product_name" />
+            </div>
+            <div class="category">
+                <label>Category :</label>
+                <select formControlName="category">
+                    <option value="">Select Category</option>
+                    <option *ngFor="let cat of category" value="{{cat._id}}">{{cat.category_name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="description">
+            <label>Description :</label>
+            <input type="text" formControlName="description" />
+        </div>
+        <div class="investment">
+            <label>Minimum Amount Invested :</label>
+            <input type="text" formControlName="investment" />
+        </div>
+        <div class="Payment-type">
+            <label>Payment Type :</label>
+            <input type="radio" name="payment_type" formControlName="payment_type" value="onetime" />One Time
+            <input type="radio" name="payment_type" formControlName="payment_type" value="recurring" />Recurring
+        </div>
+        <ng-container *ngIf="productForm.controls['payment_type'].value === 'recurring'">
+            <div class="payment-period">
+                <div class="payment">
+                    <label>No. Of Payments :</label>
+                    <select formControlName="number_of_payment">
+                        <option value="{{a}}" *ngFor="let a of [1,2,3,4,5,6,7,8,9,10]">{{a}}</option>
+                    </select>
+                </div>
+                <div class="week">
+                    <select formControlName="payment_time">
+                        <option value="Week">Weeks</option>
+                        <option value="Month">Months</option>
+                        <option value="Year">Year</option>
+                    </select>
+                </div>
+            </div>
+            <div class="frequency">
+                <label>Frequency :</label>
+                <select formControlName="frequency">
+                    <option value="{{a}}" *ngFor="let a of [1,2,3,4,5,6,7,8,9,10]">{{a}}</option>
+                </select>
+            </div>
+        </ng-container>
+        <div class="return-rate">
+            <label>Rate of return :</label>
+            <span>50%</span>
+        </div>
+        <div class="enable-product">
+            <label for="status">Enable Product :</label>
+            <mat-slide-toggle #toggle (click)="setStatusValue(toggle.checked)" class="slide-toggle"
+                id="status"></mat-slide-toggle>
+        </div>
+        <hr>
+        <div class="add-images">
+            <label>Add Images :</label>
+            <div class="image">
+                <ng-container *ngIf="images.length > 0">
+                    <div *ngFor="let image of images; let i = index">
+                        <input type="file" (change)="onImageChange($event, i)" id="file-icon-{{i}}" accept="image/*" />
+                        <label for="file-icon-{{i}}">
+                            <div class="file-icon-label" *ngIf="image == null">
+                                <mat-icon class="add">add</mat-icon>
+                            </div>
+                            <div *ngIf="image != null">
+                                <img [src]="imagePath[i]" alt="No image" height="120px" width="120px">
+                            </div>
+                        </label>
+                        <div>
+                            <mat-icon class="close" (click)="removeImage(i)">close</mat-icon>
+                        </div>
+                    </div>
+                </ng-container>
+                <mat-icon class="add_image_icon" (click)="addImage()">add</mat-icon>
+            </div>
+        </div>
+        <div class="add-documents">
+            <label>Add Documents :</label>
+            <div class="document">
+                <div *ngFor="let document of documents; let i = index">
+                    <input type="file" (change)="onDocumentChange($event, i)" id="document-icon-{{i}}">
+                    <label for="document-icon-{{i}}">
+                        <div class="file-icon-label" *ngIf="document == null">
+                            <mat-icon class="pdf">picture_as_pdf</mat-icon>
+                        </div>
+                        <div *ngIf="document != null">
+                            <img [src]="documentPath[i]" alt="No image" height="120px" width="120px">
+                        </div>
+                    </label>
+                    <div>
+                        <mat-icon class="close" (click)="removeDocument(i)">close</mat-icon>
+                    </div>
+                </div>
+                <mat-icon class="add_document_icon" (click)="addDocument()">add</mat-icon>
+            </div>
+        </div>
+        <div class="add-video">
+            <label>Add Video :</label>
+            <div class="video">
+                <input type="file" id="video-icon" (change)="addVideo($event)" accept="video/*">
+                <label for="video-icon">
+                    <div class="video-icon-pdf" *ngIf="!productVideoPath">
+                        <mat-icon>play_circle_filled</mat-icon>
+                    </div>
+                    <div *ngIf="productVideoPath">
+                        <video  src="{{productVideoPath}}" controls width="320px" height="240px" ></video>
+                    </div>
+                </label>
+            </div>
+        </div>
+        <div class="sbmit-button">
+            <button type="submit" [disabled]="productForm.invalid">Save</button>
+        </div>
+    </form>
+</div>

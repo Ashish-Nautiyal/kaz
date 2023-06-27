@@ -1,0 +1,83 @@
+.container h1 {
+    color: rgb(0, 111, 111);
+    margin-top: 20px;
+    text-align: center;
+}
+
+.search {
+    margin-left: 100px;
+}
+
+.search label {
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+.search input {
+    height: 30px;
+    width: 300px;
+    border: 1.5px solid black;
+    border-radius: 5px;
+}
+
+.payout-list {
+    margin-top: 60px;
+}
+
+.payout-list h1 {
+    color: black;
+    margin-top: 150px;
+    margin-left: 20px;
+}
+
+.custom-table {
+    width: 90%;
+    border-collapse: collapse;
+    margin: auto;
+}
+
+.custom-table th,
+.custom-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ccc;
+}
+
+.custom-table th {
+    background-color: rgb(172, 169, 169);
+}
+
+.custom-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.custom-table tr:hover {
+    background-color: #eaeaea;
+}
+
+.custom-table td:last-child {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.accept-button {
+    background-color: green;
+    color: white;
+    height: 30px;
+    width: 80px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.decline-button {
+    background-color: red;
+    color: white;
+    height: 30px;
+    width: 80px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}

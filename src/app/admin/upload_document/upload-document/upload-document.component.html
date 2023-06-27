@@ -1,0 +1,34 @@
+<div class="container">
+    <h1>Uploaded Documents</h1>
+    <div class="add-button">
+        <button (click)="addNewDocument()">Upload New Document</button>
+    </div>
+    <div class="document-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Sr no.</th>
+                    <th>Documetn Name</th>
+                    <th>Description</th>
+                    <th>Size</th>
+                    <th>Format</th>
+                    <th>Published on</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let document of documnets;let i = index">
+                    <td>{{i + 1}}</td>
+                    <td>{{document.document}}</td>
+                    <td>{{document.description}}</td>
+                    <td>{{document.file_size}}</td>
+                    <td>{{document.file_format}}</td>
+                    <td>{{document.published_on | date}}</td>
+                    <td>
+                        <mat-icon class="del-icon" (click)="deleteDocument(document._id)">delete</mat-icon>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

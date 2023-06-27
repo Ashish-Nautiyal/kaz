@@ -9,10 +9,31 @@
                     <a mat-list-item routerLink="home"><mat-icon>home</mat-icon>Home</a>
                     <a mat-list-item routerLink="subAdmin"><mat-icon>groups</mat-icon>Sub-admin Management</a>
                     <a mat-list-item routerLink="users"><mat-icon>person</mat-icon>Users Management</a>
+                    <a mat-list-item routerLink="payout"><mat-icon>local_atm</mat-icon>Payout Request</a>
+                    <a mat-list-item routerLink="paymentLog"><mat-icon>payment</mat-icon>Payment Log</a>
+
                     <a mat-list-item routerLink="category"><mat-icon>add_circle</mat-icon>Category Management</a>
                     <a mat-list-item routerLink="product"><mat-icon class="product-icon">local_parking</mat-icon>Product
                         Management</a>
-                        <a mat-list-item routerLink="blog"><mat-icon>library_books</mat-icon>Blog Management</a>
+                    <mat-expansion-panel class="mat-elevation-z0">
+                        <mat-expansion-panel-header>
+                            <mat-icon class="report-icon">bar_chart</mat-icon> Reports
+                        </mat-expansion-panel-header>
+                        <mat-nav-list>
+                            <a mat-list-item routerLink="newOpenAccount">No. Of New Opened Accounts</a>
+                            <a mat-list-item routerLink="npv">NPV/Account</a>
+                            <a mat-list-item routerLink="timeSpend">Average Time Spend On App</a>
+                            <a mat-list-item routerLink="attritionRate">Customer Attrition Rate</a>
+                            <a mat-list-item routerLink="averageAUM">Average AUM Per Customer</a>
+                            <a mat-list-item routerLink="accountSignUp">Account Sign ups by Month</a>
+                            <a mat-list-item routerLink="conversionRatio">Conversion Ratio</a>
+                            <a mat-list-item routerLink="activeUsers">Monthly Active Users(MAU)</a>
+                            <a mat-list-item routerLink="retentionRate">Retention Rate</a>
+                            <a mat-list-item routerLink="refferals">Referrals Incentives</a>
+                            <a mat-list-item routerLink="revenue">Revenue Reports</a>
+                        </mat-nav-list>
+                    </mat-expansion-panel>
+                    <a mat-list-item routerLink="blog"><mat-icon>library_books</mat-icon>Blog Management</a>
                     <a mat-list-item routerLink="content"><mat-icon> insert_drive_file</mat-icon>Content Management</a>
                     <a mat-list-item routerLink="uploadDocument"><mat-icon>cloud_upload</mat-icon>Upload Document</a>
                     <a mat-list-item routerLink="notification"><mat-icon>notifications_none</mat-icon>Send

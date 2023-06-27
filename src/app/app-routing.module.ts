@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { LoginComponent } from './auth/login/login.component';
-import { BlogDetailComponent } from './admin/blog-detail/blog-detail.component';
+import { BlogDetailComponent } from './admin/blog_management/blog-detail/blog-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/auth/login', pathMatch: 'full' },

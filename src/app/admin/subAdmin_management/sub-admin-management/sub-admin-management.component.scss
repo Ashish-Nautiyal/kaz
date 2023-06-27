@@ -1,0 +1,163 @@
+.container {
+    width: 100%;
+}
+
+.sub-admin-container {
+    text-align: center;
+}
+
+.sub-admin-container h1 {
+    color: rgb(0, 111, 111);
+    margin-top: 20px;
+}
+
+.grid {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 60px;
+}
+
+.search label {
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+.search input {
+    height: 30px;
+    width: 300px;
+    border: 1.5px solid black;
+    border-radius: 5px;
+}
+
+.add-sub-admin1 button {
+    height: 40px;
+    width: 200px;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding-bottom: 25px;
+    padding-top: 10px;
+    background-color: rgb(0, 111, 111);
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.sub-admin-list {
+    margin-top: 60px;
+}
+
+.sub-admin-list h1 {
+    color: black;
+    margin-top: 150px;
+    margin-left: 20px;
+}
+
+.custom-table {
+    width: 90%;
+    border-collapse: collapse;
+    margin: auto;
+}
+
+.custom-table th,
+.custom-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ccc;
+}
+
+.custom-table th {
+    background-color: rgb(172, 169, 169);
+}
+
+.custom-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.custom-table tr:hover {
+    background-color: #eaeaea;
+}
+
+.custom-table td:last-child {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.action-icon {
+    cursor: pointer;
+}
+
+.form-container {
+    text-align: center;
+    border: 2px solid black;
+    width: 800px;
+    height: 600px;
+    margin: auto;
+    border-radius: 15px;
+}
+
+.sub-admin-form {
+    margin-top: 60px;
+}
+
+.form-container h1 {
+    color: rgb(0, 111, 111);
+    margin-top: 20px;
+}
+
+.form-container input[type="text"],
+input[type="email"],
+input[type="password"] {
+    height: 30px;
+    width: 300px;
+    border: 1.5px solid black;
+    border-radius: 5px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 60px;
+}
+
+.grid-container>div {
+    width: 100%;
+}
+
+.eye-icon {
+    cursor: pointer;
+    position: absolute;
+}
+
+.checkbox {
+    margin-top: 70px;
+    text-align: left;
+    margin-left: 30px;
+}
+
+.add-sub-admin2 {
+    margin-top: 60px;
+}
+
+.add-sub-admin2 button {
+    height: 40px;
+    width: 150px;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding-bottom: 25px;
+    padding-top: 10px;
+    background-color: rgb(0, 111, 111);
+    color: white;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.add-sub-admin2 button:disabled {
+    background-color: #cccccc;
+    color: black;
+    cursor: not-allowed;
+}
+
+.error_message {
+    color: red;
+}

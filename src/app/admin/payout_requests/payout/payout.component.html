@@ -1,0 +1,34 @@
+<div class="container">
+    <h1>Payout Requests</h1>
+        <div class="search">
+            <label>Search:</label>
+            <input type="text" #searchString placeholder="Search" />
+        </div>
+    <div class="payout-list">
+        <table class="custom-table">
+            <thead>
+                <tr>
+                    <th>Sr no.</th>
+                    <th>User's Name</th>
+                    <th>Balance</th>
+                    <th>Payout Amount</th>
+                    <th>Request Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users;let i= index">
+                    <td>{{i + 1}}</td>
+                    <td>{{user.first_name + '' + user.last_name}}</td>
+                    <td> {{1000 + i | currency:'USD'}}</td>
+                    <td>{{19000 + i | currency:'USD'}}</td>
+                    <td>27-06-2023</td>
+                    <td>
+                        <button class="accept-button" (click)="openTransacationDataModal()">Accept</button>
+                        <button class="decline-button">Decline</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

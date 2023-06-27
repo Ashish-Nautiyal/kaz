@@ -1,0 +1,187 @@
+.container {
+    width: 100%;
+}
+
+.blog-container {
+    text-align: center;
+}
+
+.blog-container h1 {
+    color: rgb(0, 111, 111);
+    margin-top: 20px;
+}
+
+.grid {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 60px;
+}
+
+.search label {
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+.search input {
+    height: 30px;
+    width: 300px;
+    border: 1.5px solid black;
+    border-radius: 5px;
+}
+
+.add-category-button1 button {
+    height: 40px;
+    width: 200px;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding-bottom: 25px;
+    padding-top: 10px;
+    background-color: rgb(0, 111, 111);
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+mat-icon {
+    cursor: pointer;
+}
+
+
+// Category list
+.blog-list {
+    margin-top: 60px;
+}
+
+.blog-list h1 {
+    margin-top: 150px;
+    text-align: center;
+}
+
+table {
+    width: 90%;
+    margin: auto;
+    border-collapse: collapse;
+}
+
+table th {
+    background-color: rgb(172, 169, 169);
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ccc;
+}
+
+table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ccc;
+}
+
+table tr:hover {
+    background-color: #eaeaea;
+}
+
+.icon-group {
+    display: flex;
+    justify-content: space-around;
+}
+
+.category-list h1 {
+    text-align: center;
+}
+
+.search_icon {
+    margin-left: 900px;
+}
+
+
+// Blog Form
+
+.blog-form {
+    width: 800px;
+    height: 720px;
+    margin: auto;
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 15px;
+}
+
+.blog-form h1 {
+    color: rgb(0, 111, 111);
+    margin-top: 20px;
+}
+
+
+.demo-url {
+    margin-left: 390px;
+}
+
+.input-group {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 5px;
+}
+
+.input-group input {
+    width: 280px;
+    height: 30px;
+    border: 1.5px solid black;
+    border-radius: 5px;
+}
+
+.blog-image {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    margin-right: 520px;
+}
+
+.selected-image {
+    border: 2px solid black;
+    border-left: none;
+}
+
+.selected-image img {
+    width: 100px;
+    height: 96px;
+}
+
+input[type='file'] {
+    display: none;
+}
+
+.upload-label {
+    padding-left: 320px;
+}
+
+.upload-image {
+    border: 2px solid black;
+    width: 100px;
+    cursor: pointer;
+    margin-left: 320px;
+    padding: 20px;
+}
+
+.angular-editor {
+    margin-top: 40px;
+    width: 700px;
+    margin-left: 50px;
+}
+
+.submit-btn {
+    margin-top: 50px;
+}
+
+.submit-btn button {
+    width: 133px;
+    height: 40px;
+    background-color: rgb(0, 111, 111);
+    color: white;
+    border-radius: 5px;
+    border: 1.5px solid;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.error_message {
+    color: red;
+}

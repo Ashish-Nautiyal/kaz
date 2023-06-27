@@ -1,0 +1,75 @@
+.container {
+    width: 400px;
+    height: 300px;
+    text-align: center;
+    padding: 10px;
+}
+
+mat-icon {
+    float: right;
+    cursor: pointer;
+    margin-right: -76px;
+}
+
+.container h1 {
+    color: rgb(0, 111, 111);
+    margin-left: 100px;
+    margin-top: 10px;
+}
+
+.category_name {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 41px;
+    width: 400px;
+    margin-top: 40px;
+}
+
+.category_name label {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.category_name input {
+    width: 200px;
+    height: 30px;
+    border: 1.5px solid black;
+    border-radius: 5px;
+}
+
+.status {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 41px;
+    width: 400px;
+    margin-top: 45px;
+}
+
+.status label {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.slide-toggle {
+    margin-right: 175px;
+}
+
+.save_btn {
+    margin-top: 80px;
+    margin-left: 100px;
+}
+
+.save_btn button {
+    width: 133px;
+    height: 40px;
+    background-color: rgb(0, 111, 111);
+    color: white;
+    border-radius: 5px;
+    border: 1.5px solid;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.error_message {
+    color: red;
+}
