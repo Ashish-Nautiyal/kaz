@@ -130,9 +130,9 @@ module.exports.activateUser = async (req, res) => {
 module.exports.registerUserCount = async (req, res) => {
     try {
         let count = await User.count();
-        if (!count) [
-            count = 0
-        ]
+        if (!count) {
+            count = 0;
+        }
         res.status(200).json({ message: 'Register users count', data: count, success: true });
     } catch (error) {
         console.log(error);
@@ -143,9 +143,9 @@ module.exports.registerUserCount = async (req, res) => {
 module.exports.activeUserCount = async (req, res) => {
     try {
         let count = await User.find({ status: true }).count();
-        if (!count) [
-            count = 0
-        ]
+        if (!count) {
+            count = 0;
+        }
         res.status(200).json({ message: 'Active users count', data: count, success: true });
     } catch (error) {
         console.log(error);
@@ -156,12 +156,106 @@ module.exports.activeUserCount = async (req, res) => {
 module.exports.inactiveUserCount = async (req, res) => {
     try {
         let count = await User.find({ status: false }).count();
-        if (!count) [
-            count = 0
-        ]
-        res.status(200).json({ message: 'Inactive users count', data: count, success: true });
+        if (!count) {
+            count = 0;
+        }
+        res.status(200).json({ message: 'Inactive users count.', data: count, success: true });
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: 'Internal server error.', success: false });
     }
-}   
+}
+
+module.exports.dateFilterActiveUsers = async (req, res) => {
+    try {
+        let data;
+        const { startDate, endDate } = req.body;
+        if (!startDate || !endDate) {
+            return res.status(200).json({ message: 'All mandatory fields required.', success: false });
+        }
+        if (startDate === endDate) {
+            const startOfCurrentMonth = new Date();
+            startOfCurrentMonth.setDate(1);
+
+            const startOfNextMonth = new Date();
+            startOfNextMonth.setDate(1);
+            startOfNextMonth.setMonth(startOfNextMonth.getMonth() + 1);
+
+            data = await User.find({ $and: [{ status: true }, { createdAt: { $gte: startOfCurrentMonth, $lt: startOfNextMonth } }] });
+        } else {
+            data = await User.find({ $and: [{ status: true }, { createdAt: { $gte: startOfCurrentMonth, $lt: startOfNextMonth } }] });
+        }
+        if (data.length > 0) {
+            return res.status(200).json({ message: 'Filtered user data.', data: data, success: true });
+        } else {
+            return res.status(200).json({ message: 'No data found between given dates.', success: false });
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Internal server error.', success: false });
+    }
+}
+
+module.exports.currentMonthActiveUsers = async (req, res) => {
+    try {
+        const startOfCurrentMonth = new Date();
+        startOfCurrentMonth.setDate(1);
+
+        const startOfNextMonth = new Date();
+        startOfNextMonth.setDate(1);
+        startOfNextMonth.setMonth(startOfNextMonth.getMonth() + 1);
+
+        data = await User.find({ $and: [{ status: true }, { createdAt: { $gte: startOfCurrentMonth, $lt: startOfNextMonth } }] });
+        res.status(200).json({ message: 'Current month registered users.', data: data, success: true });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Internal server error.', success: false });
+    }
+}
+
+module.exports.dateFilterDeactiveUsers = async (req, res) => {
+    try {
+        let data;
+        const { startDate, endDate } = req.body;
+        if (!startDate || !endDate) {
+            return res.status(200).json({ message: 'All mandatory fields required.', success: false });
+        }
+        if (startDate === endDate) {
+            const startOfCurrentMonth = new Date();
+            startOfCurrentMonth.setDate(1);
+
+            const startOfNextMonth = new Date();
+            startOfNextMonth.setDate(1);
+            startOfNextMonth.setMonth(startOfNextMonth.getMonth() + 1);
+
+            data = await User.find({ $and: [{ status: false }, { createdAt: { $gte: startOfCurrentMonth, $lt: startOfNextMonth } }] });
+        } else {
+            data = await User.find({ $and: [{ status: false }, { createdAt: { $gte: startOfCurrentMonth, $lt: startOfNextMonth } }] });
+        }
+        if (data.length > 0) {
+            return res.status(200).json({ message: 'Filtered user data.', data: data, success: true });
+        } else {
+            return res.status(200).json({ message: 'No data found between given dates.', success: false });
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Internal server error.', success: false });
+    }
+}
+
+module.exports.currentMonthDeactiveUsers = async (req, res) => {
+    try {
+        const startOfCurrentMonth = new Date();
+        startOfCurrentMonth.setDate(1);
+
+        const startOfNextMonth = new Date();
+        startOfNextMonth.setDate(1);
+        startOfNextMonth.setMonth(startOfNextMonth.getMonth() + 1);
+
+        data = await User.find({ $and: [{ status: false }, { createdAt: { $gte: startOfCurrentMonth, $lt: startOfNextMonth } }] });
+        res.status(200).json({ message: 'Current month registered users.', data: data, success: true });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Internal server error.', success: false });
+    }
+}

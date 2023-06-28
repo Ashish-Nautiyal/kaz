@@ -54,4 +54,20 @@ export class UserService {
   activateUser(body: any): Observable<any> {
     return this.http.get<any>(environment.baseUrl + 'api/activateUser/' + body);
   }
+
+  dateFilterActiveUsers(body: object): Observable<any> {
+    return this.http.post<any>(environment.baseUrl + 'api/dateFilterActiveUsers', body);
+  }
+
+  currentMonthActiveUsers(): Observable<any> {
+    return this.http.get<any>(environment.baseUrl + 'api/currentMonthActiveUsers');
+  }
+
+  dateFilterDeactiveUsers(body: object): Observable<any> {
+    return this.http.post<any>(environment.baseUrl + 'api/dateFilterDeactiveUsers', body);
+  }
+
+  currentMonthDeactiveUsers(): Observable<any> {
+    return this.http.get<any>(environment.baseUrl + 'api/currentMonthDeactiveUsers');
+  }
 }

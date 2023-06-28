@@ -3,15 +3,27 @@
     <div class="grid">
         <div class="search">
             <label for="">Search :</label>
-            <input type="text" placeholder="search">
+            <input type="text" placeholder="search" (keydown)="search($event)">
         </div>
         <div class="date-filter">
-            <p>Choose Start date and End date</p>
-            <input type="text">
+            <label for="">Select start date and end date :</label>
+            <div>
+                <mat-form-field>
+                    <mat-label>Enter a date range</mat-label>
+                    <mat-date-range-input [rangePicker]="picker">
+                        <input matStartDate placeholder="Start date" [(ngModel)]="startDate">
+                        <input matEndDate placeholder="End date" (dateChange)="dateFilter($event)"
+                            [(ngModel)]="endDate">
+                    </mat-date-range-input>
+                    <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #picker></mat-date-range-picker>
+                </mat-form-field>
+            </div>
         </div>
     </div>
-    <div class="">
-        <h3>Total Number of New Opened Accounts : 500</h3>
+    <div class="data">
+        <h3>Total Number of New Opened Accounts : {{users.length}}</h3>
         <div class="table">
             <table mat-table [dataSource]="dataSource">
                 <ng-container matColumnDef="id">
@@ -37,7 +49,7 @@
                 <ng-container matColumnDef="Action">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
                     <td *matCellDef="let row">
-                        <mat-icon>visibility</mat-icon>
+                        <mat-icon (click)="userDetail(row._id)">visibility</mat-icon>
                     </td>
                 </ng-container>
 
@@ -45,12 +57,14 @@
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
                 <tr class="mat-row" *matNoDataRow>
-                    <td class="mat-cell" colspan="4">No data matching the filter</td>
+                    <td class="mat-cell" colspan="4">No data found !!!</td>
                 </tr>
             </table>
         </div>
-        <mat-paginator [pageSizeOptions]="[2, 4, 20]" showFirstLastButtons
-            aria-label="Select page of periodic elements">
-        </mat-paginator>
+        <div class="paginator">
+            <mat-paginator [pageSizeOptions]="[2, 4, 20]" showFirstLastButtons
+                aria-label="Select page of periodic elements">
+            </mat-paginator>
+        </div>
     </div>
 </div>

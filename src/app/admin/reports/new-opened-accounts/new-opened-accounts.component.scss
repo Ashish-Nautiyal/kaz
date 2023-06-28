@@ -1,0 +1,62 @@
+.container {
+    margin-top: 20px;
+}
+
+.container h1 {
+    color: rgb(0, 111, 111);
+    text-align: center;
+}
+
+.grid {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 60px;
+}
+
+.search label {
+    font-size: 16px;
+    margin-right: 20px;
+}
+
+.search input {
+    height: 30px;
+    width: 300px;
+    border: 1.5px solid black;
+    border-radius: 5px;
+}
+
+.date-filter label {
+    font-size: 16px;
+    margin-right: 20px;
+}
+
+.data {
+    width: 90%;
+    margin: auto;
+}
+
+.data h3 {
+    color: rgb(0, 111, 111);
+    margin-top: 20px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table th {
+    background-color: rgb(172, 169, 169);
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ccc;
+}
+
+table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ccc;
+}
+
+table tr:hover {
+    background-color: #eaeaea;
+}

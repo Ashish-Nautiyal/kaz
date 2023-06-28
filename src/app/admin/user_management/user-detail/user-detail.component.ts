@@ -35,7 +35,7 @@ export class UserDetailComponent implements OnInit {
   deactivateUser() {
     this.userService.deactivateUser(this.user._id).subscribe(
       res => {
-        this.dialogRef.close(false);
+        this.dialogRef.close(true);
       }, error => console.log(error)
     );
   }
@@ -43,7 +43,7 @@ export class UserDetailComponent implements OnInit {
   activateUser() {
     this.userService.activateUser(this.user._id).subscribe(
       res => {
-        this.dialogRef.close(false);
+        this.dialogRef.close(true);
       }, error => console.log(error)
     );
   }

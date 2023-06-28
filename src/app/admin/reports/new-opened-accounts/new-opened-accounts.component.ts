@@ -1,28 +1,32 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { UserService } from 'src/app/services/user.service';
+import { UserDetailComponent } from '../../user_management/user-detail/user-detail.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-new-opened-accounts',
   templateUrl: './new-opened-accounts.component.html',
   styleUrls: ['./new-opened-accounts.component.scss']
 })
-export class NewOpenedAccountsComponent implements  AfterViewInit {
+export class NewOpenedAccountsComponent {
 
   users: any;
   displayedColumns: string[] = ['id', 'first_name', 'email', 'phone_number', 'Action'];
   dataSource!: MatTableDataSource<any>;
+  startDate: any = '';
+  endDate: any = '';
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.getUsers();
+    this.getCurrentMonthUsers();
   }
 
-  getUsers() {
-    this.userService.getUsers().subscribe(
+  getCurrentMonthUsers() {
+    this.userService.currentMonthActiveUsers().subscribe(
       res => {
         this.users = res.data;
         this.dataSource = this.users;
@@ -30,7 +34,51 @@ export class NewOpenedAccountsComponent implements  AfterViewInit {
     );
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+  search(event: any) {
+    let searchstring = event.target.value;
+    if (searchstring != '') {
+      this.userService.searchUser(searchstring).subscribe(
+        res => {
+          this.dataSource = res.data;
+        }, error => console.log(error)
+      );
+    } else {
+      this.getCurrentMonthUsers();
+    }
+  }
+
+  dateFilter(event: any) {
+    let endDate = event.target.value;
+    this.userService.dateFilterActiveUsers({ startDate: this.startDate, endDate: this.endDate }).subscribe(
+      res => {
+        if (res.data) {
+          this.dataSource = res.data;
+        } else {
+          this.getCurrentMonthUsers();
+        }
+      }, error => console.log(error)
+    );
+  }
+
+  userDetail(id: any) {
+    this.userService.editUser(id).subscribe(
+      res => {
+        let data = res.data;
+        const dialogRef = this.dialog.open(UserDetailComponent, {
+          width: '800px',
+          height: '700px',
+          data: data
+        });
+
+        dialogRef.afterClosed().subscribe(
+          res => {
+            console.log(res);
+            if (res) {
+              this.getCurrentMonthUsers();
+            }
+          }
+        );
+      }, error => console.log(error)
+    );
   }
 }

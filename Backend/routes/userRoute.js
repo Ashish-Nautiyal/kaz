@@ -13,5 +13,10 @@ userRoute.route('/activeUserCount').get(auth, userController.activeUserCount);
 userRoute.route('/inactiveUserCount').get(auth, userController.inactiveUserCount);
 userRoute.route('/activateUser/:_id').get(auth, userController.activateUser);
 userRoute.route('/deactivateUser/:_id').get(auth, userController.deactivateUser);
+userRoute.route('/dateFilterActiveUsers').post(auth, userController.dateFilterActiveUsers);
+userRoute.route('/currentMonthActiveUsers').get(auth, userController.currentMonthActiveUsers);
+userRoute.route('/dateFilterDeactiveUsers').post(auth, userController.dateFilterDeactiveUsers);
+userRoute.route('/currentMonthDeactiveUsers').get(auth, userController.currentMonthDeactiveUsers);
+
  
 module.exports = userRoute;
