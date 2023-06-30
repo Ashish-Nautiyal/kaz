@@ -18,6 +18,15 @@ export class NewOpenedAccountsComponent {
   startDate: any = '';
   endDate: any = '';
 
+  length = 5;
+  pageSize = 2;
+  pageIndex = 0;
+  pageSizeOptions = [5, 10, 25];
+
+  hidePageSize = false;
+  showPageSizeOptions = true;
+  showFirstLastButtons = true;
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(private userService: UserService, private dialog: MatDialog) { }
 
@@ -48,7 +57,6 @@ export class NewOpenedAccountsComponent {
   }
 
   dateFilter(event: any) {
-    let endDate = event.target.value;
     this.userService.dateFilterActiveUsers({ startDate: this.startDate, endDate: this.endDate }).subscribe(
       res => {
         if (res.data) {
@@ -72,7 +80,6 @@ export class NewOpenedAccountsComponent {
 
         dialogRef.afterClosed().subscribe(
           res => {
-            console.log(res);
             if (res) {
               this.getCurrentMonthUsers();
             }

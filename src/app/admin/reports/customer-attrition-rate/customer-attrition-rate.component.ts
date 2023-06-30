@@ -48,8 +48,6 @@ export class CustomerAttritionRateComponent {
   }
 
   dateFilter(event: any) {
-    console.log(event.target.value);
-
     this.userService.dateFilterDeactiveUsers({ startDate: this.startDate, endDate: this.endDate }).subscribe(
       res => {
         if (res.data) {

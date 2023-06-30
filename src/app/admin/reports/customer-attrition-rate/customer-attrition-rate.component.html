@@ -23,7 +23,7 @@
         </div>
     </div>
     <div class="data">
-        <h3>Total Number of Users left : {{users.length}}</h3>
+        <h3 *ngIf="users">Total Number of Users left : {{users.length}}</h3>
         <div class="table">
             <table mat-table [dataSource]="dataSource">
                 <ng-container matColumnDef="id">

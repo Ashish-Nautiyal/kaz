@@ -7,8 +7,9 @@
         </div>
         <div class="year-dropdown">
             <label for="">Select Year :</label>
-            <select>
+            <select (change)="onYearSelect($event)">
                 <option value="">Years</option>
+                <option value="{{year}}" *ngFor="let year of years">{{year}}</option>
             </select>
         </div>
     </div>

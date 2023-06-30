@@ -36,8 +36,6 @@ export class NPVComponent {
     this.productService.getProducts().subscribe(
       res => {
         this.products = res.data;
-        console.log(this.products);
-        
         this.dataSource = this.products;
       }, error => console.log(error)
     );

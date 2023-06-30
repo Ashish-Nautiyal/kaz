@@ -17,6 +17,7 @@ userRoute.route('/dateFilterActiveUsers').post(auth, userController.dateFilterAc
 userRoute.route('/currentMonthActiveUsers').get(auth, userController.currentMonthActiveUsers);
 userRoute.route('/dateFilterDeactiveUsers').post(auth, userController.dateFilterDeactiveUsers);
 userRoute.route('/currentMonthDeactiveUsers').get(auth, userController.currentMonthDeactiveUsers);
+userRoute.route('/getSignUpsByMonthYear').post(auth, userController.getSignupsByMonthYear);
 
- 
+
 module.exports = userRoute;

@@ -183,10 +183,10 @@ module.exports.dateFilterActiveUsers = async (req, res) => {
 
             data = await User.find({ $and: [{ status: true }, { createdAt: { $gte: startOfCurrentMonth, $lt: startOfNextMonth } }] });
         } else {
-            data = await User.find({ $and: [{ status: true }, { createdAt: { $gte: startOfCurrentMonth, $lt: startOfNextMonth } }] });
+            data = await User.find({ $and: [{ status: true }, { createdAt: { $gte: startDate, $lt: endDate } }] });
         }
         if (data.length > 0) {
-            return res.status(200).json({ message: 'Filtered user data.', data: data, success: true });
+            return res.status(200).json({ message: 'Filtered active user data.', data: data, success: true });
         } else {
             return res.status(200).json({ message: 'No data found between given dates.', success: false });
         }
@@ -206,7 +206,7 @@ module.exports.currentMonthActiveUsers = async (req, res) => {
         startOfNextMonth.setMonth(startOfNextMonth.getMonth() + 1);
 
         data = await User.find({ $and: [{ status: true }, { createdAt: { $gte: startOfCurrentMonth, $lt: startOfNextMonth } }] });
-        res.status(200).json({ message: 'Current month registered users.', data: data, success: true });
+        res.status(200).json({ message: 'Current month Active users.', data: data, success: true });
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: 'Internal server error.', success: false });
@@ -230,10 +230,10 @@ module.exports.dateFilterDeactiveUsers = async (req, res) => {
 
             data = await User.find({ $and: [{ status: false }, { createdAt: { $gte: startOfCurrentMonth, $lt: startOfNextMonth } }] });
         } else {
-            data = await User.find({ $and: [{ status: false }, { createdAt: { $gte: startOfCurrentMonth, $lt: startOfNextMonth } }] });
+            data = await User.find({ $and: [{ status: false }, { createdAt: { $gte: startDate, $lt: endDate } }] });
         }
         if (data.length > 0) {
-            return res.status(200).json({ message: 'Filtered user data.', data: data, success: true });
+            return res.status(200).json({ message: 'Filtered Deactive user data.', data: data, success: true });
         } else {
             return res.status(200).json({ message: 'No data found between given dates.', success: false });
         }
@@ -253,9 +253,98 @@ module.exports.currentMonthDeactiveUsers = async (req, res) => {
         startOfNextMonth.setMonth(startOfNextMonth.getMonth() + 1);
 
         data = await User.find({ $and: [{ status: false }, { createdAt: { $gte: startOfCurrentMonth, $lt: startOfNextMonth } }] });
-        res.status(200).json({ message: 'Current month registered users.', data: data, success: true });
+        res.status(200).json({ message: 'Current month Deactive users.', data: data, success: true });
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: 'Internal server error.', success: false });
     }
 }
+
+module.exports.getSignupsByMonthYear = async (req, res) => {
+    try {
+        const year = req.body.year;
+        const month = req.body.month;
+        const currentDate = new Date();
+        let startOfCurrentPeriod, startOfNextPeriod, message;
+
+        switch (true) {
+            case year !== '' && month !== '':
+                currentDate.setFullYear(year);
+                currentDate.setMonth(parseInt(month - 1));
+                currentDate.setDate(1);
+                startOfCurrentPeriod = new Date(currentDate);
+                currentDate.setMonth(month);
+                startOfNextPeriod = new Date(currentDate);
+                message = 'Selected month and Year Registered users.';
+                break;
+            case year !== '' && month === '':
+                currentDate.setFullYear(year);
+                currentDate.setMonth(0);
+                currentDate.setDate(1);
+                startOfCurrentPeriod = new Date(currentDate);
+                currentDate.setFullYear(startOfCurrentPeriod.getFullYear() + 1);
+                startOfNextPeriod = new Date(currentDate);
+                message = 'Selected Year Registered users.';
+                break;
+            case year === '' && month !== '':
+                currentDate.setMonth(parseInt(month - 1));
+                currentDate.setDate(1);
+                startOfCurrentPeriod = new Date(currentDate);
+                currentDate.setMonth(month);
+                startOfNextPeriod = new Date(currentDate);
+                message = 'Selected month Registered users.';
+                break;
+            default:
+                currentDate.setDate(1);
+                startOfCurrentPeriod = new Date(currentDate);
+                currentDate.setMonth(startOfCurrentPeriod.getMonth() + 1);
+                startOfNextPeriod = new Date(currentDate);
+                message = 'Current month Registered users.';
+                break;
+        }
+
+        const data = await User.find({ createdAt: { $gte: startOfCurrentPeriod, $lt: startOfNextPeriod } });
+        return res.status(200).json({ message, data, success: true });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Internal server error.', success: false });
+    }
+
+
+}
+
+
+// try {
+//     const year = req.body.year;
+//     const month = req.body.month;
+//     const currentDate = new Date();
+
+//     let startOfCurrentPeriod;
+//     let startOfNextPeriod;
+
+//     if (year !== '' && month !== '') {
+//         startOfCurrentPeriod = new Date(year, month - 1, 1);
+//         startOfNextPeriod = new Date(year, , 1);
+//     } else if (year !== '' && month === '') {
+//         startOfCurrentPeriod = new Date(year, 0, 1);
+//         startOfNextPeriod = new Date(year + 1, 0, 1);
+//     } else if (year === '' && month !== '') {
+//         startOfCurrentPeriod = new Date(currentDate.getFullYear(), month - 1, 1);
+//         startOfNextPeriod = new Date(currentDate.getFullYear(), month, 1);
+//     } else {
+//         startOfCurrentPeriod = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+//         startOfNextPeriod = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1);
+//     }
+
+//     console.log('start', startOfCurrentPeriod);
+//     console.log('end', startOfNextPeriod);
+
+//     const data = await User.find({ createdAt: { $gte: startOfCurrentPeriod, $lt: startOfNextPeriod } });
+
+
+
+//     
+// } catch (error) {
+//     console.log(error);
+//     return res.status(500).json({ message: 'Internal server error.', success: false });
+// }

@@ -70,4 +70,8 @@ export class UserService {
   currentMonthDeactiveUsers(): Observable<any> {
     return this.http.get<any>(environment.baseUrl + 'api/currentMonthDeactiveUsers');
   }
+  
+  getSignUpsByMonthYear(body: object): Observable<any> {
+    return this.http.post<any>(environment.baseUrl + 'api/getSignUpsByMonthYear', body);
+  }
 }
