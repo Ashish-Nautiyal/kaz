@@ -145,11 +145,6 @@ export class ProductEditComponent implements OnInit {
     formData.append('description', this.editForm.controls['description'].value);
     formData.append('investment', this.editForm.controls['investment'].value);
     formData.append('payment_type', this.editForm.controls['payment_type'].value);
-if(this.editForm.controls['payment_type'].value === 're'){
-
-}else{
-
-}
     formData.append('number_of_payment', this.editForm.controls['number_of_payment'].value);
     formData.append('payment_time', this.editForm.controls['payment_time'].value);
     formData.append('frequency', this.editForm.controls['frequency'].value);

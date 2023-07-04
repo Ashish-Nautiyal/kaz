@@ -309,42 +309,4 @@ module.exports.getSignupsByMonthYear = async (req, res) => {
         console.log(error);
         res.status(500).json({ message: 'Internal server error.', success: false });
     }
-
-
 }
-
-
-// try {
-//     const year = req.body.year;
-//     const month = req.body.month;
-//     const currentDate = new Date();
-
-//     let startOfCurrentPeriod;
-//     let startOfNextPeriod;
-
-//     if (year !== '' && month !== '') {
-//         startOfCurrentPeriod = new Date(year, month - 1, 1);
-//         startOfNextPeriod = new Date(year, , 1);
-//     } else if (year !== '' && month === '') {
-//         startOfCurrentPeriod = new Date(year, 0, 1);
-//         startOfNextPeriod = new Date(year + 1, 0, 1);
-//     } else if (year === '' && month !== '') {
-//         startOfCurrentPeriod = new Date(currentDate.getFullYear(), month - 1, 1);
-//         startOfNextPeriod = new Date(currentDate.getFullYear(), month, 1);
-//     } else {
-//         startOfCurrentPeriod = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
-//         startOfNextPeriod = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1);
-//     }
-
-//     console.log('start', startOfCurrentPeriod);
-//     console.log('end', startOfNextPeriod);
-
-//     const data = await User.find({ createdAt: { $gte: startOfCurrentPeriod, $lt: startOfNextPeriod } });
-
-
-
-//     
-// } catch (error) {
-//     console.log(error);
-//     return res.status(500).json({ message: 'Internal server error.', success: false });
-// }
