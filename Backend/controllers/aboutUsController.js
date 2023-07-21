@@ -15,7 +15,7 @@ module.exports.addAboutUs = async (req, res) => {
         res.status(201).json({ message: 'AbooutUs added.', success: true });
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: 'Internal server error.', success: false });
+       return res.status(500).json({ message: 'Internal server error.', success: false });
     }
 }
 
@@ -25,13 +25,12 @@ module.exports.getAboutUs = async (req, res) => {
             return res.status(200).json({ message: 'AboutUs Content.', data: documents, success: true });
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: 'Internal server error.', success: false });
+       return res.status(500).json({ message: 'Internal server error.', success: false });
     }
 }
 
 module.exports.updateAboutUs = async (req, res) => {
     try {
-
         const { _id, title, content } = req.body;
         if (!_id || !title || !content) {
             return res.status(200).json({ message: 'All mandatory fields required.', success: false });
@@ -40,6 +39,6 @@ module.exports.updateAboutUs = async (req, res) => {
         return res.status(200).json({ message: 'AboutUs Content Updated.', success: true });
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: 'Internal server error.', success: false });
+       return res.status(500).json({ message: 'Internal server error.', success: false });
     }
 }

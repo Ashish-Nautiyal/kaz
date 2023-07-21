@@ -45,6 +45,10 @@ app.use('/api', documentRoutes);
 const aboutUsRoutes = require('./routes/aboutUsRoute');
 app.use('/api', aboutUsRoutes);
 
+//Activity routes
+const activityRoutes = require('./routes/userActivityRoute');
+app.use('/api', activityRoutes);
+
 app.listen(port, () => {
     console.log(`server listening on port ${port}`);
 });

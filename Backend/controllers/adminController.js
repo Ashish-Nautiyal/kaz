@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const nodemailer = require("nodemailer");
 
+// sending registration notification email to subadmin 
 async function sendEmail(email) {
     try {
         let transporter = nodemailer.createTransport({
@@ -28,6 +29,7 @@ async function sendEmail(email) {
     }
 }
 
+//subadmin registration
 module.exports.register = async (req, res) => {
     try {
         const { username, email, first_name, last_name, phone_number, password, checkbox } = req.body;
@@ -44,17 +46,24 @@ module.exports.register = async (req, res) => {
             phone_number,
             password: hashedPassword
         })
-        await newUser.save();
+        await newUser.save(function (err, success) {
+            if (err) {
+                console.log('error', err);
+            } else {
+                console.log('success', success);
+            }
+        });
         if (checkbox) {
             sendEmail(email);
         }
-        res.status(201).json({ message: 'User registered successfully.', success: true });
+        return res.status(201).json({ message: 'User registered successfully.', success: true });
     } catch (error) {
-        console.log(error);
-        res.status(500).json({ message: 'Internal server error.', success: false });
+        console.log('catch', error);
+        return res.status(500).json({ message: 'Internal server error.', success: false });
     }
 }
 
+//login
 module.exports.login = async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -76,17 +85,18 @@ module.exports.login = async (req, res) => {
         return res.status(201).json({ message: 'User Login Successfully.', success: true, data: token });
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: 'Internal server error.', success: false });
+        return res.status(500).json({ message: 'Internal server error.', success: false });
     }
 }
 
+//get all subadmins
 module.exports.getSubAdmins = async (req, res) => {
     try {
         const subAdmins = await Admin.find({ role: 1 });
         res.status(200).json({ message: 'Subadmins list.', data: subAdmins, success: true });
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: 'Internal server error.', success: false });
+        return res.status(500).json({ message: 'Internal server error.', success: false });
     }
 }
 
@@ -103,7 +113,7 @@ module.exports.editSubAdmin = async (req, res) => {
         res.status(200).json({ message: 'SubAdmin detail.', data: data, success: true });
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: 'Internal server error.', success: false });
+        return res.status(500).json({ message: 'Internal server error.', success: false });
     }
 }
 
@@ -117,7 +127,7 @@ module.exports.updateSubAdmin = async (req, res) => {
         res.status(200).json({ message: 'SubAdmin updated.', success: true });
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: 'Internal server error.', success: false });
+        return res.status(500).json({ message: 'Internal server error.', success: false });
     }
 }
 
@@ -134,7 +144,7 @@ module.exports.deleteSubAdmin = async (req, res) => {
         res.status(200).json({ message: 'subAdmin deleted.', success: true });
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: 'Internal server error.', success: false });
+        return res.status(500).json({ message: 'Internal server error.', success: false });
     }
 }
 
@@ -148,7 +158,7 @@ module.exports.searchSubAdmins = async (req, res) => {
         res.status(200).json({ message: 'Search result', data: data, success: true });
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: 'Internal server error.', success: false });
+        return res.status(500).json({ message: 'Internal server error.', success: false });
     }
 }
 
@@ -179,7 +189,7 @@ module.exports.changePassword = async (req, res) => {
         }
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: 'Internal server error.', success: false });
+        return res.status(500).json({ message: 'Internal server error.', success: false });
     }
 }
 
@@ -192,7 +202,7 @@ module.exports.sendNotificationToUser = async (req, res) => {
         res.status(200).json({ message: 'Notification successfully send.', success: true });
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: 'Internal server error.', success: false });
+        return res.status(500).json({ message: 'Internal server error.', success: false });
     }
 }
 

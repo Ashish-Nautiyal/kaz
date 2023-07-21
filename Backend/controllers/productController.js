@@ -6,8 +6,6 @@ module.exports.addProduct = async (req, res) => {
         if (!product_name || !category) {
             return res.status(200).json({ message: 'All mandatory fields required.', success: false });
         }
-        console.log('body', req.body);
-        console.log('files', req.files);
         let imagesArray = [];
         let documentsArray = [];
 
@@ -17,8 +15,6 @@ module.exports.addProduct = async (req, res) => {
         req.files.documents.map((image) => {
             documentsArray.push(image.path)
         });
-        console.log("imagearray", imagesArray);
-        console.log('documentarray', documentsArray);
         const newProduct = new Product({
             product_name,
             category,

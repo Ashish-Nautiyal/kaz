@@ -12,8 +12,7 @@ export class TimeSpendOnAppComponent {
   users: any;
   displayedColumns: string[] = ['id', 'User', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   dataSource!: MatTableDataSource<any>;
-  year = new Date().getFullYear();
-  years = Array.from(new Array(20), (val, index) => index + this.year);
+  years = Array.from(new Array(20), (val, index) => index + new Date().getFullYear());
 
   constructor(private userService: UserService) { }
 
@@ -30,8 +29,18 @@ export class TimeSpendOnAppComponent {
     );
   }
 
-  search(event: any) {
-
+  search(val: any) {
+    console.log('value',val);
+    
+    if(val != ''){
+      this.userService.searchUser(val).subscribe(
+        res => {
+          this.dataSource = res.data;
+        },error => console.log(error)
+      )
+    }else{
+      this.getUsers();
+    }  
   }
 
   onYearSelect(event:any) {

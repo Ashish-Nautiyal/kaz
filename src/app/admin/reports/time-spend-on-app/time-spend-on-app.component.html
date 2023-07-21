@@ -3,7 +3,7 @@
     <div class="grid">
         <div class="search">
             <label for="">Search :</label>
-            <input type="text" placeholder="search" (keydown)="search($event)">
+            <input type="text" placeholder="search" #searchValue (keydown)="search(searchValue.value)">
         </div>
         <div class="year-dropdown">
             <label for="">Select Year :</label>
